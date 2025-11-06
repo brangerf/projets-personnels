@@ -2,9 +2,9 @@
 
 *A propos de chat_and_rag :*
 
-Ce projet est une application de bureau qui permet de chatter avec des modèles de langage locaux via Ollama. Je l'ai construit en utilisant Python pour la logique principale et une interface utilisateur en HTML et JavaScript, le tout unifié dans une fenêtre grâce à pywebview.
+Ce projet est un module de développement séparé, destiné à une future implémentation au sein de mon prototype d'application complet. Il se présente sous la forme d'une application de bureau qui permet de chatter avec des modèles de langage locaux via Ollama.
 La fonctionnalité principale est de pouvoir poser des questions sur un document personnel. Pour la recherche sémantique, l'approche est un peu plus élaborée. Plutôt que de chercher les mots exacts de la question, j'utilise d'abord le modèle de langage pour extraire les concepts clés et leurs variations. Ensuite, le programme recherche ces termes dans le document et identifie les zones où ils sont les plus pertinents et concentrés. Ces passages sont évalués selon plusieurs critères, notamment la diversité des concepts qu'ils contiennent et la proximité des termes entre eux. Pour éviter de présenter des informations redondantes, un filtre de similarité Jaccard est appliqué pour ne retenir que les extraits les plus uniques, qui formeront le contexte final de la réponse.
-L'interface permet aussi de régler quelques paramètres du modèle, comme la température ou la taille du contexte, et de modifier le prompt système pour ajuster le comportement de l'assistant.
+L'interface de ce module a été volontairement épurée pour se concentrer exclusivement sur cette mécanique. Elle offre les contrôles essentiels : le chargement d'un document, le dialogue, et la possibilité de modifier les paramètres du modèle ou son prompt système. Ce composant a été conçu comme un banc d'essai pour valider et affiner la technologie de recherche sémantique avant de la fusionner avec le prototype complet. L'ambition, à terme, est de doter l'application principale de la capacité à ancrer ses réponses dans des sources de données privées, fournies par l'utilisateur.
 
 *A propos de full_app_prototype :*
 
