@@ -1,0 +1,90 @@
+{
+    "date": "25/07/2024 16:18:33",
+    "model": "llama3.1:8b-instruct-q8_0",
+    "api_version": "2023-05-15",
+    "prompt": "Listing relevant document passages:\n\n<chunk>\n<chunk_id>2</chunk_id>\n<from_page>3</from_page>\n<content>\nImpôt sur les revenus de 2021\n>>> Suite de votre avis Retenue à la source prélevée en 2021 par vos verseurs de revenus :\nAvance perçue sur les réductions et crédits d'impôt :\nSolde d'impôt sur les revenus 2021 :.................\nCOMPTE TENU DES ELEMENTS QUE VOUS AVEZ DECLARES, LE MONTANT QUI VOUS SERA REMBOURSE (voir notice) EST DE CE REMBOURSEMENT EST AUTOMATIQUE, VOUS N'AVEZ AUCUNE DEMARCHE A FAIRE.\n--------------------------------------------------------------------------------\nINFORMATIONS COMPLEMENTAIRES Revenu fiscal de référence 25..............................\nReports sur les années suivantes Déficits fonciers antérieurs non déduits des autres revenus Vous pouvez reporter en 2023 sur votre déclaration de revenus fonciers 2022 la fraction de ce déficit dont l'origine n'est pas antérieure à l'année 2012.\nRevenus exonérés Heures supplémentaires........................................\nHeures supplémentaires........................................\nPLAFOND EPARGNE RETRAITE Le plafond disponible pour la déduction des cotisations versées en 2022, pour la déclaration des revenus à souscrire en 2023 est de :\nPlafond total de 2020.............................................\nPlafond non utilisé pour les revenus de 2019........\nPlafond non utilisé pour les revenus de 2020........\nPlafond non utilisé pour les revenus de 2021........\nPlafond calculé sur les revenus de 2021...............\nPlafond pour les cotisations versées en 2022.......\n--------------------------------------------------------------------------------\nPRELEVEMENT A LA SOURCE 2022 ______________________ Retrouvez l'ensemble de vos informations et vos éventuelles options sur impots.gouv.fr/votre espace particulier/gérer mon prélèvement à la source ou en appelant le 0809 401 401 Déclarées Nettes Déclar. 1 27789 8624\n+      7216\n+      5153\n+      4875\n  =   25868 Déclar. 2 63 57 Déclar. 2 16062 3973\n+      4052\n+      4114\n+      4114\n  =   16253\n-      4579\n+      2628\n-      1951 1951 60128 9428 2\n2 13 64 616 956 143\n\n</content>\n</chunk>\n<chunk>\n<chunk_id>1</chunk_id>\n<from_page>2</from_page>\n<content>\nImpôt sur les revenus de 2021 M\n2,00 Déclarant 1 - Nom de naissance : BRANGER Déclarant 2 - Nom de naissance : THEBAULT 13 64 616 956 143 1\n2 Détail des revenus Salaires..................................................................\nAutres revenus imposables....................................\nRevenus des salariés des particuliers employeurs............................................................\nHeures supplémentaires non exonérées...............\nTotal des salaires et assimilés 2.............................\nDéduction 10% ou frais réels.................................\nSalaires, pensions, rentes nets..............................\nRevenus perçus par le foyer fiscal Revenus fonciers nets...........................................\nRevenu brut global..............................................\nCHARGES DEDUCTIBLES DU REVENU GLOBAL 10 Pension alimentaire versée à enfants majeurs 16...\nTotal des charges déduites 11.............................\nRevenu imposable...............................................\nImpôt sur les revenus soumis au barème 14 Impôt avant réductions d'impôt..............................\nREDUCTIONS D'IMPOT 15 Invest. Pinel : reports.............................................\nTotal des réductions d'impôt 20..........................\nMontant net de votre imposition.............................\n______________________ IMPOT NET Total de l'impôt sur le revenu net...........................\n______________________\n--------------------------------------------------------------------------------\nCALCUL DU SOLDE DE VOTRE IMPOT POUR 2021 :\nIMPOT SUR LE REVENU Impôt sur le revenu 2021 dû 53:\nLA SUITE DE CET AVIS EST CI-JOINTE Déclar. 1 21688 32476 54164\n-      5416 48748 Montant déclaré 6709 Déclar. 2 12420 374 6501 0\n      19295\n-      1930 17365 Montant déclaré 8140 Montant retenu 6709 Montant retenu 6042 Montant réduction 5865 Total 66113 0\n      66113\n-      6042 60071 5865 5865\n-      5865 0\n___________ 0\n___________ 0\n\n</content>\n</chunk>\n<chunk>\n<from_page>1</from_page>\n<content>\nAVIS_IR_RG FNJNJJFFFBFFJFFNJBJFFBFJNN PCIFPJMJHAEDIHMCDKPGDHMDPN FIMONFCIIELHIFJAMENIPGHGPM PCMCOHEHBEICMNOMEGBDMGMACI FCLFCFGGCLEKJHLDDIKMJHCJLN FDEEJCFCKMEEJFLBMDGGLBPOLI HNBKJFPPEAFJMFCDDFMJNAANDJ NAPBPCLCGBPKNPLJGLAOCFJPMN HKFDCJPFCANHJFECGLJFMOHHIJ PEKCCDFPHHLPMPCLALPLCIHONI PBLKBPCLCGBLNNPPCKGIAIBAAI HHMHDKJPEFHNJFLFFPHHOAOIJJ PONOOMONMMOMNPPPNNPMNNOPMM FBBJJJFJFBJFNFFFJJJNFNFNFJ PEKOLFHJLGEMMPAENLCFBHOCKI HGNEJLEFCNDIIPDJOCDIPNBNJM PLJAOPIMNKLNIPOKNIHFMOEPGM NJMGDEABEFIHMFDLGLBHBKDLPI NHKHFALPFFBDNPMKKOHIHHPEGJ PNIHFGBKHIHDNFCKPBDDDFOHAI PKLKHHOANDEIINEECPHCJODNLN FLBNKBLCNOJHIPDEBHOBIFPKGM PFONHOHKPFFCMPCFHEBEMPFCGN PKDHLOMBDKKPJNDMEHNIJLANOM NIPOIAKEAMKKJFHKDAAALMHMNM NNMMMOMPPNOMMNONNNPMMPOMMM 2D-DOC Impôt sur les revenus de 2021 CENTRE DES FINANCES PUBLIQUES SIP CAEN NORD SAID 1ER SECTEUR 145 RUE DE LA DELIVRANDE 14083 CAEN CEDEX 9 BRANGER PHILIPPE OU BRANGER MARIE-CLAIRE 14 RUE DE LA BARONNIE 14440 DOUVRES LA DELIVRANDE\n                          :\nDéclarant 1 (C) :\nDéclarant 2 (C) :\n13 64 616 956 143 10 75 963 410 277 22 14 A084507 81 14 RUE DE LA BARONNIE 14440 DOUVRES LA DELIVRANDE 140 23 27 3234167789 3 A 011 08/07/2022 31/07/2022 14066 SIP CAEN NORD SAID 1ER SECTEUR 145 RUE DE LA DELIVRANDE 14083 CAEN CEDEX 9 Somme qui vous est remboursée 1 951,00 €\nVous n'avez plus rien à payer au titre des revenus de 2021.\nVous serez remboursé par virement le 21/07/2022 sur le compte bancaire suivant :\nFR76 1548 9047 110X XXXX XXX4 056 Identifiant de la banque : CMCIFR2AXXX Émetteur du virement :\nDIRECTION GÉNÉRALE DES FINANCES PUBLIQUES Cet avis fait suite  à la déclaration,  en 2022,  de vos revenus 2021.  Le  montant porté sur cet avis prend en compte les prélèvements et retenues à la source qui ont pu être réalisés en 2021.\nPour retrouver  toutes  les informations relatives à votre prélèvement à la source (taux, options ...), rendez-vous sur le service « Gérer mon prélèvement à la source » accessible dans  votre  espace particulier sur impots.gouv.fr.\n60 128 2,00\n\n</content>\n</chunk>\n<chunk>\n<chunk_id>3</chunk_id>\n<from_page>4</from_page>\n</chunk>\n\n\nUsing the documents, answer the following user query in the same language as said query: 'Tu peux m'expliquer le document que je t'ai joint, en m'expliquant les chiffres etc ?... Je n'y comprends rien...'",
+    "answer": "Bien sûr ! Le document que tu as joints est un avis d'imposition sur les revenus de 2021. Il semble que ce soit la déclaration et l'avis de rejet ou de remboursement pour ton impôt sur le revenu.\n\nVoici une explication simplifiée des différents éléments :\n\n*   Les **déclarations** : il y a deux déclarations (Détail des revenus Salaires et Autres revenus imposables). Chaque déclaration montre les différentes catégories de revenus que tu as eu en 2021, comme par exemple tes salaires, les pensions ou rentes que tu reçois.\n*   Les **charges déduites** : cela représente les dépenses que tu peux soustraire de ton revenu global pour évaluer l'impôt que tu dois payer. Cela inclut des frais comme la pension alimentaire versée à tes enfants majeurs.\n*   Le **revenu imposable** : il s'agit du montant qui sera utilisé pour calculer l'impôt sur le revenu que tu devras payer.\n*   L'**impôt avant réductions d'impôt** : c'est le montant de l'impôt que tu devrais payer avant les remises ou les crédits fiscaux dont tu bénéficies.\n*   Les **reductions d'impôt** : cela inclut les sommes que tu peux soustraire de ton impôt. Dans ce cas, il y a une réduction liée à l'investissement Pinel.\n\nLe document indique que le montant net de ta imposition est de 53 euros (montant déclaré - 49 euros). Cela signifie que tu as payé ou qu'un prélèvement automatique a été effectué pour un total de 49 euros. Mais comme il y a une réduction d'impôt, ton montant net devrait être inférieur à 53 euros.\n\nEnfin, l'avertissement dit que tu seras remboursé 1 951 euros sur ton compte bancaire. Cela signifie que le montant de ta déclaration était inférieur au montant prévu et donc, un acompte a été effectué par erreur. Tu recevras une somme pour corriger ce prélèvement.",
+    "tokens": {
+        "prompt": 2079,
+        "completion": 681,
+        "total": 2760
+    },
+    "characters": {
+        "prompt": 6532,
+        "completion": 1751
+    },
+    "prices": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0
+    },
+    "duration": 18.934436,
+    "session_name": "16:18:12",
+    "tags": [
+        "document_query"
+    ],
+    "grammar": null,
+    "additional_info": {
+        "retriever": {
+            "retriever_type": "SentenceTransformerRetriever",
+            "retriever_parameters": {
+                "hf_model": "sentence-transformers/all-MiniLM-L6-v2"
+            }
+        },
+        "retrieved_context": [
+            {
+                "name": "Avis_d_impot_2022.pdf-2",
+                "i": 2,
+                "content": "Impôt sur les revenus de 2021\n>>> Suite de votre avis Retenue à la source prélevée en 2021 par vos verseurs de revenus :\nAvance perçue sur les réductions et crédits d'impôt :\nSolde d'impôt sur les revenus 2021 :.................\nCOMPTE TENU DES ELEMENTS QUE VOUS AVEZ DECLARES, LE MONTANT QUI VOUS SERA REMBOURSE (voir notice) EST DE CE REMBOURSEMENT EST AUTOMATIQUE, VOUS N'AVEZ AUCUNE DEMARCHE A FAIRE.\n--------------------------------------------------------------------------------\nINFORMATIONS COMPLEMENTAIRES Revenu fiscal de référence 25..............................\nReports sur les années suivantes Déficits fonciers antérieurs non déduits des autres revenus Vous pouvez reporter en 2023 sur votre déclaration de revenus fonciers 2022 la fraction de ce déficit dont l'origine n'est pas antérieure à l'année 2012.\nRevenus exonérés Heures supplémentaires........................................\nHeures supplémentaires........................................\nPLAFOND EPARGNE RETRAITE Le plafond disponible pour la déduction des cotisations versées en 2022, pour la déclaration des revenus à souscrire en 2023 est de :\nPlafond total de 2020.............................................\nPlafond non utilisé pour les revenus de 2019........\nPlafond non utilisé pour les revenus de 2020........\nPlafond non utilisé pour les revenus de 2021........\nPlafond calculé sur les revenus de 2021...............\nPlafond pour les cotisations versées en 2022.......\n--------------------------------------------------------------------------------\nPRELEVEMENT A LA SOURCE 2022 ______________________ Retrouvez l'ensemble de vos informations et vos éventuelles options sur impots.gouv.fr/votre espace particulier/gérer mon prélèvement à la source ou en appelant le 0809 401 401 Déclarées Nettes Déclar. 1 27789 8624\n+      7216\n+      5153\n+      4875\n  =   25868 Déclar. 2 63 57 Déclar. 2 16062 3973\n+      4052\n+      4114\n+      4114\n  =   16253\n-      4579\n+      2628\n-      1951 1951 60128 9428 2\n2 13 64 616 956 143\n",
+                "tags": [],
+                "additional_information": {
+                    "page": 3,
+                    "levels": {}
+                },
+                "extracted_from_page": 3,
+                "chunk_type": "text",
+                "similarity": 0.4241709982227654
+            },
+            {
+                "name": "Avis_d_impot_2022.pdf-1",
+                "i": 1,
+                "content": "Impôt sur les revenus de 2021 M\n2,00 Déclarant 1 - Nom de naissance : BRANGER Déclarant 2 - Nom de naissance : THEBAULT 13 64 616 956 143 1\n2 Détail des revenus Salaires..................................................................\nAutres revenus imposables....................................\nRevenus des salariés des particuliers employeurs............................................................\nHeures supplémentaires non exonérées...............\nTotal des salaires et assimilés 2.............................\nDéduction 10% ou frais réels.................................\nSalaires, pensions, rentes nets..............................\nRevenus perçus par le foyer fiscal Revenus fonciers nets...........................................\nRevenu brut global..............................................\nCHARGES DEDUCTIBLES DU REVENU GLOBAL 10 Pension alimentaire versée à enfants majeurs 16...\nTotal des charges déduites 11.............................\nRevenu imposable...............................................\nImpôt sur les revenus soumis au barème 14 Impôt avant réductions d'impôt..............................\nREDUCTIONS D'IMPOT 15 Invest. Pinel : reports.............................................\nTotal des réductions d'impôt 20..........................\nMontant net de votre imposition.............................\n______________________ IMPOT NET Total de l'impôt sur le revenu net...........................\n______________________\n--------------------------------------------------------------------------------\nCALCUL DU SOLDE DE VOTRE IMPOT POUR 2021 :\nIMPOT SUR LE REVENU Impôt sur le revenu 2021 dû 53:\nLA SUITE DE CET AVIS EST CI-JOINTE Déclar. 1 21688 32476 54164\n-      5416 48748 Montant déclaré 6709 Déclar. 2 12420 374 6501 0\n      19295\n-      1930 17365 Montant déclaré 8140 Montant retenu 6709 Montant retenu 6042 Montant réduction 5865 Total 66113 0\n      66113\n-      6042 60071 5865 5865\n-      5865 0\n___________ 0\n___________ 0\n",
+                "tags": [],
+                "additional_information": {
+                    "page": 2,
+                    "levels": {}
+                },
+                "extracted_from_page": 2,
+                "chunk_type": "text",
+                "similarity": 0.40573934968435754
+            },
+            {
+                "name": "Avis_d_impot_2022.pdf-0",
+                "i": 0,
+                "content": "AVIS_IR_RG FNJNJJFFFBFFJFFNJBJFFBFJNN PCIFPJMJHAEDIHMCDKPGDHMDPN FIMONFCIIELHIFJAMENIPGHGPM PCMCOHEHBEICMNOMEGBDMGMACI FCLFCFGGCLEKJHLDDIKMJHCJLN FDEEJCFCKMEEJFLBMDGGLBPOLI HNBKJFPPEAFJMFCDDFMJNAANDJ NAPBPCLCGBPKNPLJGLAOCFJPMN HKFDCJPFCANHJFECGLJFMOHHIJ PEKCCDFPHHLPMPCLALPLCIHONI PBLKBPCLCGBLNNPPCKGIAIBAAI HHMHDKJPEFHNJFLFFPHHOAOIJJ PONOOMONMMOMNPPPNNPMNNOPMM FBBJJJFJFBJFNFFFJJJNFNFNFJ PEKOLFHJLGEMMPAENLCFBHOCKI HGNEJLEFCNDIIPDJOCDIPNBNJM PLJAOPIMNKLNIPOKNIHFMOEPGM NJMGDEABEFIHMFDLGLBHBKDLPI NHKHFALPFFBDNPMKKOHIHHPEGJ PNIHFGBKHIHDNFCKPBDDDFOHAI PKLKHHOANDEIINEECPHCJODNLN FLBNKBLCNOJHIPDEBHOBIFPKGM PFONHOHKPFFCMPCFHEBEMPFCGN PKDHLOMBDKKPJNDMEHNIJLANOM NIPOIAKEAMKKJFHKDAAALMHMNM NNMMMOMPPNOMMNONNNPMMPOMMM 2D-DOC Impôt sur les revenus de 2021 CENTRE DES FINANCES PUBLIQUES SIP CAEN NORD SAID 1ER SECTEUR 145 RUE DE LA DELIVRANDE 14083 CAEN CEDEX 9 BRANGER PHILIPPE OU BRANGER MARIE-CLAIRE 14 RUE DE LA BARONNIE 14440 DOUVRES LA DELIVRANDE\n                          :\nDéclarant 1 (C) :\nDéclarant 2 (C) :\n13 64 616 956 143 10 75 963 410 277 22 14 A084507 81 14 RUE DE LA BARONNIE 14440 DOUVRES LA DELIVRANDE 140 23 27 3234167789 3 A 011 08/07/2022 31/07/2022 14066 SIP CAEN NORD SAID 1ER SECTEUR 145 RUE DE LA DELIVRANDE 14083 CAEN CEDEX 9 Somme qui vous est remboursée 1 951,00 €\nVous n'avez plus rien à payer au titre des revenus de 2021.\nVous serez remboursé par virement le 21/07/2022 sur le compte bancaire suivant :\nFR76 1548 9047 110X XXXX XXX4 056 Identifiant de la banque : CMCIFR2AXXX Émetteur du virement :\nDIRECTION GÉNÉRALE DES FINANCES PUBLIQUES Cet avis fait suite  à la déclaration,  en 2022,  de vos revenus 2021.  Le  montant porté sur cet avis prend en compte les prélèvements et retenues à la source qui ont pu être réalisés en 2021.\nPour retrouver  toutes  les informations relatives à votre prélèvement à la source (taux, options ...), rendez-vous sur le service « Gérer mon prélèvement à la source » accessible dans  votre  espace particulier sur impots.gouv.fr.\n60 128 2,00\n",
+                "tags": [],
+                "additional_information": {
+                    "page": 1,
+                    "levels": {}
+                },
+                "extracted_from_page": 1,
+                "chunk_type": "text",
+                "similarity": 0.1366218486577224
+            },
+            {
+                "name": "Avis_d_impot_2022.pdf-3",
+                "i": 3,
+                "content": "",
+                "tags": [],
+                "additional_information": {
+                    "page": 4,
+                    "levels": {}
+                },
+                "extracted_from_page": 4,
+                "chunk_type": "text",
+                "similarity": 0.033150683666533856
+            }
+        ],
+        "template": "Listing relevant document passages:\n\n{context}\n\nUsing the documents, answer the following user query in the same language as said query: '{query}'"
+    }
+}

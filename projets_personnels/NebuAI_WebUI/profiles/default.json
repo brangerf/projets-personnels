@@ -1,0 +1,10 @@
+{
+    "utilisateur":{
+        "nom": null,
+        "prenom": null,
+        "age": null,
+        "interets": {}
+    },
+    "evenements": [],
+    "regles": []
+}

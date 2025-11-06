@@ -1,0 +1,20 @@
+{
+    "document_query": {
+        "prices": {
+            "prompt": 0.033030000000000004,
+            "completion": 0.00897,
+            "total": 0.042
+        },
+        "calls": 1,
+        "duration": 17.216242
+    },
+    "_total": {
+        "prices": {
+            "prompt": 0.033030000000000004,
+            "completion": 0.00897,
+            "total": 0.042
+        },
+        "calls": 1,
+        "duration": 17.216242
+    }
+}

@@ -1,0 +1,1293 @@
+Agents
+
+What is an Agent?
+
+An agent is an autonomous unit programmed to:
+
+    Perform tasks
+    Make decisions
+    Communicate with other agents
+
+
+Think of an agent as a member of a team, with specific skills and a particular job to do. Agents can have different roles like 'Researcher', 'Writer', or 'Customer Support', each contributing to the overall goal of the crew.
+
+Agent Attributes
+
+Attribute 	Description
+Role 	Defines the agent's function within the crew. It determines the kind of tasks the agent is best suited for.
+Goal 	The individual objective that the agent aims to achieve. It guides the agent's decision-making process.
+Backstory 	Provides context to the agent's role and goal, enriching the interaction and collaboration dynamics.
+LLM (optional) 	Represents the language model that will run the agent. It dynamically fetches the model name from the OPENAI_MODEL_NAME environment variable, defaulting to "gpt-4" if not specified.
+Tools (optional) 	Set of capabilities or functions that the agent can use to perform tasks. Expected to be instances of custom classes compatible with the agent's execution environment. Tools are initialized with a default value of an empty list.
+Function Calling LLM (optional) 	Specifies the language model that will handle the tool calling for this agent, overriding the crew function calling LLM if passed. Default is None.
+Max Iter (optional) 	The maximum number of iterations the agent can perform before being forced to give its best answer. Default is 25.
+Max RPM (optional) 	The maximum number of requests per minute the agent can perform to avoid rate limits. It's optional and can be left unspecified, with a default value of None.
+max_execution_time (optional) 	Maximum execution time for an agent to execute a task It's optional and can be left unspecified, with a default value of None, menaning no max execution time
+Verbose (optional) 	Setting this to True configures the internal logger to provide detailed execution logs, aiding in debugging and monitoring. Default is False.
+Allow Delegation (optional) 	Agents can delegate tasks or questions to one another, ensuring that each task is handled by the most suitable agent. Default is True.
+Step Callback (optional) 	A function that is called after each step of the agent. This can be used to log the agent's actions or to perform other operations. It will overwrite the crew step_callback.
+Cache (optional) 	Indicates if the agent should use a cache for tool usage. Default is True.
+
+Creating an Agent
+
+
+
+Agent Interaction
+
+Agents can interact with each other using crewAI's built-in delegation and communication mechanisms. This allows for dynamic task management and problem-solving within the crew.
+
+To create an agent, you would typically initialize an instance of the Agent class with the desired properties. Here's a conceptual example including all attributes:
+
+# Example: Creating an agent with all attributes
+from crewai import Agent
+
+agent = Agent(
+  role='Data Analyst',
+  goal='Extract actionable insights',
+  backstory="""You're a data analyst at a large company.
+  You're responsible for analyzing data and providing insights
+  to the business.
+  You're currently working on a project to analyze the
+  performance of our marketing campaigns.""",
+  tools=[my_tool1, my_tool2],  # Optional, defaults to an empty list
+  llm=my_llm,  # Optional
+  function_calling_llm=my_llm,  # Optional
+  max_iter=15,  # Optional
+  max_rpm=None, # Optional
+  verbose=True,  # Optional
+  allow_delegation=True,  # Optional
+  step_callback=my_intermediate_step_callback,  # Optional
+  cache=True  # Optional
+)
+
+Conclusion
+
+Agents are the building blocks of the CrewAI framework. By understanding how to define and interact with agents, you can create sophisticated AI systems that leverage the power of collaborative intelligence.
+
+Tasks
+Overview of a Task¶
+
+What is a Task?
+
+In the crewAI framework, tasks are specific assignments completed by agents. They provide all necessary details for execution, such as a description, the agent responsible, required tools, and more, facilitating a wide range of action complexities.
+
+Tasks within crewAI can be collaborative, requiring multiple agents to work together. This is managed through the task properties and orchestrated by the Crew's process, enhancing teamwork and efficiency.
+Task Attributes¶
+Attribute 	Description
+Description 	A clear, concise statement of what the task entails.
+Agent 	The agent responsible for the task, assigned either directly or by the crew's process.
+Expected Output 	A detailed description of what the task's completion looks like.
+Tools (optional) 	The functions or capabilities the agent can utilize to perform the task.
+Async Execution (optional) 	If set, the task executes asynchronously, allowing progression without waiting for completion.
+Context (optional) 	Specifies tasks whose outputs are used as context for this task.
+Config (optional) 	Additional configuration details for the agent executing the task, allowing further customization.
+Output JSON (optional) 	Outputs a JSON object, requiring an OpenAI client. Only one output format can be set.
+Output Pydantic (optional) 	Outputs a Pydantic model object, requiring an OpenAI client. Only one output format can be set.
+Output File (optional) 	Saves the task output to a file. If used with Output JSON or Output Pydantic, specifies how the output is saved.
+Callback (optional) 	A Python callable that is executed with the task's output upon completion.
+Human Input (optional) 	Indicates if the task requires human feedback at the end, useful for tasks needing human oversight.
+Creating a Task¶
+
+Creating a task involves defining its scope, responsible agent, and any additional attributes for flexibility:
+
+from crewai import Task
+
+task = Task(
+    description='Find and summarize the latest and most relevant news on AI',
+    agent=sales_agent
+)
+
+Task Assignment
+
+Directly specify an agent for assignment or let the hierarchical CrewAI's process decide based on roles, availability, etc.
+Integrating Tools with Tasks¶
+
+Leverage tools from the crewAI Toolkit and LangChain Tools for enhanced task performance and agent interaction.
+Creating a Task with Tools¶
+
+import os
+os.environ["OPENAI_API_KEY"] = "Your Key"
+os.environ["SERPER_API_KEY"] = "Your Key" # serper.dev API key
+
+from crewai import Agent, Task, Crew
+from crewai_tools import SerperDevTool
+
+research_agent = Agent(
+  role='Researcher',
+  goal='Find and summarize the latest AI news',
+  backstory="""You're a researcher at a large company.
+  You're responsible for analyzing data and providing insights
+  to the business.""",
+  verbose=True
+)
+
+search_tool = SerperDevTool()
+
+task = Task(
+  description='Find and summarize the latest AI news',
+  expected_output='A bullet list summary of the top 5 most important AI news',
+  agent=research_agent,
+  tools=[search_tool]
+)
+
+crew = Crew(
+    agents=[research_agent],
+    tasks=[task],
+    verbose=2
+)
+
+result = crew.kickoff()
+print(result)
+
+This demonstrates how tasks with specific tools can override an agent's default set for tailored task execution.
+Referring to Other Tasks¶
+
+In crewAI, the output of one task is automatically relayed into the next one, but you can specifically define what tasks' output, including multiple should be used as context for another task.
+
+This is useful when you have a task that depends on the output of another task that is not performed immediately after it. This is done through the context attribute of the task:
+
+# ...
+
+research_ai_task = Task(
+    description='Find and summarize the latest AI news',
+    expected_output='A bullet list summary of the top 5 most important AI news',
+    async_execution=True,
+    agent=research_agent,
+    tools=[search_tool]
+)
+
+research_ops_task = Task(
+    description='Find and summarize the latest AI Ops news',
+    expected_output='A bullet list summary of the top 5 most important AI Ops news',
+    async_execution=True,
+    agent=research_agent,
+    tools=[search_tool]
+)
+
+write_blog_task = Task(
+    description="Write a full blog post about the importance of AI and its latest news",
+    expected_output='Full blog post that is 4 paragraphs long',
+    agent=writer_agent,
+    context=[research_ai_task, research_ops_task]
+)
+
+#...
+
+Asynchronous Execution
+
+You can define a task to be executed asynchronously. This means that the crew will not wait for it to be completed to continue with the next task. This is useful for tasks that take a long time to be completed, or that are not crucial for the next tasks to be performed.
+
+You can then use the context attribute to define in a future task that it should wait for the output of the asynchronous task to be completed.
+
+#...
+
+list_ideas = Task(
+    description="List of 5 interesting ideas to explore for an article about AI.",
+    expected_output="Bullet point list of 5 ideas for an article.",
+    agent=researcher,
+    async_execution=True # Will be executed asynchronously
+)
+
+list_important_history = Task(
+    description="Research the history of AI and give me the 5 most important events.",
+    expected_output="Bullet point list of 5 important events.",
+    agent=researcher,
+    async_execution=True # Will be executed asynchronously
+)
+
+write_article = Task(
+    description="Write an article about AI, its history, and interesting ideas.",
+    expected_output="A 4 paragraph article about AI.",
+    agent=writer,
+    context=[list_ideas, list_important_history] # Will wait for the output of the two tasks to be completed
+)
+
+#...
+
+Callback Mechanism
+
+The callback function is executed after the task is completed, allowing for actions or notifications to be triggered based on the task's outcome.
+
+# ...
+
+def callback_function(output: TaskOutput):
+    # Do something after the task is completed
+    # Example: Send an email to the manager
+    print(f"""
+        Task completed!
+        Task: {output.description}
+        Output: {output.raw_output}
+    """)
+
+research_task = Task(
+    description='Find and summarize the latest AI news',
+    expected_output='A bullet list summary of the top 5 most important AI news',
+    agent=research_agent,
+    tools=[search_tool],
+    callback=callback_function
+)
+
+#...
+
+Accessing a Specific Task Output
+
+Once a crew finishes running, you can access the output of a specific task by using the output attribute of the task object:
+
+# ...
+task1 = Task(
+    description='Find and summarize the latest AI news',
+    expected_output='A bullet list summary of the top 5 most important AI news',
+    agent=research_agent,
+    tools=[search_tool]
+)
+
+#...
+
+crew = Crew(
+    agents=[research_agent],
+    tasks=[task1, task2, task3],
+    verbose=2
+)
+
+result = crew.kickoff()
+
+# Returns a TaskOutput object with the description and results of the task
+print(f"""
+    Task completed!
+    Task: {task1.output.description}
+    Output: {task1.output.raw_output}
+""")
+
+Tool Override Mechanism
+
+Specifying tools in a task allows for dynamic adaptation of agent capabilities, emphasizing CrewAI's flexibility.
+Error Handling and Validation Mechanisms¶
+
+While creating and executing tasks, certain validation mechanisms are in place to ensure the robustness and reliability of task attributes. These include but are not limited to:
+
+    Ensuring only one output type is set per task to maintain clear output expectations.
+    Preventing the manual assignment of the id attribute to uphold the integrity of the unique identifier system.
+
+These validations help in maintaining the consistency and reliability of task executions within the crewAI framework.
+Conclusion¶
+
+Tasks are the driving force behind the actions of agents in crewAI. By properly defining tasks and their outcomes, you set the stage for your AI agents to work effectively, either independently or as a collaborative unit. Equipping tasks with appropriate tools, understanding the execution process, and following robust validation practices are crucial for maximizing CrewAI's potential, ensuring agents are effectively prepared for their assignments and that tasks are executed as intended.
+
+Tools
+Introduction¶
+
+CrewAI tools empower agents with capabilities ranging from web searching and data analysis to collaboration and delegating tasks among coworkers. This documentation outlines how to create, integrate, and leverage these tools within the CrewAI framework, including a new focus on collaboration tools.
+What is a Tool?¶
+
+Definition
+
+A tool in CrewAI is a skill or function that agents can utilize to perform various actions. This includes tools from the crewAI Toolkit and LangChain Tools, enabling everything from simple searches to complex interactions and effective teamwork among agents.
+Key Characteristics of Tools¶
+
+    Utility: Crafted for tasks such as web searching, data analysis, content generation, and agent collaboration.
+    Integration: Boosts agent capabilities by seamlessly integrating tools into their workflow.
+    Customizability: Provides the flexibility to develop custom tools or utilize existing ones, catering to the specific needs of agents.
+    Error Handling: Incorporates robust error handling mechanisms to ensure smooth operation.
+    Caching Mechanism: Features intelligent caching to optimize performance and reduce redundant operations.
+
+Using crewAI Tools
+
+To enhance your agents' capabilities with crewAI tools, begin by installing our extra tools package:
+
+pip install 'crewai[tools]'
+
+Here's an example demonstrating their use:
+
+import os
+from crewai import Agent, Task, Crew
+# Importing crewAI tools
+from crewai_tools import (
+    DirectoryReadTool,
+    FileReadTool,
+    SerperDevTool,
+    WebsiteSearchTool
+)
+
+# Set up API keys
+os.environ["SERPER_API_KEY"] = "Your Key" # serper.dev API key
+os.environ["OPENAI_API_KEY"] = "Your Key"
+
+# Instantiate tools
+docs_tool = DirectoryReadTool(directory='./blog-posts')
+file_tool = FileReadTool()
+search_tool = SerperDevTool()
+web_rag_tool = WebsiteSearchTool()
+
+# Create agents
+researcher = Agent(
+    role='Market Research Analyst',
+    goal='Provide up-to-date market analysis of the AI industry',
+    backstory='An expert analyst with a keen eye for market trends.',
+    tools=[search_tool, web_rag_tool],
+    verbose=True
+)
+
+writer = Agent(
+    role='Content Writer',
+    goal='Craft engaging blog posts about the AI industry',
+    backstory='A skilled writer with a passion for technology.',
+    tools=[docs_tool, file_tool],
+    verbose=True
+)
+
+# Define tasks
+research = Task(
+    description='Research the latest trends in the AI industry and provide a summary.',
+    expected_output='A summary of the top 3 trending developments in the AI industry with a unique perspective on their significance.',
+    agent=researcher
+)
+
+write = Task(
+    description='Write an engaging blog post about the AI industry, based on the research analyst’s summary. Draw inspiration from the latest blog posts in the directory.',
+    expected_output='A 4-paragraph blog post formatted in markdown with engaging, informative, and accessible content, avoiding complex jargon.',
+    agent=writer,
+    output_file='blog-posts/new_post.md'  # The final blog post will be saved here
+)
+
+# Assemble a crew
+crew = Crew(
+    agents=[researcher, writer],
+    tasks=[research, write],
+    verbose=2
+)
+
+# Execute tasks
+crew.kickoff()
+
+Available crewAI Tools
+
+    Error Handling: All tools are built with error handling capabilities, allowing agents to gracefully manage exceptions and continue their tasks.
+    Caching Mechanism: All tools support caching, enabling agents to efficiently reuse previously obtained results, reducing the load on external resources and speeding up the execution time, you can also define finner control over the caching mechanism, using cache_function attribute on the tool.
+
+Here is a list of the available tools and their descriptions:
+Tool 	Description
+CodeDocsSearchTool 	A RAG tool optimized for searching through code documentation and related technical documents.
+CSVSearchTool 	A RAG tool designed for searching within CSV files, tailored to handle structured data.
+DirectorySearchTool 	A RAG tool for searching within directories, useful for navigating through file systems.
+DOCXSearchTool 	A RAG tool aimed at searching within DOCX documents, ideal for processing Word files.
+DirectoryReadTool 	Facilitates reading and processing of directory structures and their contents.
+FileReadTool 	Enables reading and extracting data from files, supporting various file formats.
+GithubSearchTool 	A RAG tool for searching within GitHub repositories, useful for code and documentation search.
+SerperDevTool 	A specialized tool for development purposes, with specific functionalities under development.
+TXTSearchTool 	A RAG tool focused on searching within text (.txt) files, suitable for unstructured data.
+JSONSearchTool 	A RAG tool designed for searching within JSON files, catering to structured data handling.
+MDXSearchTool 	A RAG tool tailored for searching within Markdown (MDX) files, useful for documentation.
+PDFSearchTool 	A RAG tool aimed at searching within PDF documents, ideal for processing scanned documents.
+PGSearchTool 	A RAG tool optimized for searching within PostgreSQL databases, suitable for database queries.
+RagTool 	A general-purpose RAG tool capable of handling various data sources and types.
+ScrapeElementFromWebsiteTool 	Enables scraping specific elements from websites, useful for targeted data extraction.
+ScrapeWebsiteTool 	Facilitates scraping entire websites, ideal for comprehensive data collection.
+WebsiteSearchTool 	A RAG tool for searching website content, optimized for web data extraction.
+XMLSearchTool 	A RAG tool designed for searching within XML files, suitable for structured data formats.
+YoutubeChannelSearchTool 	A RAG tool for searching within YouTube channels, useful for video content analysis.
+YoutubeVideoSearchTool 	A RAG tool aimed at searching within YouTube videos, ideal for video data extraction.
+Creating your own Tools¶
+
+Custom Tool Creation
+
+Developers can craft custom tools tailored for their agent’s needs or utilize pre-built options:
+
+To create your own crewAI tools you will need to install our extra tools package:
+
+pip install 'crewai[tools]'
+
+Once you do that there are two main ways for one to create a crewAI tool:
+Subclassing BaseTool¶
+
+from crewai_tools import BaseTool
+
+class MyCustomTool(BaseTool):
+    name: str = "Name of my tool"
+    description: str = "Clear description for what this tool is useful for, you agent will need this information to use it."
+
+    def _run(self, argument: str) -> str:
+        # Implementation goes here
+        return "Result from custom tool"
+
+Utilizing the tool Decorator
+
+from crewai_tools import tool
+@tool("Name of my tool")
+def my_tool(question: str) -> str:
+    """Clear description for what this tool is useful for, you agent will need this information to use it."""
+    # Function logic here
+    return "Result from your custom tool"
+
+Custom Caching Mechanism
+
+Caching
+
+Tools can optionally implement a cache_function to fine-tune caching behavior. This function determines when to cache results based on specific conditions, offering granular control over caching logic.
+
+from crewai_tools import tool
+
+@tool
+def multiplication_tool(first_number: int, second_number: int) -> str:
+    """Useful for when you need to multiply two numbers together."""
+    return first_number * second_number
+
+def cache_func(args, result):
+    # In this case, we only cache the result if it's a multiple of 2
+    cache = result % 2 == 0
+    return cache
+
+multiplication_tool.cache_function = cache_func
+
+writer1 = Agent(
+        role="Writer",
+        goal="You write lesssons of math for kids.",
+        backstory="You're an expert in writting and you love to teach kids but you know nothing of math.",
+        tools=[multiplcation_tool],
+        allow_delegation=False,
+    )
+    #...
+
+Using LangChain Tools
+
+LangChain Integration
+
+CrewAI seamlessly integrates with LangChain’s comprehensive toolkit for search-based queries and more, here are the available built-in tools that are offered by Langchain LangChain Toolkit
+
+:
+
+from crewai import Agent
+from langchain.agents import Tool
+from langchain.utilities import GoogleSerperAPIWrapper
+
+# Setup API keys
+os.environ["SERPER_API_KEY"] = "Your Key"
+
+search = GoogleSerperAPIWrapper()
+
+# Create and assign the search tool to an agent
+serper_tool = Tool(
+  name="Intermediate Answer",
+  func=search.run,
+  description="Useful for search-based queries",
+)
+
+agent = Agent(
+  role='Research Analyst',
+  goal='Provide up-to-date market analysis',
+  backstory='An expert analyst with a keen eye for market trends.',
+  tools=[serper_tool]
+)
+
+# rest of the code ...
+
+Conclusion
+
+Tools are pivotal in extending the capabilities of CrewAI agents, enabling them to undertake a broad spectrum of tasks and collaborate effectively. When building solutions with CrewAI, leverage both custom and existing tools to empower your agents and enhance the AI ecosystem. Consider utilizing error handling, caching mechanisms, and the flexibility of tool arguments to optimize your agents' performance and capabilities.
+
+Processes
+Understanding Processes
+
+Core Concept
+
+In CrewAI, processes orchestrate the execution of tasks by agents, akin to project management in human teams. These processes ensure tasks are distributed and executed efficiently, in alignment with a predefined strategy.
+Process Implementations¶
+
+    Sequential: Executes tasks sequentially, ensuring tasks are completed in an orderly progression.
+    Hierarchical: Organizes tasks in a managerial hierarchy, where tasks are delegated and executed based on a structured chain of command. A manager language model (manager_llm) must be specified in the crew to enable the hierarchical process, facilitating the creation and management of tasks by the manager.
+    Consensual Process (Planned): Aiming for collaborative decision-making among agents on task execution, this process type introduces a democratic approach to task management within CrewAI. It is planned for future development and is not currently implemented in the codebase.
+
+The Role of Processes in Teamwork
+
+Processes enable individual agents to operate as a cohesive unit, streamlining their efforts to achieve common objectives with efficiency and coherence.
+Assigning Processes to a Crew¶
+
+To assign a process to a crew, specify the process type upon crew creation to set the execution strategy. For a hierarchical process, ensure to define manager_llm for the manager agent.
+
+from crewai import Crew
+from crewai.process import Process
+from langchain_openai import ChatOpenAI
+
+# Example: Creating a crew with a sequential process
+crew = Crew(
+    agents=my_agents,
+    tasks=my_tasks,
+    process=Process.sequential
+)
+
+# Example: Creating a crew with a hierarchical process
+# Ensure to provide a manager_llm
+crew = Crew(
+    agents=my_agents,
+    tasks=my_tasks,
+    process=Process.hierarchical,
+    manager_llm=ChatOpenAI(model="gpt-4")
+)
+
+Note: Ensure my_agents and my_tasks are defined prior to creating a Crew object, and for the hierarchical process, manager_llm is also required.
+
+Sequential Process
+
+This method mirrors dynamic team workflows, progressing through tasks in a thoughtful and systematic manner. Task execution follows the predefined order in the task list, with the output of one task serving as context for the next.
+
+To customize task context, utilize the context parameter in the Task class to specify outputs that should be used as context for subsequent tasks.
+Hierarchical Process
+
+Emulates a corporate hierarchy, CrewAI automatically creates a manager for you, requiring the specification of a manager language model (manager_llm) for the manager agent. This agent oversees task execution, including planning, delegation, and validation. Tasks are not pre-assigned; the manager allocates tasks to agents based on their capabilities, reviews outputs, and assesses task completion.
+Process Class: Detailed Overview
+
+The Process class is implemented as an enumeration (Enum), ensuring type safety and restricting process values to the defined types (sequential, hierarchical). The consensual process is planned for future inclusion, emphasizing our commitment to continuous development and innovation.
+Additional Task Features
+
+    Asynchronous Execution: Tasks can now be executed asynchronously, allowing for parallel processing and efficiency improvements. This feature is designed to enable tasks to be carried out concurrently, enhancing the overall productivity of the crew.
+    Human Input Review: An optional feature that enables the review of task outputs by humans to ensure quality and accuracy before finalization. This additional step introduces a layer of oversight, providing an opportunity for human intervention and validation.
+    Output Customization: Tasks support various output formats, including JSON (output_json), Pydantic models (output_pydantic), and file outputs (output_file), providing flexibility in how task results are captured and utilized. This allows for a wide range of output possibilities, catering to different needs and requirements.
+
+Conclusion
+
+The structured collaboration facilitated by processes within CrewAI is crucial for enabling systematic teamwork among agents. This documentation has been updated to reflect the latest features, enhancements, and the planned integration of the Consensual Process, ensuring users have access to the most current and comprehensive information.
+
+Crews
+What is a Crew?
+
+A crew in crewAI represents a collaborative group of agents working together to achieve a set of tasks. Each crew defines the strategy for task execution, agent collaboration, and the overall workflow.
+Crew Attributes
+Attribute 	Description
+Tasks 	A list of tasks assigned to the crew.
+Agents 	A list of agents that are part of the crew.
+Process (optional) 	The process flow (e.g., sequential, hierarchical) the crew follows.
+Verbose (optional) 	The verbosity level for logging during execution.
+Manager LLM (optional) 	The language model used by the manager agent in a hierarchical process. Required when using a hierarchical process.
+Function Calling LLM (optional) 	If passed, the crew will use this LLM to do function calling for tools for all agents in the crew. Each agent can have its own LLM, which overrides the crew's LLM for function calling.
+Config (optional) 	Optional configuration settings for the crew, in Json or Dict[str, Any] format.
+Max RPM (optional) 	Maximum requests per minute the crew adheres to during execution.
+Language (optional) 	Language used for the crew, defaults to English.
+Language File (optional) 	Path to the language file to be used for the crew.
+Memory (optional) 	Utilized for storing execution memories (short-term, long-term, entity memory).
+Cache (optional) 	Specifies whether to use a cache for storing the results of tools' execution.
+Embedder (optional) 	Configuration for the embedder to be used by the crew. mostly used by memory for now
+Full Output (optional) 	Whether the crew should return the full output with all tasks outputs or just the final output.
+Step Callback (optional) 	A function that is called after each step of every agent. This can be used to log the agent's actions or to perform other operations; it won't override the agent-specific step_callback.
+Task Callback (optional) 	A function that is called after the completion of each task. Useful for monitoring or additional operations post-task execution.
+Share Crew (optional) 	Whether you want to share the complete crew information and execution with the crewAI team to make the library better, and allow us to train models.
+Output Log File (optional) 	Whether you want to have a file with the complete crew output and execution. You can set it using True and it will default to the folder you are currently and it will be called logs.txt or passing a string with the full path and name of the file.
+
+Crew Max RPM
+
+The max_rpm attribute sets the maximum number of requests per minute the crew can perform to avoid rate limits and will override individual agents' max_rpm settings if you set it.
+Creating a Crew
+
+When assembling a crew, you combine agents with complementary roles and tools, assign tasks, and select a process that dictates their execution order and interaction.
+Example: Assembling a Crew
+
+from crewai import Crew, Agent, Task, Process
+from langchain_community.tools import DuckDuckGoSearchRun
+
+# Define agents with specific roles and tools
+researcher = Agent(
+    role='Senior Research Analyst',
+    goal='Discover innovative AI technologies',
+    tools=[DuckDuckGoSearchRun()]
+)
+
+writer = Agent(
+    role='Content Writer',
+    goal='Write engaging articles on AI discoveries',
+    verbose=True
+)
+
+# Create tasks for the agents
+research_task = Task(
+    description='Identify breakthrough AI technologies',
+    agent=researcher
+)
+write_article_task = Task(
+    description='Draft an article on the latest AI technologies',
+    agent=writer
+)
+
+# Assemble the crew with a sequential process
+my_crew = Crew(
+    agents=[researcher, writer],
+    tasks=[research_task, write_article_task],
+    process=Process.sequential,
+    full_output=True,
+    verbose=True,
+)
+
+Memory Utilization
+
+Crews can utilize memory (short-term, long-term, and entity memory) to enhance their execution and learning over time. This feature allows crews to store and recall execution memories, aiding in decision-making and task execution strategies.
+Cache Utilization
+
+Caches can be employed to store the results of tools' execution, making the process more efficient by reducing the need to re-execute identical tasks.
+Crew Usage Metrics
+
+After the crew execution, you can access the usage_metrics attribute to view the language model (LLM) usage metrics for all tasks executed by the crew. This provides insights into operational efficiency and areas for improvement.
+
+# Access the crew's usage metrics
+crew = Crew(agents=[agent1, agent2], tasks=[task1, task2])
+crew.kickoff()
+print(crew.usage_metrics)
+
+Crew Execution Process
+
+    Sequential Process: Tasks are executed one after another, allowing for a linear flow of work.
+    Hierarchical Process: A manager agent coordinates the crew, delegating tasks and validating outcomes before proceeding. Note: A manager_llm is required for this process and it's essential for validating the process flow.
+
+Kicking Off a Crew
+
+Once your crew is assembled, initiate the workflow with the kickoff() method. This starts the execution process according to the defined process flow.
+
+# Start the crew's task execution
+result = my_crew.kickoff()
+print(result)
+
+Collaboration
+Collaboration Fundamentals
+
+Core of Agent Interaction
+
+Collaboration in CrewAI is fundamental, enabling agents to combine their skills, share information, and assist each other in task execution, embodying a truly cooperative ecosystem.
+
+    Information Sharing: Ensures all agents are well-informed and can contribute effectively by sharing data and findings.
+    Task Assistance: Allows agents to seek help from peers with the required expertise for specific tasks.
+    Resource Allocation: Optimizes task execution through the efficient distribution and sharing of resources among agents.
+
+Enhanced Attributes for Improved Collaboration
+
+The Crew class has been enriched with several attributes to support advanced functionalities:
+
+    Language Model Management (manager_llm, function_calling_llm): Manages language models for executing tasks and tools, facilitating sophisticated agent-tool interactions. Note that while manager_llm is mandatory for hierarchical processes to ensure proper execution flow, function_calling_llm is optional, with a default value provided for streamlined tool interaction.
+    Process Flow (process): Defines the execution logic (e.g., sequential, hierarchical) to streamline task distribution and execution.
+    Verbose Logging (verbose): Offers detailed logging capabilities for monitoring and debugging purposes. It supports both integer and boolean types to indicate the verbosity level. For example, setting verbose to 1 might enable basic logging, whereas setting it to True enables more detailed logs.
+    Rate Limiting (max_rpm): Ensures efficient utilization of resources by limiting requests per minute. Guidelines for setting max_rpm should consider the complexity of tasks and the expected load on resources.
+    Internationalization Support (language, language_file): Facilitates operation in multiple languages, enhancing global usability. Supported languages and the process for utilizing the language_file attribute for customization should be clearly documented.
+    Execution and Output Handling (full_output): Distinguishes between full and final outputs for nuanced control over task results. Examples showcasing the difference in outputs can aid in understanding the practical implications of this attribute.
+    Callback and Telemetry (step_callback, task_callback): Integrates callbacks for step-wise and task-level execution monitoring, alongside telemetry for performance analytics. The purpose and usage of task_callback alongside step_callback for granular monitoring should be clearly explained.
+    Crew Sharing (share_crew): Enables sharing of crew information with CrewAI for continuous improvement and training models. The privacy implications and benefits of this feature, including how it contributes to model improvement, should be outlined.
+    Usage Metrics (usage_metrics): Stores all metrics for the language model (LLM) usage during all tasks' execution, providing insights into operational efficiency and areas for improvement. Detailed information on accessing and interpreting these metrics for performance analysis should be provided.
+    Memory Usage (memory): Indicates whether the crew should use memory to store memories of its execution, enhancing task execution and agent learning.
+    Embedder Configuration (embedder): Specifies the configuration for the embedder to be used by the crew for understanding and generating language. This attribute supports customization of the language model provider.
+
+Delegation: Dividing to Conquer
+
+Delegation enhances functionality by allowing agents to intelligently assign tasks or seek help, thereby amplifying the crew's overall capability.
+Implementing Collaboration and Delegation
+
+Setting up a crew involves defining the roles and capabilities of each agent. CrewAI seamlessly manages their interactions, ensuring efficient collaboration and delegation, with enhanced customization and monitoring features to adapt to various operational needs.
+Example Scenario
+
+Consider a crew with a researcher agent tasked with data gathering and a writer agent responsible for compiling reports. The integration of advanced language model management and process flow attributes allows for more sophisticated interactions, such as the writer delegating complex research tasks to the researcher or querying specific information, thereby facilitating a seamless workflow.
+Conclusion
+
+The integration of advanced attributes and functionalities into the CrewAI framework significantly enriches the agent collaboration ecosystem. These enhancements not only simplify interactions but also offer unprecedented flexibility and control, paving the way for sophisticated AI-driven solutions capable of tackling complex tasks through intelligent collaboration and delegation.
+
+Memory
+Introduction to Memory Systems in crewAI
+
+Enhancing Agent Intelligence
+
+The crewAI framework introduces a sophisticated memory system designed to significantly enhance the capabilities of AI agents. This system comprises short-term memory, long-term memory, entity memory, and newly identified contextual memory, each serving a unique purpose in aiding agents to remember, reason, and learn from past interactions.
+Memory System Components
+Component 	Description
+Short-Term Memory 	Temporarily stores recent interactions and outcomes, enabling agents to recall and utilize information relevant to their current context.
+Long-Term Memory 	Preserves valuable insights and learnings from past executions, allowing agents to build and refine their knowledge over time.
+Entity Memory 	Captures and organizes information about entities (people, places, concepts) encountered during tasks, facilitating deeper understanding and relationship mapping.
+Contextual Memory 	Maintains the context of interactions, aiding in the coherence and relevance of agent responses over a sequence of tasks or a conversation.
+How Memory Systems Empower Agents
+
+    Contextual Awareness: With short-term and contextual memory, agents gain the ability to maintain context over a conversation or task sequence, leading to more coherent and relevant responses.
+
+    Experience Accumulation: Long-term memory allows agents to accumulate experiences, learning from past actions to improve future decision-making and problem-solving.
+
+    Entity Understanding: By maintaining entity memory, agents can recognize and remember key entities, enhancing their ability to process and interact with complex information.
+
+Implementing Memory in Your Crew
+
+When configuring a crew, you can enable and customize each memory component to suit the crew's objectives and the nature of tasks it will perform. By default, the memory system is disabled, and you can ensure it is active by setting memory=True in the crew configuration. The memory will use OpenAI Embeddings by default, but you can change it by setting embedder to a different model.
+Example: Configuring Memory for a Crew
+
+from crewai import Crew, Agent, Task, Process
+
+# Assemble your crew with memory capabilities
+my_crew = Crew(
+    agents=[...],
+    tasks=[...],
+    process=Process.sequential,
+    memory=True,
+    verbose=True
+)
+
+Additional Embedding Providers
+Using OpenAI embeddings (already default)
+
+from crewai import Crew, Agent, Task, Process
+
+my_crew = Crew(
+        agents=[...],
+        tasks=[...],
+        process=Process.sequential,
+        memory=True,
+        verbose=True,
+        embedder={
+                "provider": "openai",
+                "config":{
+                        "model": 'text-embedding-3-small'
+                }
+        }
+)
+
+Using Google AI embeddings
+
+from crewai import Crew, Agent, Task, Process
+
+my_crew = Crew(
+        agents=[...],
+        tasks=[...],
+        process=Process.sequential,
+        memory=True,
+        verbose=True,
+        embedder={
+            "provider": "google",
+            "config":{
+                "model": 'models/embedding-001',
+                "task_type": "retrieval_document",
+                "title": "Embeddings for Embedchain"
+            }
+        }
+)
+
+Using Azure OpenAI embeddings
+
+from crewai import Crew, Agent, Task, Process
+
+my_crew = Crew(
+        agents=[...],
+        tasks=[...],
+        process=Process.sequential,
+        memory=True,
+        verbose=True,
+        embedder={
+            "provider": "azure_openai",
+            "config":{
+                "model": 'text-embedding-ada-002',
+                "deployment_name": "you_embedding_model_deployment_name"
+            }
+        }
+)
+
+Using GPT4ALL embeddings
+
+from crewai import Crew, Agent, Task, Process
+
+my_crew = Crew(
+        agents=[...],
+        tasks=[...],
+        process=Process.sequential,
+        memory=True,
+        verbose=True,
+        embedder={
+            "provider": "gpt4all"
+        }
+)
+
+Using Vertex AI embeddings
+
+from crewai import Crew, Agent, Task, Process
+
+my_crew = Crew(
+        agents=[...],
+        tasks=[...],
+        process=Process.sequential,
+        memory=True,
+        verbose=True,
+        embedder={
+            "provider": "vertexai",
+            "config":{
+                "model": 'textembedding-gecko'
+            }
+        }
+)
+
+Using Cohere embeddings
+
+from crewai import Crew, Agent, Task, Process
+
+my_crew = Crew(
+        agents=[...],
+        tasks=[...],
+        process=Process.sequential,
+        memory=True,
+        verbose=True,
+        embedder={
+            "provider": "cohere",
+            "config":{
+                "model": "embed-english-v3.0"
+            "vector_dimension": 1024
+            }
+        }
+)
+
+Benefits of Using crewAI's Memory System
+
+    Adaptive Learning: Crews become more efficient over time, adapting to new information and refining their approach to tasks.
+    Enhanced Personalization: Memory enables agents to remember user preferences and historical interactions, leading to personalized experiences.
+    Improved Problem Solving: Access to a rich memory store aids agents in making more informed decisions, drawing on past learnings and contextual insights.
+
+Getting Started
+
+Integrating crewAI's memory system into your projects is straightforward. By leveraging the provided memory components and configurations, you can quickly empower your agents with the ability to remember, reason, and learn from their interactions, unlocking new levels of intelligence and capability.
+
+Getting Started
+Introduction¶
+
+Embark on your CrewAI journey by setting up your environment and initiating your AI crew with the latest features. This guide ensures a smooth start, incorporating all recent updates for an enhanced experience.
+Step 0: Installation¶
+
+Install CrewAI and any necessary packages for your project. CrewAI is compatible with Python >=3.10,<=3.13.
+
+pip install crewai
+pip install 'crewai[tools]'
+
+Step 1: Assemble Your Agents
+
+Define your agents with distinct roles, backstories, and enhanced capabilities like verbose mode and memory usage. These elements add depth and guide their task execution and interaction within the crew.
+
+import os
+os.environ["SERPER_API_KEY"] = "Your Key"  # serper.dev API key
+os.environ["OPENAI_API_KEY"] = "Your Key"
+
+from crewai import Agent
+from crewai_tools import SerperDevTool
+search_tool = SerperDevTool()
+
+# Creating a senior researcher agent with memory and verbose mode
+researcher = Agent(
+  role='Senior Researcher',
+  goal='Uncover groundbreaking technologies in {topic}',
+  verbose=True,
+  memory=True,
+  backstory=(
+    "Driven by curiosity, you're at the forefront of"
+    "innovation, eager to explore and share knowledge that could change"
+    "the world."
+  ),
+  tools=[search_tool],
+  allow_delegation=True
+)
+
+# Creating a writer agent with custom tools and delegation capability
+writer = Agent(
+  role='Writer',
+  goal='Narrate compelling tech stories about {topic}',
+  verbose=True,
+  memory=True,
+  backstory=(
+    "With a flair for simplifying complex topics, you craft"
+    "engaging narratives that captivate and educate, bringing new"
+    "discoveries to light in an accessible manner."
+  ),
+  tools=[search_tool],
+  allow_delegation=False
+)
+
+Step 2: Define the Tasks
+
+Detail the specific objectives for your agents, including new features for asynchronous execution and output customization. These tasks ensure a targeted approach to their roles.
+
+from crewai import Task
+
+# Research task
+research_task = Task(
+  description=(
+    "Identify the next big trend in {topic}."
+    "Focus on identifying pros and cons and the overall narrative."
+    "Your final report should clearly articulate the key points,"
+    "its market opportunities, and potential risks."
+  ),
+  expected_output='A comprehensive 3 paragraphs long report on the latest AI trends.',
+  tools=[search_tool],
+  agent=researcher,
+)
+
+# Writing task with language model configuration
+write_task = Task(
+  description=(
+    "Compose an insightful article on {topic}."
+    "Focus on the latest trends and how it's impacting the industry."
+    "This article should be easy to understand, engaging, and positive."
+  ),
+  expected_output='A 4 paragraph article on {topic} advancements formatted as markdown.',
+  tools=[search_tool],
+  agent=writer,
+  async_execution=False,
+  output_file='new-blog-post.md'  # Example of output customization
+)
+
+Step 3: Form the Crew
+
+Combine your agents into a crew, setting the workflow process they'll follow to accomplish the tasks. Now with options to configure language models for enhanced interaction and additional configurations for optimizing performance.
+
+from crewai import Crew, Process
+
+# Forming the tech-focused crew with some enhanced configurations
+crew = Crew(
+  agents=[researcher, writer],
+  tasks=[research_task, write_task],
+  process=Process.sequential,  # Optional: Sequential task execution is default
+  memory=True,
+  cache=True,
+  max_rpm=100,
+  share_crew=True
+)
+
+Step 4: Kick It Off
+
+Initiate the process with your enhanced crew ready. Observe as your agents collaborate, leveraging their new capabilities for a successful project outcome. Input variables will be interpolated into the agents and tasks for a personalized approach.
+
+# Starting the task execution process with enhanced feedback
+result = crew.kickoff(inputs={'topic': 'AI in healthcare'})
+print(result)
+
+Conclusion
+
+Building and activating a crew in CrewAI has evolved with new functionalities. By incorporating verbose mode, memory capabilities, asynchronous task execution, output customization, language model configuration, and enhanced crew configurations, your AI team is more equipped than ever to tackle challenges efficiently. The depth of agent backstories and the precision of their objectives enrich collaboration, leading to successful project outcomes. This guide aims to provide you with a clear and detailed understanding of setting up and utilizing the CrewAI framework to its full potential.
+
+Create Custom Tools
+Creating and Utilizing Tools in crewAI
+
+This guide provides detailed instructions on creating custom tools for the crewAI framework and how to efficiently manage and utilize these tools, incorporating the latest functionalities such as tool delegation, error handling, and dynamic tool calling. It also highlights the importance of collaboration tools, enabling agents to perform a wide range of actions.
+Prerequisites
+
+Before creating your own tools, ensure you have the crewAI extra tools package installed:
+
+pip install 'crewai[tools]'
+
+Subclassing BaseTool
+
+To create a personalized tool, inherit from BaseTool and define the necessary attributes and the _run method.
+
+from crewai_tools import BaseTool
+
+class MyCustomTool(BaseTool):
+    name: str = "Name of my tool"
+    description: str = "What this tool does. It's vital for effective utilization."
+
+    def _run(self, argument: str) -> str:
+        # Your tool's logic here
+        return "Tool's result"
+
+Using the tool Decorator
+
+Alternatively, use the tool decorator for a direct approach to create tools. This requires specifying attributes and the tool's logic within a function.
+
+from crewai_tools import tool
+
+@tool("Tool Name")
+def my_simple_tool(question: str) -> str:
+    """Tool description for clarity."""
+    # Tool logic here
+    return "Tool output"
+
+Defining a Cache Function for the Tool
+
+To optimize tool performance with caching, define custom caching strategies using the cache_function attribute.
+
+@tool("Tool with Caching")
+def cached_tool(argument: str) -> str:
+    """Tool functionality description."""
+    return "Cachable result"
+
+def my_cache_strategy(arguments: dict, result: str) -> bool:
+    # Define custom caching logic
+    return True if some_condition else False
+
+cached_tool.cache_function = my_cache_strategy
+
+By adhering to these guidelines and incorporating new functionalities and collaboration tools into your tool creation and management processes, you can leverage the full capabilities of the crewAI framework, enhancing both the development experience and the efficiency of your AI agents.
+
+Using Sequential Process
+Introduction¶
+
+CrewAI offers a flexible framework for executing tasks in a structured manner, supporting both sequential and hierarchical processes. This guide outlines how to effectively implement these processes to ensure efficient task execution and project completion.
+Sequential Process Overview¶
+
+The sequential process ensures tasks are executed one after the other, following a linear progression. This approach is ideal for projects requiring tasks to be completed in a specific order.
+Key Features¶
+
+    Linear Task Flow: Ensures orderly progression by handling tasks in a predetermined sequence.
+    Simplicity: Best suited for projects with clear, step-by-step tasks.
+    Easy Monitoring: Facilitates easy tracking of task completion and project progress.
+
+Implementing the Sequential Process
+
+Assemble your crew and define tasks in the order they need to be executed.
+
+from crewai import Crew, Process, Agent, Task
+
+# Define your agents
+researcher = Agent(
+  role='Researcher',
+  goal='Conduct foundational research',
+  backstory='An experienced researcher with a passion for uncovering insights'
+)
+analyst = Agent(
+  role='Data Analyst',
+  goal='Analyze research findings',
+  backstory='A meticulous analyst with a knack for uncovering patterns'
+)
+writer = Agent(
+  role='Writer',
+  goal='Draft the final report',
+  backstory='A skilled writer with a talent for crafting compelling narratives'
+)
+
+# Define the tasks in sequence
+research_task = Task(description='Gather relevant data...', agent=researcher)
+analysis_task = Task(description='Analyze the data...', agent=analyst)
+writing_task = Task(description='Compose the report...', agent=writer)
+
+# Form the crew with a sequential process
+report_crew = Crew(
+  agents=[researcher, analyst, writer],
+  tasks=[research_task, analysis_task, writing_task],
+  process=Process.sequential
+)
+
+Workflow in Action
+
+    Initial Task: In a sequential process, the first agent completes their task and signals completion.
+    Subsequent Tasks: Agents pick up their tasks based on the process type, with outcomes of preceding tasks or manager directives guiding their execution.
+    Completion: The process concludes once the final task is executed, leading to project completion.
+
+Conclusion
+
+The sequential and hierarchical processes in CrewAI offer clear, adaptable paths for task execution. They are well-suited for projects requiring logical progression and dynamic decision-making, ensuring each step is completed effectively, thereby facilitating a cohesive final product.
+
+Using Hierarchical Process
+Introduction
+
+The hierarchical process in CrewAI introduces a structured approach to task management, simulating traditional organizational hierarchies for efficient task delegation and execution. This systematic workflow enhances project outcomes by ensuring tasks are handled with optimal efficiency and accuracy.
+
+Complexity and Efficiency
+
+The hierarchical process is designed to leverage advanced models like GPT-4, optimizing token usage while handling complex tasks with greater efficiency.
+Hierarchical Process Overview
+
+By default, tasks in CrewAI are managed through a sequential process. However, adopting a hierarchical approach allows for a clear hierarchy in task management, where a 'manager' agent coordinates the workflow, delegates tasks, and validates outcomes for streamlined and effective execution. This manager agent is automatically created by crewAI so you don't need to worry about it.
+Key Features
+
+    Task Delegation: A manager agent allocates tasks among crew members based on their roles and capabilities.
+    Result Validation: The manager evaluates outcomes to ensure they meet the required standards.
+    Efficient Workflow: Emulates corporate structures, providing an organized approach to task management.
+
+Implementing the Hierarchical Process
+
+To utilize the hierarchical process, it's essential to explicitly set the process attribute to Process.hierarchical, as the default behavior is Process.sequential. Define a crew with a designated manager and establish a clear chain of command.
+
+Tools and Agent Assignment
+
+Assign tools at the agent level to facilitate task delegation and execution by the designated agents under the manager's guidance. Tools can also be specified at the task level for precise control over tool availability during task execution.
+
+Manager LLM Requirement
+
+Configuring the manager_llm parameter is crucial for the hierarchical process. The system requires a manager LLM to be set up for proper function, ensuring tailored decision-making.
+
+from langchain_openai import ChatOpenAI
+from crewai import Crew, Process, Agent
+
+# Agents are defined with attributes for backstory, cache, and verbose mode
+researcher = Agent(
+    role='Researcher',
+    goal='Conduct in-depth analysis',
+    backstory='Experienced data analyst with a knack for uncovering hidden trends.',
+    cache=True,
+    verbose=False,
+    # tools=[]  # This can be optionally specified; defaults to an empty list
+)
+writer = Agent(
+    role='Writer',
+    goal='Create engaging content',
+    backstory='Creative writer passionate about storytelling in technical domains.',
+    cache=True,
+    verbose=False,
+    # tools=[]  # Optionally specify tools; defaults to an empty list
+)
+
+# Establishing the crew with a hierarchical process and additional configurations
+project_crew = Crew(
+    tasks=[...],  # Tasks to be delegated and executed under the manager's supervision
+    agents=[researcher, writer],
+    manager_llm=ChatOpenAI(temperature=0, model="gpt-4"),  # Mandatory for hierarchical process
+    process=Process.hierarchical,  # Specifies the hierarchical management approach
+    memory=True,  # Enable memory usage for enhanced task execution
+)
+
+Workflow in Action
+
+    Task Assignment: The manager assigns tasks strategically, considering each agent's capabilities and available tools.
+    Execution and Review: Agents complete their tasks with the option for asynchronous execution and callback functions for streamlined workflows.
+    Sequential Task Progression: Despite being a hierarchical process, tasks follow a logical order for smooth progression, facilitated by the manager's oversight.
+
+Conclusion
+
+Adopting the hierarchical process in crewAI, with the correct configurations and understanding of the system's capabilities, facilitates an organized and efficient approach to project management.
+
+Customizing Agents
+Customizable Attributes¶
+
+Crafting an efficient CrewAI team hinges on the ability to dynamically tailor your AI agents to meet the unique requirements of any project. This section covers the foundational attributes you can customize.
+Key Attributes for Customization¶
+
+    Role: Specifies the agent's job within the crew, such as 'Analyst' or 'Customer Service Rep'.
+    Goal: Defines what the agent aims to achieve, in alignment with its role and the overarching objectives of the crew.
+    Backstory: Provides depth to the agent's persona, enriching its motivations and engagements within the crew.
+    Tools: Represents the capabilities or methods the agent uses to perform tasks, from simple functions to intricate integrations.
+
+Advanced Customization Options
+
+Beyond the basic attributes, CrewAI allows for deeper customization to enhance an agent's behavior and capabilities significantly.
+Language Model Customization
+
+Agents can be customized with specific language models (llm) and function-calling language models (function_calling_llm), offering advanced control over their processing and decision-making abilities. It's important to note that setting the function_calling_llm allows for overriding the default crew function-calling language model, providing a greater degree of customization.
+Performance and Debugging Settings¶
+
+Adjusting an agent's performance and monitoring its operations are crucial for efficient task execution.
+Verbose Mode and RPM Limit¶
+
+    Verbose Mode: Enables detailed logging of an agent's actions, useful for debugging and optimization. Specifically, it provides insights into agent execution processes, aiding in the optimization of performance.
+    RPM Limit: Sets the maximum number of requests per minute (max_rpm). This attribute is optional and can be set to None for no limit, allowing for unlimited queries to external services if needed.
+
+Maximum Iterations for Task Execution¶
+
+The max_iter attribute allows users to define the maximum number of iterations an agent can perform for a single task, preventing infinite loops or excessively long executions. The default value is set to 15, providing a balance between thoroughness and efficiency. Once the agent approaches this number, it will try its best to give a good answer.
+Customizing Agents and Tools
+
+Agents are customized by defining their attributes and tools during initialization. Tools are critical for an agent's functionality, enabling them to perform specialized tasks. The tools attribute should be an array of tools the agent can utilize, and it's initialized as an empty list by default. Tools can be added or modified post-agent initialization to adapt to new requirements.
+
+pip install 'crewai[tools]'
+
+Example: Assigning Tools to an Agent
+
+import os
+from crewai import Agent
+from crewai_tools import SerperDevTool
+
+# Set API keys for tool initialization
+os.environ["OPENAI_API_KEY"] = "Your Key"
+os.environ["SERPER_API_KEY"] = "Your Key"
+
+# Initialize a search tool
+search_tool = SerperDevTool()
+
+# Initialize the agent with advanced options
+agent = Agent(
+  role='Research Analyst',
+  goal='Provide up-to-date market analysis',
+  backstory='An expert analyst with a keen eye for market trends.',
+  tools=[search_tool],
+  memory=True, # Enable memory
+  verbose=True,
+  max_rpm=None, # No limit on requests per minute
+  max_iter=15, # Default value for maximum iterations
+  allow_delegation=False
+)
+
+Delegation and Autonomy
+
+Controlling an agent's ability to delegate tasks or ask questions is vital for tailoring its autonomy and collaborative dynamics within the CrewAI framework. By default, the allow_delegation attribute is set to True, enabling agents to seek assistance or delegate tasks as needed. This default behavior promotes collaborative problem-solving and efficiency within the CrewAI ecosystem. If needed, delegation can be disabled to suit specific operational requirements.
+Example: Disabling Delegation for an Agent¶
+
+agent = Agent(
+  role='Content Writer',
+  goal='Write engaging content on market trends',
+  backstory='A seasoned writer with expertise in market analysis.',
+  allow_delegation=False # Disabling delegation
+)
+
+Conclusion
+
+Customizing agents in CrewAI by setting their roles, goals, backstories, and tools, alongside advanced options like language model customization, memory, performance settings, and delegation preferences, equips a nuanced and capable AI team ready for complex challenges.
+
+Human Input in Agent Execution
+
+Human input is critical in several agent execution scenarios, allowing agents to request additional information or clarification when necessary. This feature is especially useful in complex decision-making processes or when agents require more details to complete a task effectively.
+Using Human Input with CrewAI
+
+To integrate human input into agent execution, set the human_input flag in the task definition. When enabled, the agent prompts the user for input before delivering its final answer. This input can provide extra context, clarify ambiguities, or validate the agent's output.
+Example:
+
+pip install crewai
+
+import os
+from crewai import Agent, Task, Crew
+from crewai_tools import SerperDevTool
+
+os.environ["SERPER_API_KEY"] = "Your Key" # serper.dev API key
+os.environ["OPENAI_API_KEY"] = "Your Key"
+
+# Loading Tools
+search_tool = SerperDevTool()
+
+# Define your agents with roles, goals, tools, and additional attributes
+researcher = Agent(
+  role='Senior Research Analyst',
+  goal='Uncover cutting-edge developments in AI and data science',
+  backstory=(
+    "You are a Senior Research Analyst at a leading tech think tank."
+    "Your expertise lies in identifying emerging trends and technologies in AI and data science."
+    "You have a knack for dissecting complex data and presenting actionable insights."
+  ),
+  verbose=True,
+  allow_delegation=False,
+  tools=[search_tool],
+  max_rpm=100
+)
+writer = Agent(
+  role='Tech Content Strategist',
+  goal='Craft compelling content on tech advancements',
+  backstory=(
+    "You are a renowned Tech Content Strategist, known for your insightful and engaging articles on technology and innovation."
+    "With a deep understanding of the tech industry, you transform complex concepts into compelling narratives."
+  ),
+  verbose=True,
+  allow_delegation=True,
+  tools=[search_tool],
+  cache=False, # Disable cache for this agent
+)
+
+# Create tasks for your agents
+task1 = Task(
+  description=(
+    "Conduct a comprehensive analysis of the latest advancements in AI in 2024."
+    "Identify key trends, breakthrough technologies, and potential industry impacts."
+    "Compile your findings in a detailed report."
+    "Make sure to check with a human if the draft is good before finalizing your answer."
+  ),
+  expected_output='A comprehensive full report on the latest AI advancements in 2024, leave nothing out',
+  agent=researcher,
+  human_input=True,
+)
+
+task2 = Task(
+  description=(
+    "Using the insights from the researcher's report, develop an engaging blog post that highlights the most significant AI advancements."
+    "Your post should be informative yet accessible, catering to a tech-savvy audience."
+    "Aim for a narrative that captures the essence of these breakthroughs and their implications for the future."
+  ),
+  expected_output='A compelling 3 paragraphs blog post formatted as markdown about the latest AI advancements in 2024',
+  agent=writer
+)
+
+# Instantiate your crew with a sequential process
+crew = Crew(
+  agents=[researcher, writer],
+  tasks=[task1, task2],
+  verbose=2
+)
+
+# Get your crew to work!
+result = crew.kickoff()
+
+print("######################")
+print(result)
