@@ -1,0 +1,759 @@
+{
+  "last_node_id": 14,
+  "last_link_id": 16,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "workflow/text_input",
+      "pos": [
+        -74,
+        428
+      ],
+      "size": [
+        200,
+        50
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "title": "Demande Utilisateur",
+      "properties": {
+        "value": "Je voudrais une analyse SWOT de la situation suivante : un \u00e9tudiant en philosophie, sp\u00e9cialiste de la philosophie des sciences et ayant r\u00e9dig\u00e9 2 longs m\u00e9moires sur l'intelligence artificielle, ayant de bonne bases en informatique et programmation, souhaite se lancer dans le monde du travail en tant que consultant. Cependant il est un peu perdu au vu de la nouveaut\u00e9 du secteur, et ne sait pas comment se positionner ni comment cr\u00e9er sa place sur le march\u00e9. Ensuite je voudrais un rapport complet puis un tableau r\u00e9sumant l'ensemble du document d'analyse."
+      },
+      "color": "#3a5"
+    },
+    {
+      "id": 2,
+      "type": "workflow/llm_model",
+      "pos": [
+        205,
+        374
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 1
+        },
+        {
+          "name": "in_2",
+          "type": "string",
+          "link": null,
+          "slot_index": 1
+        },
+        {
+          "name": "in_3",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_4",
+          "type": "string",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            2,
+            15
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Agent 1: Analyste SWOT D\u00e9taill\u00e9",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais une analyse SWOT de la situation suivante : un \u00e9tudiant en philosophie, sp\u00e9cialiste de la philosophie des sciences et ayant r\u00e9dig\u00e9 2 longs m\u00e9moires sur l'intelligence artificielle, ayant de bonne bases en informatique et programmation, souhaite se lancer dans le monde du travail en tant que consultant. Cependant il est un peu perdu au vu de la nouveaut\u00e9 du secteur, et ne sait pas comment se positionner ni comment cr\u00e9er sa place sur le march\u00e9. Ensuite je voudrais un rapport complet puis un tableau r\u00e9sumant l'ensemble du document d'analyse.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Analyste SWOT D\u00e9taill\u00e9. Tu identifies les forces, faiblesses, opportunit\u00e9s et menaces de la situation.\n- **Membres de l'\u00e9quipe :**\n  - Agent 2 (R\u00e9dacteur Rapport) : Utilisera ton analyse pour produire le rapport complet.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Effectuer une analyse SWOT compl\u00e8te du profil et situation professionnelle d\u00e9crite.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : La demande brute de l'utilisateur.\n\n[SORTIE ATTENDUE]\n- Une analyse SWOT d\u00e9taill\u00e9e structur\u00e9e en 4 sections distinctes avec des \u00e9l\u00e9ments sp\u00e9cifiques.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement l'analyse SWOT compl\u00e8te.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 4,
+      "type": "workflow/llm_model",
+      "pos": [
+        520,
+        381
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 3
+        },
+        {
+          "name": "in_2",
+          "type": "string",
+          "link": 15
+        },
+        {
+          "name": "in_3",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_4",
+          "type": "string",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            4,
+            16
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Agent 3: R\u00e9sum\u00e9 Strat\u00e9gique",
+      "properties": {
+        "model": "",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais une analyse SWOT de la situation suivante : un \u00e9tudiant en philosophie, sp\u00e9cialiste de la philosophie des sciences et ayant r\u00e9dig\u00e9 2 longs m\u00e9moires sur l'intelligence artificielle, ayant de bonne bases en informatique et programmation, souhaite se lancer dans le monde du travail en tant que consultant. Cependant il est un peu perdu au vu de la nouveaut\u00e9 du secteur, et ne sait pas comment se positionner ni comment cr\u00e9er sa place sur le march\u00e9. Ensuite je voudrais un rapport complet puis un tableau r\u00e9sumant l'ensemble du document d'analyse.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** R\u00e9sum\u00e9 Strat\u00e9gique. Tu extrait les points cl\u00e9s et strat\u00e9giques.\n- **Membres de l'\u00e9quipe :**\n  - Agent 2 (R\u00e9dacteur Rapport) : A fourni le rapport complet.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Cr\u00e9er un r\u00e9sum\u00e9 strat\u00e9gique des \u00e9l\u00e9ments cl\u00e9s du rapport.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Le rapport complet fourni par l'Agent 2.\n- **{{in_2}}** : L'analyse SWOT initiale.\n\n\n[SORTIE ATTENDUE]\n- Un r\u00e9sum\u00e9 strat\u00e9gique concis et clair.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement le r\u00e9sum\u00e9 strat\u00e9gique.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 3,
+      "type": "workflow/llm_model",
+      "pos": [
+        375,
+        33
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 2
+        },
+        {
+          "name": "in_2",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_3",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_4",
+          "type": "string",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            3
+          ]
+        }
+      ],
+      "title": "Agent 2: R\u00e9dacteur Rapport",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais une analyse SWOT de la situation suivante : un \u00e9tudiant en philosophie, sp\u00e9cialiste de la philosophie des sciences et ayant r\u00e9dig\u00e9 2 longs m\u00e9moires sur l'intelligence artificielle, ayant de bonne bases en informatique et programmation, souhaite se lancer dans le monde du travail en tant que consultant. Cependant il est un peu perdu au vu de la nouveaut\u00e9 du secteur, et ne sait pas comment se positionner ni comment cr\u00e9er sa place sur le march\u00e9. Ensuite je voudrais un rapport complet puis un tableau r\u00e9sumant l'ensemble du document d'analyse.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** R\u00e9dacteur Rapport. Tu transformes l'analyse SWOT en un document complet.\n- **Membres de l'\u00e9quipe :**\n  - Agent 1 (Analyste SWOT D\u00e9taill\u00e9) : A fourni l'analyse SWOT.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- R\u00e9diger un rapport complet bas\u00e9 sur l'analyse SWOT fournir, incluant des recommandations pratiques.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : L'analyse SWOT d\u00e9taill\u00e9e fournie par l'Agent 1.\n\n[SORTIE ATTENDUE]\n- Un document de rapport complet structur\u00e9 en sections claires avec des recommandations.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Ne produis QUE le rapport.\n2. Pas de Dialogue: N'ajoute aucune introduction ou conclusion."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 5,
+      "type": "workflow/llm_model",
+      "pos": [
+        702,
+        38
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 4
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        },
+        {
+          "name": "in_3",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_4",
+          "type": "string",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "title": "Agent 4: Expert Positionnement",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais une analyse SWOT de la situation suivante : un \u00e9tudiant en philosophie, sp\u00e9cialiste de la philosophie des sciences et ayant r\u00e9dig\u00e9 2 longs m\u00e9moires sur l'intelligence artificielle, ayant de bonne bases en informatique et programmation, souhaite se lancer dans le monde du travail en tant que consultant. Cependant il est un peu perdu au vu de la nouveaut\u00e9 du secteur, et ne sait pas comment se positionner ni comment cr\u00e9er sa place sur le march\u00e9. Ensuite je voudrais un rapport complet puis un tableau r\u00e9sumant l'ensemble du document d'analyse.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Expert Positionnement. Tu formules des strat\u00e9gies de positionnement.\n- **Membres de l'\u00e9quipe :**\n  - Agent 2 (R\u00e9dacteur Rapport) : A fourni le rapport complet.\n  - Agent 3 (R\u00e9sum\u00e9 Strat\u00e9gique) : A fourni le r\u00e9sum\u00e9 strat\u00e9gique.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- D\u00e9velopper des recommandations sp\u00e9cifiques de positionnement professionnel bas\u00e9es sur l'analyse SWOT et le r\u00e9sum\u00e9 strat\u00e9gique.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Le rapport complet fourni par l'Agent 2.\n- **{{in_2}}** : Le r\u00e9sum\u00e9 strat\u00e9gique fourni par l'Agent 3.\n\n[SORTIE ATTENDUE]\n- Une liste de recommandations sp\u00e9cifiques de positionnement professionnel.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement les recommandations de positionnement.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 6,
+      "type": "workflow/llm_model",
+      "pos": [
+        845,
+        381
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 5
+        },
+        {
+          "name": "in_2",
+          "type": "string",
+          "link": 16
+        },
+        {
+          "name": "in_3",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_4",
+          "type": "string",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            6
+          ]
+        }
+      ],
+      "title": "Agent 5: Cr\u00e9ateur de Plan Strat\u00e9gique",
+      "properties": {
+        "model": "",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais une analyse SWOT de la situation suivante : un \u00e9tudiant en philosophie, sp\u00e9cialiste de la philosophie des sciences et ayant r\u00e9dig\u00e9 2 longs m\u00e9moires sur l'intelligence artificielle, ayant de bonne bases en informatique et programmation, souhaite se lancer dans le monde du travail en tant que consultant. Cependant il est un peu perdu au vu de la nouveaut\u00e9 du secteur, et ne sait pas comment se positionner ni comment cr\u00e9er sa place sur le march\u00e9. Ensuite je voudrais un rapport complet puis un tableau r\u00e9sumant l'ensemble du document d'analyse.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Cr\u00e9ateur de Plan Strat\u00e9gique. Tu transformes les recommandations en plan d'action.\n- **Membres de l'\u00e9quipe :**\n  - Agent 4 (Expert Positionnement) : A fourni les recommandations de positionnement.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Cr\u00e9er un plan d'action concret bas\u00e9 sur les recommandations de positionnement.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Les recommandations de positionnement fournies par l'Agent 4.\n- **{{in_2}}** : Le r\u00e9sum\u00e9 strat\u00e9gique de l'agent 3.\n\n\n[SORTIE ATTENDUE]\n- Un plan d'action structur\u00e9 avec \u00e9tapes et objectifs clairs.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement le plan d'action.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 8,
+      "type": "workflow/llm_model",
+      "pos": [
+        1171,
+        377
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 7
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        },
+        {
+          "name": "in_3",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_4",
+          "type": "string",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            8,
+            13
+          ]
+        }
+      ],
+      "title": "Agent 7: Expert Communication",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais une analyse SWOT de la situation suivante : un \u00e9tudiant en philosophie, sp\u00e9cialiste de la philosophie des sciences et ayant r\u00e9dig\u00e9 2 longs m\u00e9moires sur l'intelligence artificielle, ayant de bonne bases en informatique et programmation, souhaite se lancer dans le monde du travail en tant que consultant. Cependant il est un peu perdu au vu de la nouveaut\u00e9 du secteur, et ne sait pas comment se positionner ni comment cr\u00e9er sa place sur le march\u00e9. Ensuite je voudrais un rapport complet puis un tableau r\u00e9sumant l'ensemble du document d'analyse.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Expert Communication. Tu formule les messages de communication cl\u00e9s.\n- **Membres de l'\u00e9quipe :**\n  - Agent 5 (Cr\u00e9ateur de Plan Strat\u00e9gique) : A fourni le plan d'action.\n  - Agent 6 (Analyste de Valeur Ajout\u00e9e) : A fourni les avantages concurrentiels.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Cr\u00e9er des messages de communication cl\u00e9s pour la pr\u00e9sentation professionnelle.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Le plan d'action fourni par l'Agent 5.\n- **{{in_2}}** : Les avantages concurrentiels fournis par l'Agent 6.\n\n[SORTIE ATTENDUE]\n- Des messages de communication cl\u00e9s structur\u00e9s.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement les messages de communication.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 7,
+      "type": "workflow/llm_model",
+      "pos": [
+        1027,
+        44
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 6
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        },
+        {
+          "name": "in_3",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_4",
+          "type": "string",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "title": "Agent 6: Analyste de Valeur Ajout\u00e9e",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais une analyse SWOT de la situation suivante : un \u00e9tudiant en philosophie, sp\u00e9cialiste de la philosophie des sciences et ayant r\u00e9dig\u00e9 2 longs m\u00e9moires sur l'intelligence artificielle, ayant de bonne bases en informatique et programmation, souhaite se lancer dans le monde du travail en tant que consultant. Cependant il est un peu perdu au vu de la nouveaut\u00e9 du secteur, et ne sait pas comment se positionner ni comment cr\u00e9er sa place sur le march\u00e9. Ensuite je voudrais un rapport complet puis un tableau r\u00e9sumant l'ensemble du document d'analyse.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Analyste de Valeur Ajout\u00e9e. Tu identifie les avantages concurrentiels.\n- **Membres de l'\u00e9quipe :**\n  - Agent 2 (R\u00e9dacteur Rapport) : A fourni le rapport complet.\n  - Agent 4 (Expert Positionnement) : A fourni les recommandations de positionnement.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Identifier les avantages concurrentiels uniques du profil.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Le rapport complet fourni par l'Agent 2.\n- **{{in_2}}** : Les recommandations de positionnement fournies par l'Agent 4.\n\n[SORTIE ATTENDUE]\n- Une liste des avantages concurrentiels uniques identifi\u00e9s.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement la liste des avantages concurrentiels.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 10,
+      "type": "workflow/llm_model",
+      "pos": [
+        1488,
+        380
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 9
+        },
+        {
+          "name": "in_2",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_3",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_4",
+          "type": "string",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            10,
+            12
+          ]
+        }
+      ],
+      "title": "Agent 9: Synth\u00e9tiseur Final",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais une analyse SWOT de la situation suivante : un \u00e9tudiant en philosophie, sp\u00e9cialiste de la philosophie des sciences et ayant r\u00e9dig\u00e9 2 longs m\u00e9moires sur l'intelligence artificielle, ayant de bonne bases en informatique et programmation, souhaite se lancer dans le monde du travail en tant que consultant. Cependant il est un peu perdu au vu de la nouveaut\u00e9 du secteur, et ne sait pas comment se positionner ni comment cr\u00e9er sa place sur le march\u00e9. Ensuite je voudrais un rapport complet puis un tableau r\u00e9sumant l'ensemble du document d'analyse.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Synth\u00e9tiseur Final. Tu combines toutes les analyses.\n- **Membres de l'\u00e9quipe :**\n  - Agent 8 (R\u00e9f\u00e9rences Strat\u00e9giques) : A fourni les r\u00e9f\u00e9rences.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Synth\u00e9tiser tous les \u00e9l\u00e9ments pour cr\u00e9er un document final complet.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Les r\u00e9f\u00e9rences strat\u00e9giques fournies par l'Agent 8.\n\n[SORTIE ATTENDUE]\n- Un document final complet avec tous les \u00e9l\u00e9ments synth\u00e9tis\u00e9s.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement le document final.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 9,
+      "type": "workflow/llm_model",
+      "pos": [
+        1348,
+        48
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 8
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        },
+        {
+          "name": "in_3",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_4",
+          "type": "string",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "title": "Agent 8: R\u00e9f\u00e9rences Strat\u00e9giques",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais une analyse SWOT de la situation suivante : un \u00e9tudiant en philosophie, sp\u00e9cialiste de la philosophie des sciences et ayant r\u00e9dig\u00e9 2 longs m\u00e9moires sur l'intelligence artificielle, ayant de bonne bases en informatique et programmation, souhaite se lancer dans le monde du travail en tant que consultant. Cependant il est un peu perdu au vu de la nouveaut\u00e9 du secteur, et ne sait pas comment se positionner ni comment cr\u00e9er sa place sur le march\u00e9. Ensuite je voudrais un rapport complet puis un tableau r\u00e9sumant l'ensemble du document d'analyse.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** R\u00e9f\u00e9rences Strat\u00e9giques. Tu identifie les sources de r\u00e9f\u00e9rence pertinentes.\n- **Membres de l'\u00e9quipe :**\n  - Agent 2 (R\u00e9dacteur Rapport) : A fourni le rapport complet.\n  - Agent 7 (Expert Communication) : A fourni les messages cl\u00e9s.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Identifier des r\u00e9f\u00e9rences strat\u00e9giques pour appuyer le positionnement.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Le rapport complet fourni par l'Agent 2.\n- **{{in_2}}** : Les messages de communication fournis par l'Agent 7.\n\n[SORTIE ATTENDUE]\n- Une liste des r\u00e9f\u00e9rences strat\u00e9giques pertinentes.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement la liste des r\u00e9f\u00e9rences.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 11,
+      "type": "workflow/llm_model",
+      "pos": [
+        1654,
+        54
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 10
+        },
+        {
+          "name": "in_2",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_3",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_4",
+          "type": "string",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "title": "Agent 10: G\u00e9n\u00e9rateur Tableau R\u00e9sum\u00e9",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais une analyse SWOT de la situation suivante : un \u00e9tudiant en philosophie, sp\u00e9cialiste de la philosophie des sciences et ayant r\u00e9dig\u00e9 2 longs m\u00e9moires sur l'intelligence artificielle, ayant de bonne bases en informatique et programmation, souhaite se lancer dans le monde du travail en tant que consultant. Cependant il est un peu perdu au vu de la nouveaut\u00e9 du secteur, et ne sait pas comment se positionner ni comment cr\u00e9er sa place sur le march\u00e9. Ensuite je voudrais un rapport complet puis un tableau r\u00e9sumant l'ensemble du document d'analyse.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** G\u00e9n\u00e9rateur Tableau R\u00e9sum\u00e9. Tu cr\u00e9e une vue tabulaire.\n- **Membres de l'\u00e9quipe :**\n  - Agent 9 (Synth\u00e9tiseur Final) : A fourni le document final.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Cr\u00e9er un tableau r\u00e9sumant les \u00e9l\u00e9ments cl\u00e9s du document.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Le document final fourni par l'Agent 9.\n\n[SORTIE ATTENDUE]\n- Un tableau r\u00e9sumant les \u00e9l\u00e9ments cl\u00e9s du document sous forme de structure tabulaire.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement le tableau r\u00e9sum\u00e9.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 12,
+      "type": "workflow/text_output",
+      "pos": [
+        1973,
+        54
+      ],
+      "size": [
+        200,
+        50
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 11
+        }
+      ],
+      "title": "Tableau R\u00e9sum\u00e9",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 13,
+      "type": "workflow/text_output",
+      "pos": [
+        1976,
+        157
+      ],
+      "size": [
+        200,
+        50
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 12
+        }
+      ],
+      "title": "Document Final",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 14,
+      "type": "workflow/text_output",
+      "pos": [
+        1974,
+        265
+      ],
+      "size": [
+        200,
+        50
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 13
+        }
+      ],
+      "title": "Messages de Communication",
+      "properties": {},
+      "color": "#53a"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "string"
+    ],
+    [
+      2,
+      2,
+      0,
+      3,
+      0,
+      "string"
+    ],
+    [
+      3,
+      3,
+      0,
+      4,
+      0,
+      "string"
+    ],
+    [
+      4,
+      4,
+      0,
+      5,
+      0,
+      "string"
+    ],
+    [
+      5,
+      5,
+      0,
+      6,
+      0,
+      "string"
+    ],
+    [
+      6,
+      6,
+      0,
+      7,
+      0,
+      "string"
+    ],
+    [
+      7,
+      7,
+      0,
+      8,
+      0,
+      "string"
+    ],
+    [
+      8,
+      8,
+      0,
+      9,
+      0,
+      "string"
+    ],
+    [
+      9,
+      9,
+      0,
+      10,
+      0,
+      "string"
+    ],
+    [
+      10,
+      10,
+      0,
+      11,
+      0,
+      "string"
+    ],
+    [
+      11,
+      11,
+      0,
+      12,
+      0,
+      "string"
+    ],
+    [
+      12,
+      10,
+      0,
+      13,
+      0,
+      "string"
+    ],
+    [
+      13,
+      8,
+      0,
+      14,
+      0,
+      "string"
+    ],
+    [
+      15,
+      2,
+      0,
+      4,
+      1,
+      "string"
+    ],
+    [
+      16,
+      4,
+      0,
+      6,
+      1,
+      "string"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

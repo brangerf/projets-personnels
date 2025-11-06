@@ -1,0 +1,871 @@
+{
+  "last_node_id": 23,
+  "last_link_id": 22,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "workflow/text_input",
+      "pos": [
+        100,
+        300
+      ],
+      "size": [
+        200,
+        50
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "links": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        }
+      ],
+      "title": "Demande Utilisateur",
+      "properties": {
+        "value": "Fais moi un jeu pong dans un seul fichier html. le jeu doit \u00eatre beau et la physique de la balle bien g\u00e9r\u00e9e. Le dernier agent doit avoir en m\u00e9moire la r\u00e9ponse de chaque agent pr\u00e9c\u00e9dent et recopier le code complet du jeu dans un seul bloc de code !"
+      },
+      "color": "#3a5"
+    },
+    {
+      "id": 2,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        150
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            12
+          ]
+        }
+      ],
+      "title": "I.A - Structure du jeu",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu pong dans un seul fichier html. le jeu doit \u00eatre beau et la physique de la balle bien g\u00e9r\u00e9e. Le dernier agent doit avoir en m\u00e9moire la r\u00e9ponse de chaque agent pr\u00e9c\u00e9dent et recopier le code complet du jeu dans un seul bloc de code !\"\nPlan de r\u00e9ponse complet : \nI. Structure du jeu\n   A. Architecture HTML\n   B. Structure CSS\n   C. Structure JavaScript\nII. M\u00e9canismes Physiques\n   A. Gestion des collisions\n   B. Physique de la balle\n   C. Vitesse et trajectoire\nIII. Interface Visuelle\n   A. Design esth\u00e9tique\n   B. Animation fluide\n   C. Effets visuels\nIV. Code Complet\n   A. Int\u00e9gration de tous les \u00e9l\u00e9ments\n   B. Gestion des variables globales\n   C. R\u00e9vision finale\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : I.A - Architecture HTML\nDescription : D\u00e9finir la structure HTML du jeu Pong\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAucun - tu es le premier agent\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nD\u00e9finir la structure HTML n\u00e9cessaire pour le jeu Pong, incluant les \u00e9l\u00e9ments de base comme le canvas, les joueurs, le score et les contr\u00f4les.\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n\n[FORMAT DE SORTIE ATTENDU]\nUn bloc de code HTML avec une structure claire et comment\u00e9e\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le contenu de ta partie du plan\n2. Tu ne produis AUCUNE introduction/conclusion g\u00e9n\u00e9rale (sauf si c'est ta partie)\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur ton r\u00f4le sp\u00e9cifique dans le plan global\n5. IMPORTANT : Si tu g\u00e9n\u00e8res des formules math\u00e9matiques, entoure-les TOUJOURS de d\u00e9limiteurs LaTeX ($...$ ou $$...$$)"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 3,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        300
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            13
+          ]
+        }
+      ],
+      "title": "I.B - Structure CSS",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu pong dans un seul fichier html. le jeu doit \u00eatre beau et la physique de la balle bien g\u00e9r\u00e9e. Le dernier agent doit avoir en m\u00e9moire la r\u00e9ponse de chaque agent pr\u00e9c\u00e9dent et recopier le code complet du jeu dans un seul bloc de code !\"\nPlan de r\u00e9ponse complet : \nI. Structure du jeu\n   A. Architecture HTML\n   B. Structure CSS\n   C. Structure JavaScript\nII. M\u00e9canismes Physiques\n   A. Gestion des collisions\n   B. Physique de la balle\n   C. Vitesse et trajectoire\nIII. Interface Visuelle\n   A. Design esth\u00e9tique\n   B. Animation fluide\n   C. Effets visuels\nIV. Code Complet\n   A. Int\u00e9gration de tous les \u00e9l\u00e9ments\n   B. Gestion des variables globales\n   C. R\u00e9vision finale\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : I.B - Structure CSS\nDescription : D\u00e9finir le style visuel du jeu Pong\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I.A a d\u00e9fini la structure HTML\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nCr\u00e9er un style CSS \u00e9l\u00e9gant et moderne pour le jeu Pong, incluant les couleurs, les bordures, les animations et l'effet de lumi\u00e8re.\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n\n[FORMAT DE SORTIE ATTENDU]\nUn bloc de code CSS avec un style visuel attrayant\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le contenu de ta partie du plan\n2. Tu ne produis AUCUNE introduction/conclusion g\u00e9n\u00e9rale (sauf si c'est ta partie)\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur ton r\u00f4le sp\u00e9cifique dans le plan global\n5. IMPORTANT : Si tu g\u00e9n\u00e8res des formules math\u00e9matiques, entoure-les TOUJOURS de d\u00e9limiteurs LaTeX ($...$ ou $$...$$)"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 4,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        450
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            14
+          ]
+        }
+      ],
+      "title": "I.C - Structure JavaScript",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu pong dans un seul fichier html. le jeu doit \u00eatre beau et la physique de la balle bien g\u00e9r\u00e9e. Le dernier agent doit avoir en m\u00e9moire la r\u00e9ponse de chaque agent pr\u00e9c\u00e9dent et recopier le code complet du jeu dans un seul bloc de code !\"\nPlan de r\u00e9ponse complet : \nI. Structure du jeu\n   A. Architecture HTML\n   B. Structure CSS\n   C. Structure JavaScript\nII. M\u00e9canismes Physiques\n   A. Gestion des collisions\n   B. Physique de la balle\n   C. Vitesse et trajectoire\nIII. Interface Visuelle\n   A. Design esth\u00e9tique\n   B. Animation fluide\n   C. Effets visuels\nIV. Code Complet\n   A. Int\u00e9gration de tous les \u00e9l\u00e9ments\n   B. Gestion des variables globales\n   C. R\u00e9vision finale\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : I.C - Structure JavaScript\nDescription : D\u00e9finir la logique JavaScript du jeu Pong\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I.A a d\u00e9fini la structure HTML\nAgent I.B a d\u00e9fini le style CSS\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nCr\u00e9er la logique JavaScript pour le jeu Pong, incluant les d\u00e9placements des joueurs, la physique de la balle, les collisions et le score.\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n\n[FORMAT DE SORTIE ATTENDU]\nUn bloc de code JavaScript avec une logique claire et comment\u00e9e\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le contenu de ta partie du plan\n2. Tu ne produis AUCUNE introduction/conclusion g\u00e9n\u00e9rale (sauf si c'est ta partie)\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur ton r\u00f4le sp\u00e9cifique dans le plan global\n5. IMPORTANT : Si tu g\u00e9n\u00e8res des formules math\u00e9matiques, entoure-les TOUJOURS de d\u00e9limiteurs LaTeX ($...$ ou $$...$$)"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 5,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        600
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            15
+          ]
+        }
+      ],
+      "title": "II.A - Collision Gestion",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu pong dans un seul fichier html. le jeu doit \u00eatre beau et la physique de la balle bien g\u00e9r\u00e9e. Le dernier agent doit avoir en m\u00e9moire la r\u00e9ponse de chaque agent pr\u00e9c\u00e9dent et recopier le code complet du jeu dans un seul bloc de code !\"\nPlan de r\u00e9ponse complet : \nI. Structure du jeu\n   A. Architecture HTML\n   B. Structure CSS\n   C. Structure JavaScript\nII. M\u00e9canismes Physiques\n   A. Gestion des collisions\n   B. Physique de la balle\n   C. Vitesse et trajectoire\nIII. Interface Visuelle\n   A. Design esth\u00e9tique\n   B. Animation fluide\n   C. Effets visuels\nIV. Code Complet\n   A. Int\u00e9gration de tous les \u00e9l\u00e9ments\n   B. Gestion des variables globales\n   C. R\u00e9vision finale\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : II.A - Gestion des collisions\nDescription : D\u00e9finir les r\u00e8gles de collision entre la balle et les raquettes\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I.A a d\u00e9fini la structure HTML\nAgent I.B a d\u00e9fini le style CSS\nAgent I.C a d\u00e9fini la logique JavaScript\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nImpl\u00e9menter les r\u00e8gles de collision pour que la balle rebondisse correctement sur les raquettes et les bords.\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n\n[FORMAT DE SORTIE ATTENDU]\nUn bloc de code JavaScript d\u00e9taillant les collisions\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le contenu de ta partie du plan\n2. Tu ne produis AUCUNE introduction/conclusion g\u00e9n\u00e9rale (sauf si c'est ta partie)\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur ton r\u00f4le sp\u00e9cifique dans le plan global\n5. IMPORTANT : Si tu g\u00e9n\u00e8res des formules math\u00e9matiques, entoure-les TOUJOURS de d\u00e9limiteurs LaTeX ($...$ ou $$...$$)"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 6,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        750
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            16
+          ]
+        }
+      ],
+      "title": "II.B - Physique de la Balle",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu pong dans un seul fichier html. le jeu doit \u00eatre beau et la physique de la balle bien g\u00e9r\u00e9e. Le dernier agent doit avoir en m\u00e9moire la r\u00e9ponse de chaque agent pr\u00e9c\u00e9dent et recopier le code complet du jeu dans un seul bloc de code !\"\nPlan de r\u00e9ponse complet : \nI. Structure du jeu\n   A. Architecture HTML\n   B. Structure CSS\n   C. Structure JavaScript\nII. M\u00e9canismes Physiques\n   A. Gestion des collisions\n   B. Physique de la balle\n   C. Vitesse et trajectoire\nIII. Interface Visuelle\n   A. Design esth\u00e9tique\n   B. Animation fluide\n   C. Effets visuels\nIV. Code Complet\n   A. Int\u00e9gration de tous les \u00e9l\u00e9ments\n   B. Gestion des variables globales\n   C. R\u00e9vision finale\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : II.B - Physique de la balle\nDescription : D\u00e9finir le comportement physique de la balle\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I.A a d\u00e9fini la structure HTML\nAgent I.B a d\u00e9fini le style CSS\nAgent I.C a d\u00e9fini la logique JavaScript\nAgent II.A a d\u00e9fini la gestion des collisions\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nImpl\u00e9menter une physique r\u00e9aliste pour la balle, incluant sa vitesse, sa direction et ses interactions avec les raquettes.\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n\n[FORMAT DE SORTIE ATTENDU]\nUn bloc de code JavaScript d\u00e9taillant la physique de la balle\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le contenu de ta partie du plan\n2. Tu ne produis AUCUNE introduction/conclusion g\u00e9n\u00e9rale (sauf si c'est ta partie)\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur ton r\u00f4le sp\u00e9cifique dans le plan global\n5. IMPORTANT : Si tu g\u00e9n\u00e8res des formules math\u00e9matiques, entoure-les TOUJOURS de d\u00e9limiteurs LaTeX ($...$ ou $$...$$)"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 7,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        900
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            17
+          ]
+        }
+      ],
+      "title": "II.C - Vitesse et Trajectoire",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu pong dans un seul fichier html. le jeu doit \u00eatre beau et la physique de la balle bien g\u00e9r\u00e9e. Le dernier agent doit avoir en m\u00e9moire la r\u00e9ponse de chaque agent pr\u00e9c\u00e9dent et recopier le code complet du jeu dans un seul bloc de code !\"\nPlan de r\u00e9ponse complet : \nI. Structure du jeu\n   A. Architecture HTML\n   B. Structure CSS\n   C. Structure JavaScript\nII. M\u00e9canismes Physiques\n   A. Gestion des collisions\n   B. Physique de la balle\n   C. Vitesse et trajectoire\nIII. Interface Visuelle\n   A. Design esth\u00e9tique\n   B. Animation fluide\n   C. Effets visuels\nIV. Code Complet\n   A. Int\u00e9gration de tous les \u00e9l\u00e9ments\n   B. Gestion des variables globales\n   C. R\u00e9vision finale\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : II.C - Vitesse et trajectoire\nDescription : D\u00e9finir la dynamique de vitesse et de trajectoire\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I.A a d\u00e9fini la structure HTML\nAgent I.B a d\u00e9fini le style CSS\nAgent I.C a d\u00e9fini la logique JavaScript\nAgent II.A a d\u00e9fini la gestion des collisions\nAgent II.B a d\u00e9fini la physique de la balle\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nImpl\u00e9menter une trajectoire r\u00e9aliste et une vitesse variable pour la balle.\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n\n[FORMAT DE SORTIE ATTENDU]\nUn bloc de code JavaScript d\u00e9taillant la vitesse et trajectoire\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le contenu de ta partie du plan\n2. Tu ne produis AUCUNE introduction/conclusion g\u00e9n\u00e9rale (sauf si c'est ta partie)\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur ton r\u00f4le sp\u00e9cifique dans le plan global\n5. IMPORTANT : Si tu g\u00e9n\u00e8res des formules math\u00e9matiques, entoure-les TOUJOURS de d\u00e9limiteurs LaTeX ($...$ ou $$...$$)"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 8,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        1050
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            18
+          ]
+        }
+      ],
+      "title": "III.A - Design Esth\u00e9tique",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu pong dans un seul fichier html. le jeu doit \u00eatre beau et la physique de la balle bien g\u00e9r\u00e9e. Le dernier agent doit avoir en m\u00e9moire la r\u00e9ponse de chaque agent pr\u00e9c\u00e9dent et recopier le code complet du jeu dans un seul bloc de code !\"\nPlan de r\u00e9ponse complet : \nI. Structure du jeu\n   A. Architecture HTML\n   B. Structure CSS\n   C. Structure JavaScript\nII. M\u00e9canismes Physiques\n   A. Gestion des collisions\n   B. Physique de la balle\n   C. Vitesse et trajectoire\nIII. Interface Visuelle\n   A. Design esth\u00e9tique\n   B. Animation fluide\n   C. Effets visuels\nIV. Code Complet\n   A. Int\u00e9gration de tous les \u00e9l\u00e9ments\n   B. Gestion des variables globales\n   C. R\u00e9vision finale\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : III.A - Design esth\u00e9tique\nDescription : Cr\u00e9er un design attrayant et moderne\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I.A a d\u00e9fini la structure HTML\nAgent I.B a d\u00e9fini le style CSS\nAgent I.C a d\u00e9fini la logique JavaScript\nAgent II.A a d\u00e9fini la gestion des collisions\nAgent II.B a d\u00e9fini la physique de la balle\nAgent II.C a d\u00e9fini la vitesse et trajectoire\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nD\u00e9finir un design visuel attrayant pour le jeu Pong avec des effets de lumi\u00e8re et de couleurs.\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n\n[FORMAT DE SORTIE ATTENDU]\nUn bloc de code CSS avec un design moderne\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le contenu de ta partie du plan\n2. Tu ne produis AUCUNE introduction/conclusion g\u00e9n\u00e9rale (sauf si c'est ta partie)\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur ton r\u00f4le sp\u00e9cifique dans le plan global\n5. IMPORTANT : Si tu g\u00e9n\u00e8res des formules math\u00e9matiques, entoure-les TOUJOURS de d\u00e9limiteurs LaTeX ($...$ ou $$...$$)"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 9,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        1200
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            19
+          ]
+        }
+      ],
+      "title": "III.B - Animation Fluide",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu pong dans un seul fichier html. le jeu doit \u00eatre beau et la physique de la balle bien g\u00e9r\u00e9e. Le dernier agent doit avoir en m\u00e9moire la r\u00e9ponse de chaque agent pr\u00e9c\u00e9dent et recopier le code complet du jeu dans un seul bloc de code !\"\nPlan de r\u00e9ponse complet : \nI. Structure du jeu\n   A. Architecture HTML\n   B. Structure CSS\n   C. Structure JavaScript\nII. M\u00e9canismes Physiques\n   A. Gestion des collisions\n   B. Physique de la balle\n   C. Vitesse et trajectoire\nIII. Interface Visuelle\n   A. Design esth\u00e9tique\n   B. Animation fluide\n   C. Effets visuels\nIV. Code Complet\n   A. Int\u00e9gration de tous les \u00e9l\u00e9ments\n   B. Gestion des variables globales\n   C. R\u00e9vision finale\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : III.B - Animation fluide\nDescription : Cr\u00e9er des animations fluides\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I.A a d\u00e9fini la structure HTML\nAgent I.B a d\u00e9fini le style CSS\nAgent I.C a d\u00e9fini la logique JavaScript\nAgent II.A a d\u00e9fini la gestion des collisions\nAgent II.B a d\u00e9fini la physique de la balle\nAgent II.C a d\u00e9fini la vitesse et trajectoire\nAgent III.A a d\u00e9fini le design esth\u00e9tique\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nAjouter des animations fluides pour les raquettes et la balle.\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n\n[FORMAT DE SORTIE ATTENDU]\nUn bloc de code CSS avec des animations fluides\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le contenu de ta partie du plan\n2. Tu ne produis AUCUNE introduction/conclusion g\u00e9n\u00e9rale (sauf si c'est ta partie)\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur ton r\u00f4le sp\u00e9cifique dans le plan global\n5. IMPORTANT : Si tu g\u00e9n\u00e8res des formules math\u00e9matiques, entoure-les TOUJOURS de d\u00e9limiteurs LaTeX ($...$ ou $$...$$)"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 10,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        1350
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            20
+          ]
+        }
+      ],
+      "title": "III.C - Effets Visuels",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu pong dans un seul fichier html. le jeu doit \u00eatre beau et la physique de la balle bien g\u00e9r\u00e9e. Le dernier agent doit avoir en m\u00e9moire la r\u00e9ponse de chaque agent pr\u00e9c\u00e9dent et recopier le code complet du jeu dans un seul bloc de code !\"\nPlan de r\u00e9ponse complet : \nI. Structure du jeu\n   A. Architecture HTML\n   B. Structure CSS\n   C. Structure JavaScript\nII. M\u00e9canismes Physiques\n   A. Gestion des collisions\n   B. Physique de la balle\n   C. Vitesse et trajectoire\nIII. Interface Visuelle\n   A. Design esth\u00e9tique\n   B. Animation fluide\n   C. Effets visuels\nIV. Code Complet\n   A. Int\u00e9gration de tous les \u00e9l\u00e9ments\n   B. Gestion des variables globales\n   C. R\u00e9vision finale\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : III.C - Effets visuels\nDescription : Ajouter des effets visuels pour am\u00e9liorer l'exp\u00e9rience\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I.A a d\u00e9fini la structure HTML\nAgent I.B a d\u00e9fini le style CSS\nAgent I.C a d\u00e9fini la logique JavaScript\nAgent II.A a d\u00e9fini la gestion des collisions\nAgent II.B a d\u00e9fini la physique de la balle\nAgent II.C a d\u00e9fini la vitesse et trajectoire\nAgent III.A a d\u00e9fini le design esth\u00e9tique\nAgent III.B a d\u00e9fini les animations\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nAjouter des effets visuels pour am\u00e9liorer l'exp\u00e9rience utilisateur.\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n\n[FORMAT DE SORTIE ATTENDU]\nUn bloc de code CSS avec des effets visuels\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le contenu de ta partie du plan\n2. Tu ne produis AUCUNE introduction/conclusion g\u00e9n\u00e9rale (sauf si c'est ta partie)\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur ton r\u00f4le sp\u00e9cifique dans le plan global\n5. IMPORTANT : Si tu g\u00e9n\u00e8res des formules math\u00e9matiques, entoure-les TOUJOURS de d\u00e9limiteurs LaTeX ($...$ ou $$...$$)"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 11,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        1500
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 10
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        },
+        {
+          "name": "in_3",
+          "type": "string"
+        },
+        {
+          "name": "in_4",
+          "type": "string"
+        },
+        {
+          "name": "in_5",
+          "type": "string"
+        },
+        {
+          "name": "in_6",
+          "type": "string"
+        },
+        {
+          "name": "in_7",
+          "type": "string"
+        },
+        {
+          "name": "in_8",
+          "type": "string"
+        },
+        {
+          "name": "in_9",
+          "type": "string"
+        },
+        {
+          "name": "in_10",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            21
+          ]
+        }
+      ],
+      "title": "IV.A - Int\u00e9gration",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu pong dans un seul fichier html. le jeu doit \u00eatre beau et la physique de la balle bien g\u00e9r\u00e9e. Le dernier agent doit avoir en m\u00e9moire la r\u00e9ponse de chaque agent pr\u00e9c\u00e9dent et recopier le code complet du jeu dans un seul bloc de code !\"\nPlan de r\u00e9ponse complet : \nI. Structure du jeu\n   A. Architecture HTML\n   B. Structure CSS\n   C. Structure JavaScript\nII. M\u00e9canismes Physiques\n   A. Gestion des collisions\n   B. Physique de la balle\n   C. Vitesse et trajectoire\nIII. Interface Visuelle\n   A. Design esth\u00e9tique\n   B. Animation fluide\n   C. Effets visuels\nIV. Code Complet\n   A. Int\u00e9gration de tous les \u00e9l\u00e9ments\n   B. Gestion des variables globales\n   C. R\u00e9vision finale\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : IV.A - Int\u00e9gration\nDescription : Int\u00e9grer tous les \u00e9l\u00e9ments dans un seul fichier HTML\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I.A a d\u00e9fini la structure HTML\nAgent I.B a d\u00e9fini le style CSS\nAgent I.C a d\u00e9fini la logique JavaScript\nAgent II.A a d\u00e9fini la gestion des collisions\nAgent II.B a d\u00e9fini la physique de la balle\nAgent II.C a d\u00e9fini la vitesse et trajectoire\nAgent III.A a d\u00e9fini le design esth\u00e9tique\nAgent III.B a d\u00e9fini les animations\nAgent III.C a d\u00e9fini les effets visuels\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nInt\u00e9grer tous les \u00e9l\u00e9ments dans un seul fichier HTML avec une structure compl\u00e8te.\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n{{in_2}} : R\u00e9sultat de l'agent I.A\n{{in_3}} : R\u00e9sultat de l'agent I.B\n{{in_4}} : R\u00e9sultat de l'agent I.C\n{{in_5}} : R\u00e9sultat de l'agent II.A\n{{in_6}} : R\u00e9sultat de l'agent II.B\n{{in_7}} : R\u00e9sultat de l'agent II.C\n{{in_8}} : R\u00e9sultat de l'agent III.A\n{{in_9}} : R\u00e9sultat de l'agent III.B\n{{in_10}} : R\u00e9sultat de l'agent III.C\n\n[FORMAT DE SORTIE ATTENDU]\nUn bloc de code HTML complet avec toutes les parties int\u00e9gr\u00e9es\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le contenu de ta partie du plan\n2. Tu ne produis AUCUNE introduction/conclusion g\u00e9n\u00e9rale (sauf si c'est ta partie)\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur ton r\u00f4le sp\u00e9cifique dans le plan global\n5. IMPORTANT : Si tu g\u00e9n\u00e8res des formules math\u00e9matiques, entoure-les TOUJOURS de d\u00e9limiteurs LaTeX ($...$ ou $$...$$)"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 12,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        1650
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            22
+          ]
+        }
+      ],
+      "title": "IV.B - Gestion des Variables",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu pong dans un seul fichier html. le jeu doit \u00eatre beau et la physique de la balle bien g\u00e9r\u00e9e. Le dernier agent doit avoir en m\u00e9moire la r\u00e9ponse de chaque agent pr\u00e9c\u00e9dent et recopier le code complet du jeu dans un seul bloc de code !\"\nPlan de r\u00e9ponse complet : \nI. Structure du jeu\n   A. Architecture HTML\n   B. Structure CSS\n   C. Structure JavaScript\nII. M\u00e9canismes Physiques\n   A. Gestion des collisions\n   B. Physique de la balle\n   C. Vitesse et trajectoire\nIII. Interface Visuelle\n   A. Design esth\u00e9tique\n   B. Animation fluide\n   C. Effets visuels\nIV. Code Complet\n   A. Int\u00e9gration de tous les \u00e9l\u00e9ments\n   B. Gestion des variables globales\n   C. R\u00e9vision finale\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : IV.B - Gestion des variables globales\nDescription : G\u00e9rer les variables globales du jeu\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent IV.A a int\u00e9gr\u00e9 tous les \u00e9l\u00e9ments\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nG\u00e9rer les variables globales pour le jeu Pong.\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : R\u00e9sultat de l'agent IV.A\n\n[FORMAT DE SORTIE ATTENDU]\nUn bloc de code JavaScript avec les variables globales\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le contenu de ta partie du plan\n2. Tu ne produis AUCUNE introduction/conclusion g\u00e9n\u00e9rale (sauf si c'est ta partie)\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur ton r\u00f4le sp\u00e9cifique dans le plan global\n5. IMPORTANT : Si tu g\u00e9n\u00e8res des formules math\u00e9matiques, entoure-les TOUJOURS de d\u00e9limiteurs LaTeX ($...$ ou $$...$$)"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 13,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        400
+      ],
+      "size": [
+        200,
+        50
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 12
+        }
+      ],
+      "title": "Code Complet",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 14,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        300
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 100,
+      "mode": 0,
+      "title": "Sortie pour 'I.B - Structure CSS'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 15,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        550
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 101,
+      "mode": 0,
+      "title": "Sortie pour 'I.C - Structure JavaScript'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 16,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        800
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 102,
+      "mode": 0,
+      "title": "Sortie pour 'II.A - Collision Gestion'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 17,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        1050
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 103,
+      "mode": 0,
+      "title": "Sortie pour 'II.B - Physique de la Balle'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 18,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        1300
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 104,
+      "mode": 0,
+      "title": "Sortie pour 'II.C - Vitesse et Trajectoire'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 19,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        1550
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 105,
+      "mode": 0,
+      "title": "Sortie pour 'III.A - Design Esth\u00e9tique'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 20,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        1800
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 106,
+      "mode": 0,
+      "title": "Sortie pour 'III.B - Animation Fluide'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 21,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        2050
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 107,
+      "mode": 0,
+      "title": "Sortie pour 'III.C - Effets Visuels'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 22,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        2300
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 108,
+      "mode": 0,
+      "title": "Sortie pour 'IV.A - Int\u00e9gration'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 23,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        2550
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 109,
+      "mode": 0,
+      "title": "Sortie pour 'IV.B - Gestion des Variables'",
+      "properties": {},
+      "color": "#53a"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "string"
+    ],
+    [
+      2,
+      1,
+      0,
+      3,
+      0,
+      "string"
+    ],
+    [
+      3,
+      1,
+      0,
+      4,
+      0,
+      "string"
+    ],
+    [
+      4,
+      1,
+      0,
+      5,
+      0,
+      "string"
+    ],
+    [
+      5,
+      1,
+      0,
+      6,
+      0,
+      "string"
+    ],
+    [
+      6,
+      1,
+      0,
+      7,
+      0,
+      "string"
+    ],
+    [
+      7,
+      1,
+      0,
+      8,
+      0,
+      "string"
+    ],
+    [
+      8,
+      1,
+      0,
+      9,
+      0,
+      "string"
+    ],
+    [
+      9,
+      1,
+      0,
+      10,
+      0,
+      "string"
+    ],
+    [
+      10,
+      1,
+      0,
+      11,
+      0,
+      "string"
+    ],
+    [
+      11,
+      1,
+      0,
+      12,
+      0,
+      "string"
+    ],
+    [
+      12,
+      2,
+      0,
+      13,
+      0,
+      "string"
+    ],
+    [
+      13,
+      3,
+      0,
+      14,
+      0,
+      "string"
+    ],
+    [
+      14,
+      4,
+      0,
+      15,
+      0,
+      "string"
+    ],
+    [
+      15,
+      5,
+      0,
+      16,
+      0,
+      "string"
+    ],
+    [
+      16,
+      6,
+      0,
+      17,
+      0,
+      "string"
+    ],
+    [
+      17,
+      7,
+      0,
+      18,
+      0,
+      "string"
+    ],
+    [
+      18,
+      8,
+      0,
+      19,
+      0,
+      "string"
+    ],
+    [
+      19,
+      9,
+      0,
+      20,
+      0,
+      "string"
+    ],
+    [
+      20,
+      10,
+      0,
+      21,
+      0,
+      "string"
+    ],
+    [
+      21,
+      11,
+      0,
+      22,
+      0,
+      "string"
+    ],
+    [
+      22,
+      12,
+      0,
+      23,
+      0,
+      "string"
+    ]
+  ]
+}

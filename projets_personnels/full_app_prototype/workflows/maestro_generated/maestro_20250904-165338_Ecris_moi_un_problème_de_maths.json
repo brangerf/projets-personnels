@@ -1,0 +1,525 @@
+{
+  "last_node_id": 12,
+  "last_link_id": 15,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "workflow/text_input",
+      "pos": [
+        100,
+        300
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "title": "Demande Utilisateur",
+      "properties": {
+        "value": "Ecris moi un probl\u00e8me de maths, puis r\u00e9sous le, puis \u00e9cris une correction d\u00e9taill\u00e9e pour un \u00e9l\u00e8ve de 3eme ann\u00e9e de licence en difficult\u00e9."
+      },
+      "color": "#3a5"
+    },
+    {
+      "id": 2,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        200
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "title": "Agent 1: Cr\u00e9ateur de Probl\u00e8me",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Ecris moi un probl\u00e8me de maths, puis r\u00e9sous le, puis \u00e9cris une correction d\u00e9taill\u00e9e pour un \u00e9l\u00e8ve de 3eme ann\u00e9e de licence en difficult\u00e9.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Cr\u00e9ateur de Probl\u00e8me. Tu dois inventer un probl\u00e8me math\u00e9matique pertinent, complexe mais accessible pour un \u00e9tudiant en licence 3\u00e8me ann\u00e9e.\n- **Membres de l'\u00e9quipe :**\n  - Agent 2 (R\u00e9solveur Math\u00e9matique) : Utilisera le probl\u00e8me pour effectuer la r\u00e9solution.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- G\u00e9n\u00e9rer un probl\u00e8me math\u00e9matique original, bien formul\u00e9, qui couvre une notion fondamentale du programme de licence (analyse, alg\u00e8bre lin\u00e9aire, probabilit\u00e9s, etc.)\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : La demande brute de l'utilisateur.\n\n[SORTIE ATTENDUE]\n- Un probl\u00e8me math\u00e9matique clair, structur\u00e9 et pertinent.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie : Ne produis QUE le probl\u00e8me.\n2. Pas de Dialogue : Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 3,
+      "type": "workflow/llm_model",
+      "pos": [
+        700,
+        200
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            3
+          ]
+        }
+      ],
+      "title": "Agent 2: R\u00e9solveur Math\u00e9matique",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Ecris moi un probl\u00e8me de maths, puis r\u00e9sous le, puis \u00e9cris une correction d\u00e9taill\u00e9e pour un \u00e9l\u00e8ve de 3eme ann\u00e9e de licence en difficult\u00e9.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** R\u00e9solveur Math\u00e9matique. Tu dois r\u00e9soudre le probl\u00e8me g\u00e9n\u00e9r\u00e9 par l'Agent 1.\n- **Membres de l'\u00e9quipe :**\n  - Agent 3 (Correcteur P\u00e9dagogique) : Utilisera la solution pour \u00e9crire une correction accessible.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- R\u00e9soudre le probl\u00e8me math\u00e9matique \u00e9tape par \u00e9tape, en montrant tous les calculs et raisonnements.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Le probl\u00e8me math\u00e9matique fourni par l'Agent 1.\n\n[SORTIE ATTENDUE]\n- Une r\u00e9solution compl\u00e8te, claire et rigoureuse du probl\u00e8me.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie : Ne produis QUE la r\u00e9solution.\n2. Pas de Dialogue : Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 4,
+      "type": "workflow/llm_model",
+      "pos": [
+        1000,
+        200
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 3
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "title": "Agent 3: Correcteur P\u00e9dagogique",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Ecris moi un probl\u00e8me de maths, puis r\u00e9sous le, puis \u00e9cris une correction d\u00e9taill\u00e9e pour un \u00e9l\u00e8ve de 3eme ann\u00e9e de licence en difficult\u00e9.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Correcteur P\u00e9dagogique. Tu dois transformer la r\u00e9solution technique en une correction p\u00e9dagogique claire, didactique et adapt\u00e9e \u00e0 un \u00e9l\u00e8ve en difficult\u00e9.\n- **Membres de l'\u00e9quipe :**\n  - Agent 2 (R\u00e9solveur Math\u00e9matique) : A fourni la solution technique.\n  - Agent 1 (Cr\u00e9ateur de Probl\u00e8me) : A fourni le contexte du probl\u00e8me.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- R\u00e9\u00e9crire la r\u00e9solution comme une correction d\u00e9taill\u00e9e, en expliquant chaque \u00e9tape avec des mots simples, en soulignant les erreurs fr\u00e9quentes et en donnant des conseils de m\u00e9thode.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : La r\u00e9solution compl\u00e8te fournie par l'Agent 2.\n- **{{in_2}}** : La demande originale de l'utilisateur (pour le ton et l'intention).\n\n[SORTIE ATTENDUE]\n- Une correction d\u00e9taill\u00e9e, p\u00e9dagogique, accessible \u00e0 un \u00e9l\u00e8ve en difficult\u00e9.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie : Ne produis QUE la correction.\n2. Pas de Dialogue : N'ajoute aucune introduction ou conclusion."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 5,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        350
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "title": "Agent 4: Conceptualiseur de Contexte",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Ecris moi un probl\u00e8me de maths, puis r\u00e9sous le, puis \u00e9cris une correction d\u00e9taill\u00e9e pour un \u00e9l\u00e8ve de 3eme ann\u00e9e de licence en difficult\u00e9.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Conceptualiseur de Contexte. Tu dois identifier les notions math\u00e9matiques fondamentales impliqu\u00e9es dans la demande, et proposer un contexte r\u00e9el ou imaginaire pour ancrer le probl\u00e8me.\n- **Membres de l'\u00e9quipe :**\n  - Agent 1 (Cr\u00e9ateur de Probl\u00e8me) : Utilisera ton contexte pour construire le probl\u00e8me.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Proposer un contexte r\u00e9aliste ou imaginaire qui rend le probl\u00e8me plus engageant et pertinent (ex : \u00e9conomie, physique, biologie, etc.).\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : La demande brute de l'utilisateur.\n\n[SORTIE ATTENDUE]\n- Un contexte clair et pertinent pour le probl\u00e8me math\u00e9matique.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie : Ne produis QUE le contexte.\n2. Pas de Dialogue : Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 6,
+      "type": "workflow/llm_model",
+      "pos": [
+        700,
+        350
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 5
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            6
+          ]
+        }
+      ],
+      "title": "Agent 5: \u00c9laborateur de Probl\u00e8me",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Ecris moi un probl\u00e8me de maths, puis r\u00e9sous le, puis \u00e9cris une correction d\u00e9taill\u00e9e pour un \u00e9l\u00e8ve de 3eme ann\u00e9e de licence en difficult\u00e9.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** \u00c9laborateur de Probl\u00e8me. Tu dois fusionner le contexte et le probl\u00e8me initial pour cr\u00e9er un \u00e9nonc\u00e9 final enrichi, clair et engageant.\n- **Membres de l'\u00e9quipe :**\n  - Agent 4 (Conceptualiseur de Contexte) : A fourni le contexte.\n  - Agent 1 (Cr\u00e9ateur de Probl\u00e8me) : A g\u00e9n\u00e9r\u00e9 le probl\u00e8me initial.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Int\u00e9grer le contexte dans le probl\u00e8me pour en faire un \u00e9nonc\u00e9 complet, naturel et motivant.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Le contexte fourni par l'Agent 4.\n- **{{in_2}}** : Le probl\u00e8me math\u00e9matique initial g\u00e9n\u00e9r\u00e9 par l'Agent 1.\n\n[SORTIE ATTENDUE]\n- Un \u00e9nonc\u00e9 de probl\u00e8me enrichi, contextualis\u00e9 et clairement formul\u00e9.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie : Ne produis QUE le probl\u00e8me final enrichi.\n2. Pas de Dialogue : N'ajoute aucune introduction ou conclusion."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 7,
+      "type": "workflow/llm_model",
+      "pos": [
+        1000,
+        350
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "title": "Agent 6: R\u00e9viseur de Clart\u00e9",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Ecris moi un probl\u00e8me de maths, puis r\u00e9sous le, puis \u00e9cris une correction d\u00e9taill\u00e9e pour un \u00e9l\u00e8ve de 3eme ann\u00e9e de licence en difficult\u00e9.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** R\u00e9viseur de Clart\u00e9. Tu dois v\u00e9rifier que le probl\u00e8me final est parfaitement clair, sans ambigu\u00eft\u00e9, et bien structur\u00e9.\n- **Membres de l'\u00e9quipe :**\n  - Agent 5 (\u00c9laborateur de Probl\u00e8me) : A fourni le probl\u00e8me enrichi.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Relire le probl\u00e8me final, corriger les formulations, am\u00e9liorer la clart\u00e9 et l\u2019accessibilit\u00e9.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Le probl\u00e8me enrichi fourni par l'Agent 5.\n\n[SORTIE ATTENDUE]\n- Un \u00e9nonc\u00e9 final r\u00e9vis\u00e9, clair et optimis\u00e9.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie : Ne produis QUE le probl\u00e8me final r\u00e9vis\u00e9.\n2. Pas de Dialogue : N'ajoute aucune introduction ou conclusion."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 8,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        500
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            8
+          ]
+        }
+      ],
+      "title": "Agent 7: R\u00e9solveur avec Explication",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Ecris moi un probl\u00e8me de maths, puis r\u00e9sous le, puis \u00e9cris une correction d\u00e9taill\u00e9e pour un \u00e9l\u00e8ve de 3eme ann\u00e9e de licence en difficult\u00e9.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** R\u00e9solveur avec Explication. Tu dois r\u00e9soudre le probl\u00e8me final r\u00e9vis\u00e9 en expliquant chaque \u00e9tape comme si tu enseignais \u00e0 un \u00e9l\u00e8ve en difficult\u00e9.\n- **Membres de l'\u00e9quipe :**\n  - Agent 6 (R\u00e9viseur de Clart\u00e9) : A fourni le probl\u00e8me final.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- R\u00e9soudre le probl\u00e8me \u00e9tape par \u00e9tape, en expliquant chaque transformation math\u00e9matique avec des mots simples, en mettant en \u00e9vidence les erreurs fr\u00e9quentes et les astuces de m\u00e9thode.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Le probl\u00e8me final r\u00e9vis\u00e9 fourni par l'Agent 6.\n\n[SORTIE ATTENDUE]\n- Une r\u00e9solution compl\u00e8te, p\u00e9dagogique et d\u00e9taill\u00e9e.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie : Ne produis QUE la r\u00e9solution p\u00e9dagogique.\n2. Pas de Dialogue : N'ajoute aucune introduction ou conclusion."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 9,
+      "type": "workflow/llm_model",
+      "pos": [
+        700,
+        500
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 8
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "title": "Agent 8: Correcteur P\u00e9dagogique Avanc\u00e9",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Ecris moi un probl\u00e8me de maths, puis r\u00e9sous le, puis \u00e9cris une correction d\u00e9taill\u00e9e pour un \u00e9l\u00e8ve de 3eme ann\u00e9e de licence en difficult\u00e9.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Correcteur P\u00e9dagogique Avanc\u00e9. Tu dois transformer la r\u00e9solution p\u00e9dagogique en une correction compl\u00e8te, structur\u00e9e et adapt\u00e9e \u00e0 un \u00e9l\u00e8ve en difficult\u00e9.\n- **Membres de l'\u00e9quipe :**\n  - Agent 7 (R\u00e9solveur avec Explication) : A fourni la r\u00e9solution p\u00e9dagogique.\n  - Agent 4 (Conceptualiseur de Contexte) : A fourni le contexte.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- \u00c9crire une correction d\u00e9taill\u00e9e, en incluant l'\u00e9nonc\u00e9, les \u00e9tapes cl\u00e9s, les erreurs fr\u00e9quentes, les conseils, et un r\u00e9sum\u00e9 final.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : La r\u00e9solution p\u00e9dagogique fournie par l'Agent 7.\n- **{{in_2}}** : Le contexte fourni par l'Agent 4.\n\n[SORTIE ATTENDUE]\n- Une correction d\u00e9taill\u00e9e, claire et didactique.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie : Ne produis QUE la correction finale.\n2. Pas de Dialogue : N'ajoute aucune introduction ou conclusion."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 10,
+      "type": "workflow/llm_model",
+      "pos": [
+        1000,
+        500
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            10,
+            11
+          ]
+        }
+      ],
+      "title": "Agent 9: R\u00e9viseur de Correction",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Ecris moi un probl\u00e8me de maths, puis r\u00e9sous le, puis \u00e9cris une correction d\u00e9taill\u00e9e pour un \u00e9l\u00e8ve de 3eme ann\u00e9e de licence en difficult\u00e9.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** R\u00e9viseur de Correction. Tu dois v\u00e9rifier la qualit\u00e9 p\u00e9dagogique, la clart\u00e9 et l'exactitude de la correction finale.\n- **Membres de l'\u00e9quipe :**\n  - Agent 8 (Correcteur P\u00e9dagogique Avanc\u00e9) : A fourni la correction.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Relire la correction, corriger les erreurs, am\u00e9liorer la fluidit\u00e9 et l\u2019accessibilit\u00e9 pour un \u00e9l\u00e8ve en difficult\u00e9.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : La correction fournie par l'Agent 8.\n\n[SORTIE ATTENDUE]\n- Une correction finale r\u00e9vis\u00e9e, optimis\u00e9e et p\u00e9dagogique.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie : Ne produis QUE la correction r\u00e9vis\u00e9e.\n2. Pas de Dialogue : N'ajoute aucune introduction ou conclusion."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 11,
+      "type": "workflow/text_output",
+      "pos": [
+        1400,
+        300
+      ],
+      "size": [
+        200,
+        50
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 10
+        }
+      ],
+      "title": "Correction D\u00e9taill\u00e9e",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 12,
+      "type": "workflow/text_output",
+      "pos": [
+        1400,
+        450
+      ],
+      "size": [
+        200,
+        50
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 11
+        }
+      ],
+      "title": "Correction R\u00e9vis\u00e9e",
+      "properties": {},
+      "color": "#53a"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "string"
+    ],
+    [
+      2,
+      2,
+      0,
+      3,
+      0,
+      "string"
+    ],
+    [
+      3,
+      3,
+      0,
+      4,
+      0,
+      "string"
+    ],
+    [
+      4,
+      4,
+      0,
+      5,
+      0,
+      "string"
+    ],
+    [
+      5,
+      5,
+      0,
+      6,
+      0,
+      "string"
+    ],
+    [
+      6,
+      6,
+      0,
+      7,
+      0,
+      "string"
+    ],
+    [
+      7,
+      7,
+      0,
+      8,
+      0,
+      "string"
+    ],
+    [
+      8,
+      8,
+      0,
+      9,
+      0,
+      "string"
+    ],
+    [
+      9,
+      9,
+      0,
+      10,
+      0,
+      "string"
+    ],
+    [
+      10,
+      10,
+      0,
+      11,
+      0,
+      "string"
+    ],
+    [
+      11,
+      10,
+      0,
+      12,
+      0,
+      "string"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

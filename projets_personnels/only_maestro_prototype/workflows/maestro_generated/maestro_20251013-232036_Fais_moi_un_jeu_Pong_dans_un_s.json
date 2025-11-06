@@ -1,0 +1,951 @@
+{
+  "last_node_id": 24,
+  "last_link_id": 23,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "workflow/text_input",
+      "pos": [
+        100,
+        300
+      ],
+      "size": [
+        200,
+        50
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "links": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "title": "Demande Utilisateur",
+      "properties": {
+        "value": "Fais moi un jeu Pong dans un seul fichier html s'il te pla\u00eet, sans aucune composante auditive. Il faut que le jeu soit beau, et qu'il y ait une bonne gestion de la physique de la balle ! A la fin, je voudrais le code complet du fichier dans un seul bloc s'il te pla\u00eet."
+      },
+      "color": "#3a5"
+    },
+    {
+      "id": 2,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        150
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            13
+          ]
+        }
+      ],
+      "title": "I - Analyse de la demande",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu Pong dans un seul fichier html s'il te pla\u00eet, sans aucune composante auditive. Il faut que le jeu soit beau, et qu'il y ait une bonne gestion de la physique de la balle ! A la fin, je voudrais le code complet du fichier dans un seul bloc s'il te pla\u00eet.\"\nPlan de r\u00e9ponse complet :\nI. Analyse de la demande\nII. Conception de l'architecture HTML/CSS/JS\nIII. Impl\u00e9mentation du canvas et des \u00e9l\u00e9ments visuels\nIV. Gestion de la physique de la balle (vitesse, angle, rebond)\nV. Impl\u00e9mentation des raquettes avec contr\u00f4le du clavier\nVI. Syst\u00e8me de score et affichage\nVII. Animation fluide avec requestAnimationFrame\nVIII. Style visuel moderne (couleurs, gradients, effet de lumi\u00e8re)\nIX. Validation du code complet (sans d\u00e9pendances externes)\nX. Int\u00e9gration de la logique du jeu dans un seul fichier\nXI. Optimisation du rendu et de la performance\nXII. G\u00e9n\u00e9ration du code final dans un bloc\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : I - Analyse de la demande\nDescription : Identifier les attentes cl\u00e9s : jeu Pong en un seul fichier HTML, pas de sons, design \u00e9l\u00e9gant, physique r\u00e9aliste, code complet dans un bloc\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAucun - tu es le premier agent\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nAnalyser la demande pour extraire les exigences principales : format (un seul fichier HTML), absence de sons, design esth\u00e9tique, physique r\u00e9aliste de la balle, int\u00e9gration compl\u00e8te du code\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n\n[FORMAT DE SORTIE ATTENDU]\nUn r\u00e9sum\u00e9 structur\u00e9 des attentes principales, en liste \u00e0 puces, avec des points clairs\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT l'analyse de la demande\n2. Tu ne produis pas le code\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur l'analyse\n5. Si tu utilises des formules math\u00e9matiques, entoure-les de $...$ ou $$...$$"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 3,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        300
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 2
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            13
+          ]
+        }
+      ],
+      "title": "II - Conception de l'architecture",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu Pong dans un seul fichier html s'il te pla\u00eet, sans aucune composante auditive. Il faut que le jeu soit beau, et qu'il y ait une bonne gestion de la physique de la balle ! A la fin, je voudrais le code complet du fichier dans un seul bloc s'il te pla\u00eet.\"\nPlan de r\u00e9ponse complet :\nI. Analyse de la demande\nII. Conception de l'architecture HTML/CSS/JS\nIII. Impl\u00e9mentation du canvas et des \u00e9l\u00e9ments visuels\nIV. Gestion de la physique de la balle (vitesse, angle, rebond)\nV. Impl\u00e9mentation des raquettes avec contr\u00f4le du clavier\nVI. Syst\u00e8me de score et affichage\nVII. Animation fluide avec requestAnimationFrame\nVIII. Style visuel moderne (couleurs, gradients, effet de lumi\u00e8re)\nIX. Validation du code complet (sans d\u00e9pendances externes)\nX. Int\u00e9gration de la logique du jeu dans un seul fichier\nXI. Optimisation du rendu et de la performance\nXII. G\u00e9n\u00e9ration du code final dans un bloc\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : II - Conception de l'architecture\nDescription : D\u00e9finir la structure du fichier HTML : int\u00e9gration du canvas, des styles CSS en ligne, du code JavaScript dans un bloc script, avec une seule entr\u00e9e pour le jeu\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I (Analyse de la demande) a identifi\u00e9 les attentes\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nProposer une architecture du fichier HTML : un seul fichier avec :\n- Une balise <canvas> pour le dessin\n- Des styles CSS int\u00e9gr\u00e9s dans la balise <style>\n- Un script <script> avec la logique compl\u00e8te\n- Aucune d\u00e9pendance externe (pas de CDN)\n- Utilisation de requestAnimationFrame pour l'animation\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n{{in_2}} : Le r\u00e9sultat de l'agent I (analyse)\n\n[FORMAT DE SORTIE ATTENDU]\nUne description d\u00e9taill\u00e9e de la structure du fichier : balises, int\u00e9gration des \u00e9l\u00e9ments, gestion du rendu\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT la conception de l'architecture\n2. Tu ne produis pas le code\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur la structure\n5. Si tu utilises des formules math\u00e9matiques, entoure-les de $...$ ou $$...$$"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 4,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        450
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 3
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            14
+          ]
+        }
+      ],
+      "title": "III - Impl\u00e9mentation du canvas et des \u00e9l\u00e9ments visuels",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu Pong dans un seul fichier html s'il te pla\u00eet, sans aucune composante auditive. Il faut que le jeu soit beau, et qu'il y ait une bonne gestion de la physique de la balle ! A la fin, je voudrais le code complet du fichier dans un seul bloc s'il te pla\u00eet.\"\nPlan de r\u00e9ponse complet :\nI. Analyse de la demande\nII. Conception de l'architecture HTML/CSS/JS\nIII. Impl\u00e9mentation du canvas et des \u00e9l\u00e9ments visuels\nIV. Gestion de la physique de la balle (vitesse, angle, rebond)\nV. Impl\u00e9mentation des raquettes avec contr\u00f4le du clavier\nVI. Syst\u00e8me de score et affichage\nVII. Animation fluide avec requestAnimationFrame\nVIII. Style visuel moderne (couleurs, gradients, effet de lumi\u00e8re)\nIX. Validation du code complet (sans d\u00e9pendances externes)\nX. Int\u00e9gration de la logique du jeu dans un seul fichier\nXI. Optimisation du rendu et de la performance\nXII. G\u00e9n\u00e9ration du code final dans un bloc\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : III - Impl\u00e9mentation du canvas et des \u00e9l\u00e9ments visuels\nDescription : Cr\u00e9er le code HTML avec le canvas, les styles CSS int\u00e9gr\u00e9s, et un script vide pour la logique du jeu\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I (Analyse) a identifi\u00e9 les attentes\nAgent II (Conception) a d\u00e9fini la structure\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nG\u00e9n\u00e9rer le code HTML de base avec :\n- Un canvas de 800x600\n- Des styles CSS int\u00e9gr\u00e9s (gradients, bordures, effet de lumi\u00e8re)\n- Un script <script> avec les variables de base\n- Aucun \u00e9l\u00e9ment externe\n- Le canvas centr\u00e9\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n{{in_2}} : La conception de l'architecture\n\n[FORMAT DE SORTIE ATTENDU]\nLe code HTML complet avec canvas, styles et script, mais sans logique de jeu\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le code HTML de base\n2. Tu ne produis pas la logique du jeu\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur le rendu visuel\n5. Si tu utilises des formules math\u00e9matiques, entoure-les de $...$ ou $$...$$"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 5,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        600
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 4
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            15
+          ]
+        }
+      ],
+      "title": "IV - Gestion de la physique de la balle",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu Pong dans un seul fichier html s'il te pla\u00eet, sans aucune composante auditive. Il faut que le jeu soit beau, et qu'il y ait une bonne gestion de la physique de la balle ! A la fin, je voudrais le code complet du fichier dans un seul bloc s'il te pla\u00eet.\"\nPlan de r\u00e9ponse complet :\nI. Analyse de la demande\nII. Conception de l'architecture HTML/CSS/JS\nIII. Impl\u00e9mentation du canvas et des \u00e9l\u00e9ments visuels\nIV. Gestion de la physique de la balle (vitesse, angle, rebond)\nV. Impl\u00e9mentation des raquettes avec contr\u00f4le du clavier\nVI. Syst\u00e8me de score et affichage\nVII. Animation fluide avec requestAnimationFrame\nVIII. Style visuel moderne (couleurs, gradients, effet de lumi\u00e8re)\nIX. Validation du code complet (sans d\u00e9pendances externes)\nX. Int\u00e9gration de la logique du jeu dans un seul fichier\nXI. Optimisation du rendu et de la performance\nXII. G\u00e9n\u00e9ration du code final dans un bloc\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : IV - Gestion de la physique de la balle\nDescription : Impl\u00e9menter la logique de mouvement de la balle avec un angle r\u00e9el, une vitesse variable, et des rebonds r\u00e9alistes selon l'angle d'impact\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I (Analyse)\nAgent II (Conception)\nAgent III (Impl\u00e9mentation du canvas)\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nAjouter la logique de mouvement de la balle :\n- Utiliser des vecteurs pour la direction\n- Calculer l'angle de rebond avec la formule : $\\theta_{\\text{rebond}} = \\pi - \\theta_{\\text{incident}}$\n- Appliquer une vitesse initiale de $v_0 = 5$\n- G\u00e9rer les collisions avec les murs et les raquettes\n- Utiliser $\\tan(\\theta) = \\frac{\\text{oppos\u00e9}}{\\text{adjacent}}$ pour calculer les angles\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n{{in_2}} : Le code HTML de base\n\n[FORMAT DE SORTIE ATTENDU]\nLe code HTML avec la logique de la balle ajout\u00e9e, incluant les variables et la fonction de mise \u00e0 jour\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le code avec la physique de la balle\n2. Tu ne produis pas les raquettes\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur la physique\n5. Si tu utilises des formules math\u00e9matiques, entoure-les de $...$ ou $$...$$"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 6,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        750
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 5
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            16
+          ]
+        }
+      ],
+      "title": "V - Impl\u00e9mentation des raquettes",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu Pong dans un seul fichier html s'il te pla\u00eet, sans aucune composante auditive. Il faut que le jeu soit beau, et qu'il y ait une bonne gestion de la physique de la balle ! A la fin, je voudrais le code complet du fichier dans un seul bloc s'il te pla\u00eet.\"\nPlan de r\u00e9ponse complet :\nI. Analyse de la demande\nII. Conception de l'architecture HTML/CSS/JS\nIII. Impl\u00e9mentation du canvas et des \u00e9l\u00e9ments visuels\nIV. Gestion de la physique de la balle (vitesse, angle, rebond)\nV. Impl\u00e9mentation des raquettes avec contr\u00f4le du clavier\nVI. Syst\u00e8me de score et affichage\nVII. Animation fluide avec requestAnimationFrame\nVIII. Style visuel moderne (couleurs, gradients, effet de lumi\u00e8re)\nIX. Validation du code complet (sans d\u00e9pendances externes)\nX. Int\u00e9gration de la logique du jeu dans un seul fichier\nXI. Optimisation du rendu et de la performance\nXII. G\u00e9n\u00e9ration du code final dans un bloc\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : V - Impl\u00e9mentation des raquettes\nDescription : Ajouter les raquettes avec contr\u00f4le du clavier (Z/S pour le joueur gauche, fl\u00e8ches pour le joueur droit)\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I (Analyse)\nAgent II (Conception)\nAgent III (Canvas)\nAgent IV (Physique)\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nAjouter la logique de contr\u00f4le des raquettes :\n- Utiliser `keyDown` pour d\u00e9tecter les touches\n- Limiter le mouvement aux limites du canvas\n- Mettre \u00e0 jour la position des raquettes\n- V\u00e9rifier les collisions avec la balle\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n{{in_2}} : Le code avec la balle\n\n[FORMAT DE SORTIE ATTENDU]\nLe code avec les raquettes ajout\u00e9es et le contr\u00f4le du clavier\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le code avec les raquettes\n2. Tu ne produis pas le score\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur les raquettes\n5. Si tu utilises des formules math\u00e9matiques, entoure-les de $...$ ou $$...$$"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 7,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        900
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 6
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            17
+          ]
+        }
+      ],
+      "title": "VI - Syst\u00e8me de score et affichage",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu Pong dans un seul fichier html s'il te pla\u00eet, sans aucune composante auditive. Il faut que le jeu soit beau, et qu'il y ait une bonne gestion de la physique de la balle ! A la fin, je voudrais le code complet du fichier dans un seul bloc s'il te pla\u00eet.\"\nPlan de r\u00e9ponse complet :\nI. Analyse de la demande\nII. Conception de l'architecture HTML/CSS/JS\nIII. Impl\u00e9mentation du canvas et des \u00e9l\u00e9ments visuels\nIV. Gestion de la physique de la balle (vitesse, angle, rebond)\nV. Impl\u00e9mentation des raquettes\nVI. Syst\u00e8me de score et affichage\nVII. Animation fluide avec requestAnimationFrame\nVIII. Style visuel moderne (couleurs, gradients, effet de lumi\u00e8re)\nIX. Validation du code complet (sans d\u00e9pendances externes)\nX. Int\u00e9gration de la logique du jeu dans un seul fichier\nXI. Optimisation du rendu et de la performance\nXII. G\u00e9n\u00e9ration du code final dans un bloc\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : VI - Syst\u00e8me de score et affichage\nDescription : Ajouter le syst\u00e8me de score et l'affichage du score en haut du canvas\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I (Analyse)\nAgent II (Conception)\nAgent III (Canvas)\nAgent IV (Physique)\nAgent V (Raquettes)\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nAjouter les variables de score, incr\u00e9menter le score quand la balle sort, afficher le score en haut du canvas\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n{{in_2}} : Le code avec les raquettes\n\n[FORMAT DE SORTIE ATTENDU]\nLe code avec le score ajout\u00e9 et affich\u00e9\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le code avec le score\n2. Tu ne produis pas l'animation\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur le score\n5. Si tu utilises des formules math\u00e9matiques, entoure-les de $...$ ou $$...$$"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 8,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        1050
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 7
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            18
+          ]
+        }
+      ],
+      "title": "VII - Animation fluide avec requestAnimationFrame",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu Pong dans un seul fichier html s'il te pla\u00eet, sans aucune composante auditive. Il faut que le jeu soit beau, et qu'il y ait une bonne gestion de la physique de la balle ! A la fin, je voudrais le code complet du fichier dans un seul bloc s'il te pla\u00eet.\"\nPlan de r\u00e9ponse complet :\nI. Analyse de la demande\nII. Conception de l'architecture HTML/CSS/JS\nIII. Impl\u00e9mentation du canvas et des \u00e9l\u00e9ments visuels\nIV. Gestion de la physique de la balle (vitesse, angle, rebond)\nV. Impl\u00e9mentation des raquettes\nVI. Syst\u00e8me de score et affichage\nVII. Animation fluide avec requestAnimationFrame\nVIII. Style visuel moderne (couleurs, gradients, effet de lumi\u00e8re)\nIX. Validation du code complet (sans d\u00e9pendances externes)\nX. Int\u00e9gration de la logique du jeu dans un seul fichier\nXI. Optimisation du rendu et de la performance\nXII. G\u00e9n\u00e9ration du code final dans un bloc\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : VII - Animation fluide avec requestAnimationFrame\nDescription : Ajouter la boucle d'animation principale avec requestAnimationFrame pour un rendu fluide\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I (Analyse)\nAgent II (Conception)\nAgent III (Canvas)\nAgent IV (Physique)\nAgent V (Raquettes)\nAgent VI (Score)\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nAjouter la fonction `gameLoop` qui appelle `requestAnimationFrame` pour mettre \u00e0 jour le jeu\n- Appeler `update()` et `render()` dans la boucle\n- G\u00e9rer le rendu \u00e0 60 FPS\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n{{in_2}} : Le code avec le score\n\n[FORMAT DE SORTIE ATTENDU]\nLe code avec la boucle d'animation ajout\u00e9e\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le code avec l'animation\n2. Tu ne produis pas le style\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur la boucle\n5. Si tu utilises des formules math\u00e9matiques, entoure-les de $...$ ou $$...$$"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 9,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        1200
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 8
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            19
+          ]
+        }
+      ],
+      "title": "VIII - Style visuel moderne",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu Pong dans un seul fichier html s'il te pla\u00eet, sans aucune composante auditive. Il faut que le jeu soit beau, et qu'il y ait une bonne gestion de la physique de la balle ! A la fin, je voudrais le code complet du fichier dans un seul bloc s'il te pla\u00eet.\"\nPlan de r\u00e9ponse complet :\nI. Analyse de la demande\nII. Conception de l'architecture HTML/CSS/JS\nIII. Impl\u00e9mentation du canvas et des \u00e9l\u00e9ments visuels\nIV. Gestion de la physique de la balle (vitesse, angle, rebond)\nV. Impl\u00e9mentation des raquettes\nVI. Syst\u00e8me de score et affichage\nVII. Animation fluide avec requestAnimationFrame\nVIII. Style visuel moderne (couleurs, gradients, effet de lumi\u00e8re)\nIX. Validation du code complet (sans d\u00e9pendances externes)\nX. Int\u00e9gration de la logique du jeu dans un seul fichier\nXI. Optimisation du rendu et de la performance\nXII. G\u00e9n\u00e9ration du code final dans un bloc\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : VIII - Style visuel moderne\nDescription : Ajouter des effets visuels modernes : gradients, bordures arrondies, effet de lumi\u00e8re sur la balle et les raquettes\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I (Analyse)\nAgent II (Conception)\nAgent III (Canvas)\nAgent IV (Physique)\nAgent V (Raquettes)\nAgent VI (Score)\nAgent VII (Animation)\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nAjouter des styles CSS int\u00e9gr\u00e9s pour :\n- Un fond en gradient (bleu ciel \u00e0 noir)\n- Des raquettes avec un effet de lumi\u00e8re\n- Une balle avec un effet de reflet (ombre port\u00e9e)\n- Des bordures arrondies\n- Une police moderne\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n{{in_2}} : Le code avec l'animation\n\n[FORMAT DE SORTIE ATTENDU]\nLe code avec les styles visuels ajout\u00e9s\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le code avec le style\n2. Tu ne produis pas la logique\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur le design\n5. Si tu utilises des formules math\u00e9matiques, entoure-les de $...$ ou $$...$$"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 10,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        1350
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 9
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            20
+          ]
+        }
+      ],
+      "title": "IX - Validation du code complet",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu Pong dans un seul fichier html s'il te pla\u00eet, sans aucune composante auditive. Il faut que le jeu soit beau, et qu'il y ait une bonne gestion de la physique de la balle ! A la fin, je voudrais le code complet du fichier dans un seul bloc s'il te pla\u00eet.\"\nPlan de r\u00e9ponse complet :\nI. Analyse de la demande\nII. Conception de l'architecture HTML/CSS/JS\nIII. Impl\u00e9mentation du canvas et des \u00e9l\u00e9ments visuels\nIV. Gestion de la physique de la balle (vitesse, angle, rebond)\nV. Impl\u00e9mentation des raquettes\nVI. Syst\u00e8me de score et affichage\nVII. Animation fluide avec requestAnimationFrame\nVIII. Style visuel moderne (couleurs, gradients, effet de lumi\u00e8re)\nIX. Validation du code complet (sans d\u00e9pendances externes)\nX. Int\u00e9gration de la logique du jeu dans un seul fichier\nXI. Optimisation du rendu et de la performance\nXII. G\u00e9n\u00e9ration du code final dans un bloc\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : IX - Validation du code complet\nDescription : V\u00e9rifier que le code est complet, sans erreurs, et fonctionne dans un seul fichier\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I (Analyse)\nAgent II (Conception)\nAgent III (Canvas)\nAgent IV (Physique)\nAgent V (Raquettes)\nAgent VI (Score)\nAgent VII (Animation)\nAgent VIII (Style)\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nV\u00e9rifier que le code est :\n- Unique fichier HTML\n- Sans d\u00e9pendances externes\n- Avec tout le code int\u00e9gr\u00e9\n- Sans erreurs de syntaxe\n- Fonctionnel\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n{{in_2}} : Le code avec le style\n\n[FORMAT DE SORTIE ATTENDU]\nLe code complet valid\u00e9, pr\u00eat \u00e0 \u00eatre utilis\u00e9\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le code final\n2. Tu ne produis pas d'explications\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur la validation\n5. Si tu utilises des formules math\u00e9matiques, entoure-les de $...$ ou $$...$$"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 11,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        1500
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 10
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            21
+          ]
+        }
+      ],
+      "title": "X - Int\u00e9gration de la logique du jeu",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu Pong dans un seul fichier html s'il te pla\u00eet, sans aucune composante auditive. Il faut que le jeu soit beau, et qu'il y ait une bonne gestion de la physique de la balle ! A la fin, je voudrais le code complet du fichier dans un seul bloc s'il te pla\u00eet.\"\nPlan de r\u00e9ponse complet :\nI. Analyse de la demande\nII. Conception de l'architecture HTML/CSS/JS\nIII. Impl\u00e9mentation du canvas et des \u00e9l\u00e9ments visuels\nIV. Gestion de la physique de la balle (vitesse, angle, rebond)\nV. Impl\u00e9mentation des raquettes\nVI. Syst\u00e8me de score et affichage\nVII. Animation fluide avec requestAnimationFrame\nVIII. Style visuel moderne (couleurs, gradients, effet de lumi\u00e8re)\nIX. Validation du code complet (sans d\u00e9pendances externes)\nX. Int\u00e9gration de la logique du jeu dans un seul fichier\nXI. Optimisation du rendu et de la performance\nXII. G\u00e9n\u00e9ration du code final dans un bloc\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : X - Int\u00e9gration de la logique du jeu\nDescription : Int\u00e9grer toutes les parties du jeu dans un seul fichier, sans fragmentation\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I (Analyse)\nAgent II (Conception)\nAgent III (Canvas)\nAgent IV (Physique)\nAgent V (Raquettes)\nAgent VI (Score)\nAgent VII (Animation)\nAgent VIII (Style)\nAgent IX (Validation)\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nFusionner tous les \u00e9l\u00e9ments dans un seul fichier HTML avec :\n- Canvas\n- Styles CSS int\u00e9gr\u00e9s\n- Script avec toute la logique\n- Aucune d\u00e9pendance\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n{{in_2}} : Le code valid\u00e9\n\n[FORMAT DE SORTIE ATTENDU]\nLe code complet, int\u00e9gr\u00e9, fonctionnel\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le code final\n2. Tu ne produis pas d'explications\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur l'int\u00e9gration\n5. Si tu utilises des formules math\u00e9matiques, entoure-les de $...$ ou $$...$$"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 12,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        1650
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 11
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            22
+          ]
+        }
+      ],
+      "title": "XI - Optimisation du rendu et de la performance",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu Pong dans un seul fichier html s'il te pla\u00eet, sans aucune composante auditive. Il faut que le jeu soit beau, et qu'il y ait une bonne gestion de la physique de la balle ! A la fin, je voudrais le code complet du fichier dans un seul bloc s'il te pla\u00eet.\"\nPlan de r\u00e9ponse complet :\nI. Analyse de la demande\nII. Conception de l'architecture HTML/CSS/JS\nIII. Impl\u00e9mentation du canvas et des \u00e9l\u00e9ments visuels\nIV. Gestion de la physique de la balle (vitesse, angle, rebond)\nV. Impl\u00e9mentation des raquettes\nVI. Syst\u00e8me de score et affichage\nVII. Animation fluide avec requestAnimationFrame\nVIII. Style visuel moderne (couleurs, gradients, effet de lumi\u00e8re)\nIX. Validation du code complet (sans d\u00e9pendances externes)\nX. Int\u00e9gration de la logique du jeu dans un seul fichier\nXI. Optimisation du rendu et de la performance\nXII. G\u00e9n\u00e9ration du code final dans un bloc\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : XI - Optimisation du rendu et de la performance\nDescription : Am\u00e9liorer la fluidit\u00e9 et la performance du jeu\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I (Analyse)\nAgent II (Conception)\nAgent III (Canvas)\nAgent IV (Physique)\nAgent V (Raquettes)\nAgent VI (Score)\nAgent VII (Animation)\nAgent VIII (Style)\nAgent IX (Validation)\nAgent X (Int\u00e9gration)\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nOptimiser le code pour :\n- R\u00e9duire les calculs inutiles\n- Utiliser `requestAnimationFrame` avec une fr\u00e9quence stable\n- \u00c9viter les bugs de rendu\n- Assurer une fluidit\u00e9 \u00e0 60 FPS\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n{{in_2}} : Le code int\u00e9gr\u00e9\n\n[FORMAT DE SORTIE ATTENDU]\nLe code optimis\u00e9, performant\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le code optimis\u00e9\n2. Tu ne produis pas d'explications\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur la performance\n5. Si tu utilises des formules math\u00e9matiques, entoure-les de $...$ ou $$...$$"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 13,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        1800
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 12
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            23
+          ]
+        }
+      ],
+      "title": "XII - G\u00e9n\u00e9ration du code final dans un bloc",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\nMission : R\u00e9pondre \u00e0 la demande suivante : \"Fais moi un jeu Pong dans un seul fichier html s'il te pla\u00eet, sans aucune composante auditive. Il faut que le jeu soit beau, et qu'il y ait une bonne gestion de la physique de la balle ! A la fin, je voudrais le code complet du fichier dans un seul bloc s'il te pla\u00eet.\"\nPlan de r\u00e9ponse complet :\nI. Analyse de la demande\nII. Conception de l'architecture HTML/CSS/JS\nIII. Impl\u00e9mentation du canvas et des \u00e9l\u00e9ments visuels\nIV. Gestion de la physique de la balle (vitesse, angle, rebond)\nV. Impl\u00e9mentation des raquettes\nVI. Syst\u00e8me de score et affichage\nVII. Animation fluide avec requestAnimationFrame\nVIII. Style visuel moderne (couleurs, gradients, effet de lumi\u00e8re)\nIX. Validation du code complet (sans d\u00e9pendances externes)\nX. Int\u00e9gration de la logique du jeu dans un seul fichier\nXI. Optimisation du rendu et de la performance\nXII. G\u00e9n\u00e9ration du code final dans un bloc\n\n[TON R\u00d4LE DANS LE PLAN]\nTu es l'agent responsable de la partie : XII - G\u00e9n\u00e9ration du code final dans un bloc\nDescription : Produire le code final, dans un seul bloc, pr\u00eat \u00e0 \u00eatre copi\u00e9\n\n[AGENTS PR\u00c9C\u00c9DENTS]\nAgent I (Analyse)\nAgent II (Conception)\nAgent III (Canvas)\nAgent IV (Physique)\nAgent V (Raquettes)\nAgent VI (Score)\nAgent VII (Animation)\nAgent VIII (Style)\nAgent IX (Validation)\nAgent X (Int\u00e9gration)\nAgent XI (Optimisation)\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\nFournir le code complet du jeu Pong dans un seul fichier HTML, avec :\n- Aucune d\u00e9pendance externe\n- Un seul bloc de code\n- Design \u00e9l\u00e9gant\n- Physique r\u00e9aliste\n- Contr\u00f4le du clavier\n- Score\n- Animation fluide\n\n[ENTR\u00c9ES DISPONIBLES]\n{{in_1}} : La demande originale de l'utilisateur\n{{in_2}} : Le code optimis\u00e9\n\n[FORMAT DE SORTIE ATTENDU]\nLe code complet, dans un seul bloc, sans aucun commentaire ou texte\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Tu produis UNIQUEMENT le code final\n2. Tu ne produis pas d'explications\n3. Tu ne dialogues JAMAIS avec l'utilisateur\n4. Tu restes focalis\u00e9 sur le code\n5. Si tu utilises des formules math\u00e9matiques, entoure-les de $...$ ou $$...$$"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 14,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        400
+      ],
+      "size": [
+        200,
+        50
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 13
+        }
+      ],
+      "title": "Code Final",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 14,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        300
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 100,
+      "mode": 0,
+      "title": "Sortie pour 'II - Conception de l'architecture'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 15,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        550
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 101,
+      "mode": 0,
+      "title": "Sortie pour 'III - Impl\u00e9mentation du canvas et des \u00e9l\u00e9ments visuels'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 16,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        800
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 102,
+      "mode": 0,
+      "title": "Sortie pour 'IV - Gestion de la physique de la balle'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 17,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        1050
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 103,
+      "mode": 0,
+      "title": "Sortie pour 'V - Impl\u00e9mentation des raquettes'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 18,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        1300
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 104,
+      "mode": 0,
+      "title": "Sortie pour 'VI - Syst\u00e8me de score et affichage'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 19,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        1550
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 105,
+      "mode": 0,
+      "title": "Sortie pour 'VII - Animation fluide avec requestAnimationFrame'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 20,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        1800
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 106,
+      "mode": 0,
+      "title": "Sortie pour 'VIII - Style visuel moderne'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 21,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        2050
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 107,
+      "mode": 0,
+      "title": "Sortie pour 'IX - Validation du code complet'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 22,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        2300
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 108,
+      "mode": 0,
+      "title": "Sortie pour 'X - Int\u00e9gration de la logique du jeu'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 23,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        2550
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 109,
+      "mode": 0,
+      "title": "Sortie pour 'XI - Optimisation du rendu et de la performance'",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 24,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        2800
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 110,
+      "mode": 0,
+      "title": "Sortie pour 'XII - G\u00e9n\u00e9ration du code final dans un bloc'",
+      "properties": {},
+      "color": "#53a"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "string"
+    ],
+    [
+      2,
+      1,
+      0,
+      3,
+      0,
+      "string"
+    ],
+    [
+      3,
+      1,
+      0,
+      4,
+      0,
+      "string"
+    ],
+    [
+      4,
+      1,
+      0,
+      5,
+      0,
+      "string"
+    ],
+    [
+      5,
+      1,
+      0,
+      6,
+      0,
+      "string"
+    ],
+    [
+      6,
+      1,
+      0,
+      7,
+      0,
+      "string"
+    ],
+    [
+      7,
+      1,
+      0,
+      8,
+      0,
+      "string"
+    ],
+    [
+      8,
+      1,
+      0,
+      9,
+      0,
+      "string"
+    ],
+    [
+      9,
+      1,
+      0,
+      10,
+      0,
+      "string"
+    ],
+    [
+      10,
+      1,
+      0,
+      11,
+      0,
+      "string"
+    ],
+    [
+      11,
+      1,
+      0,
+      12,
+      0,
+      "string"
+    ],
+    [
+      12,
+      1,
+      0,
+      13,
+      0,
+      "string"
+    ],
+    [
+      13,
+      2,
+      0,
+      14,
+      0,
+      "string"
+    ],
+    [
+      13,
+      3,
+      0,
+      14,
+      0,
+      "string"
+    ],
+    [
+      14,
+      4,
+      0,
+      15,
+      0,
+      "string"
+    ],
+    [
+      15,
+      5,
+      0,
+      16,
+      0,
+      "string"
+    ],
+    [
+      16,
+      6,
+      0,
+      17,
+      0,
+      "string"
+    ],
+    [
+      17,
+      7,
+      0,
+      18,
+      0,
+      "string"
+    ],
+    [
+      18,
+      8,
+      0,
+      19,
+      0,
+      "string"
+    ],
+    [
+      19,
+      9,
+      0,
+      20,
+      0,
+      "string"
+    ],
+    [
+      20,
+      10,
+      0,
+      21,
+      0,
+      "string"
+    ],
+    [
+      21,
+      11,
+      0,
+      22,
+      0,
+      "string"
+    ],
+    [
+      22,
+      12,
+      0,
+      23,
+      0,
+      "string"
+    ],
+    [
+      23,
+      13,
+      0,
+      24,
+      0,
+      "string"
+    ]
+  ]
+}

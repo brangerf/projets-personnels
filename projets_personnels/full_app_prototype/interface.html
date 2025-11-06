@@ -1,0 +1,146 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Maestro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <link rel="stylesheet" type="text/css" href="https://tamats.com/projects/litegraph/css/litegraph.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script type="text/javascript" src="https://tamats.com/projects/litegraph/build/litegraph.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+</head>
+<body>
+    <div id="sidebar">
+        <div class="sidebar-header">Maestro</div>
+        <div id="main-nav">
+            <button class="nav-button active" data-view="chat-view"><i class="fa-solid fa-comments"></i> Chat</button>
+            <button class="nav-button" data-view="workflow-view"><i class="fa-solid fa-diagram-project"></i> Workflow</button>
+            <button class="nav-button" data-view="sequences-view"><i class="fa-solid fa-layer-group"></i> Séquences</button>
+            <button class="nav-button" data-view="maestro-view"><i class="fa-solid fa-wand-magic-sparkles"></i> Maestro</button>
+        </div>
+        <div class="nav-separator"></div>
+        <div id="chat-controls">
+            <button id="new-chat-button"><i class="fa-solid fa-plus"></i> Nouvelle Discussion</button>
+            <div id="model-selector-container">
+                <label for="model-selector">Modèle Global :</label>
+                <select id="model-selector"></select>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <div id="chat-view" class="view-container active">
+            <div id="chat-container"></div>
+            <div id="execution-selector-area">
+                <select id="workflow-selector"><option value="">Exécuter un Workflow...</option></select>
+                <select id="sequence-selector"><option value="">Exécuter une Séquence...</option></select>
+                <button id="clear-selectors-button" title="Effacer la sélection"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="input-area-wrapper">
+                <div id="input-area">
+                    <textarea id="message-input" placeholder="Envoyez un message ou un prompt..." rows="1"></textarea>
+                    <button id="send-button" disabled><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div id="workflow-view" class="view-container">
+            <div class="view-toolbar">
+                <select id="add-node-selector"><option value="">Ajouter un nœud...</option></select>
+                <button id="workflow-save-button"><i class="fa-solid fa-save"></i> Sauvegarder</button>
+                <button id="workflow-load-button"><i class="fa-solid fa-folder-open"></i> Charger</button>
+                <span id="workflow-status" class="status">Mode construction.</span>
+            </div>
+            <canvas id="workflow-canvas"></canvas>
+        </div>
+
+        <div id="sequences-view" class="view-container">
+            <div class="view-toolbar">
+                <button id="sequence-save-button"><i class="fa-solid fa-save"></i> Sauvegarder</button>
+                <button id="sequence-load-button"><i class="fa-solid fa-folder-open"></i> Charger</button>
+                <span id="sequence-status" class="status">Mode construction.</span>
+            </div>
+            <div id="sequences-view-content">
+                <div class="sequence-column">
+                    <h3>Workflows Disponibles</h3>
+                    <ul id="sequence-available-list" class="sequence-list"></ul>
+                </div>
+                <div class="sequence-column">
+                    <h3>Séquence Active</h3>
+                    <ul id="sequence-active-list" class="sequence-list"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="maestro-view" class="view-container">
+            <div id="maestro-container">
+                <div class="maestro-header">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <h1>Maestro</h1>
+                    <p>Décrivez votre objectif et laissez Maestro composer la solution.</p>
+                </div>
+                <div id="maestro-model-selector-container">
+                    <label for="maestro-model-selector">Modèle Maestro :</label>
+                    <select id="maestro-model-selector"></select>
+                </div>
+                <div id="maestro-complexity-container">
+                    <label for="maestro-complexity-slider">Complexité :</label>
+                    <input type="range" id="maestro-complexity-slider" min="0" max="1" value="0" step="1">
+                    <span id="maestro-complexity-label">Simple</span>
+                </div>
+                <textarea id="maestro-input" placeholder="Ex: Rédige un poème sur la lune en style haïku..."></textarea>
+                <button id="maestro-run-button"><i class="fa-solid fa-play"></i> Lancer la Composition</button>
+                <div id="maestro-status-area"></div>
+                <div id="maestro-results-area"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="artifact-viewer">
+        <div id="artifact-resizer"></div>
+        <div id="artifact-header">
+            <span>Visualisation dynamique</span>
+            <button id="artifact-close-button">&times;</button>
+        </div>
+        <iframe id="artifact-iframe" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+
+    <div id="llm-node-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Configurer le Nœud LLM</h3>
+            <div>
+                <label for="modal-model-select">Modèle</label>
+                <select id="modal-model-select"></select>
+            </div>
+            <div>
+                <label for="modal-prompt-textarea">Prompt (Utilisez {{in_1}}, {{in_2}} etc.. pour la gestion du contexte.)</label>
+                <textarea id="modal-prompt-textarea"></textarea>
+            </div>
+            <div class="modal-buttons">
+                <button id="modal-cancel-button" class="modal-cancel-button">Annuler</button>
+                <button id="modal-save-button" class="modal-save-button">Sauvegarder</button>
+            </div>
+        </div>
+    </div>
+    <div id="load-workflow-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-button">&times;</button>
+            <h3>Charger un Workflow</h3>
+            <ul id="modal-workflow-list" class="file-list"></ul>
+        </div>
+    </div>
+
+    <script src="assets/js/ui.js"></script>
+    <script src="assets/js/workflow.js"></script>
+    <script src="assets/js/sequences.js"></script>
+    <script src="assets/js/maestro.js"></script>
+    <script src="assets/js/chat.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

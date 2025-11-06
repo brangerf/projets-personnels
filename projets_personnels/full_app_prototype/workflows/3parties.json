@@ -1,0 +1,277 @@
+{
+  "last_node_id": 7,
+  "last_link_id": 6,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "workflow/text_input",
+      "pos": [
+        100,
+        400
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "links": [
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "title": "Sujet Utilisateur",
+      "properties": {
+        "value": "Donne-moi un rapport sur l'impact de l'IA sur le marché du travail."
+      },
+      "color": "#3a5"
+    },
+    {
+      "id": 2,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        200
+      ],
+      "size": [
+        220,
+        60
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "entrée",
+          "type": "string",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "résultat",
+          "type": "string",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "title": "Rédacteur - Partie I",
+      "properties": {
+        "model": "",
+        "prompt": "Tu es un expert rédacteur. Ta tâche est de rédiger la **Partie I : Introduction et Contexte** d'un document complet basé sur la demande de l'utilisateur. Cette partie doit :\n1. Définir clairement le sujet.\n2. Expliquer son importance et sa pertinence.\n3. Présenter brièvement la structure du document qui suivra (les parties II et III).\nSois clair, concis et engageant. Ne rédige QUE cette première partie.\n\n---\n\nSUJET : {{input}}"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 3,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        400
+      ],
+      "size": [
+        220,
+        60
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "entrée",
+          "type": "string",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "résultat",
+          "type": "string",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "title": "Rédacteur - Partie II",
+      "properties": {
+        "model": "",
+        "prompt": "Tu es un analyste spécialisé. Ta tâche est de rédiger la **Partie II : Développement et Analyse Approfondie** d'un document complet basé sur la demande de l'utilisateur. Cette partie est le cœur du sujet. Tu dois :\n1. Explorer les concepts clés en détail.\n2. Fournir des arguments, des exemples concrets et des données si possible.\n3. Analyser les différents aspects du sujet de manière structurée.\nNe fais référence ni à l'introduction ni à la conclusion. Concentre-toi uniquement sur le développement technique et analytique. Ne rédige QUE cette deuxième partie.\n\n---\n\nSUJET : {{input}}"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 4,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        600
+      ],
+      "size": [
+        220,
+        60
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "entrée",
+          "type": "string",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "résultat",
+          "type": "string",
+          "links": [
+            6
+          ]
+        }
+      ],
+      "title": "Rédacteur - Partie III",
+      "properties": {
+        "model": "",
+        "prompt": "Tu es un stratège visionnaire. Ta tâche est de rédiger la **Partie III : Synthèse, Implications et Perspectives** d'un document complet basé sur la demande de l'utilisateur. Cette partie doit conclure l'analyse. Tu dois :\n1. Résumer les points essentiels des parties précédentes.\n2. Discuter des implications pratiques ou théoriques du sujet.\n3. Proposer des perspectives d'avenir, des recommandations ou des pistes de recherche future.\nNe rédige QUE cette troisième et dernière partie.\n\n---\n\nSUJET : {{input}}"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 5,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        200
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 4
+        }
+      ],
+      "title": "Affichage Partie I",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 6,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        400
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 5
+        }
+      ],
+      "title": "Affichage Partie II",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 7,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        600
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 6
+        }
+      ],
+      "title": "Affichage Partie III",
+      "properties": {},
+      "color": "#53a"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "string"
+    ],
+    [
+      2,
+      1,
+      0,
+      3,
+      0,
+      "string"
+    ],
+    [
+      3,
+      1,
+      0,
+      4,
+      0,
+      "string"
+    ],
+    [
+      4,
+      2,
+      0,
+      5,
+      0,
+      "string"
+    ],
+    [
+      5,
+      3,
+      0,
+      6,
+      0,
+      "string"
+    ],
+    [
+      6,
+      4,
+      0,
+      7,
+      0,
+      "string"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

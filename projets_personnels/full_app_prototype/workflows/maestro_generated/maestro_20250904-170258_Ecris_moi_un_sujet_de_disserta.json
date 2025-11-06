@@ -1,0 +1,516 @@
+{
+  "last_node_id": 12,
+  "last_link_id": 13,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "workflow/text_input",
+      "pos": [
+        100,
+        300
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "links": [
+            1,
+            5
+          ]
+        }
+      ],
+      "title": "Demande Utilisateur",
+      "properties": {
+        "value": "Ecris moi un sujet de dissertation philosophique tr\u00e8s difficile, puis r\u00e9dige la en entier. Le sujet s'adresse \u00e0 des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de Philosophie."
+      },
+      "color": "#3a5"
+    },
+    {
+      "id": 2,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        200
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            2,
+            9
+          ]
+        }
+      ],
+      "title": "Agent 1: Concepteur de Sujet \u00c9labor\u00e9",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Ecris moi un sujet de dissertation philosophique tr\u00e8s difficile, puis r\u00e9dige la en entier. Le sujet s'adresse \u00e0 des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de Philosophie.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Concepteur de Sujet \u00c9labor\u00e9. Tu es charg\u00e9 de concevoir un sujet philosophique d'une difficult\u00e9 extr\u00eame, original et profond, adapt\u00e9 au niveau de l'agr\u00e9gation.\n- **Membres de l'\u00e9quipe :**\n  - Agent 2 (R\u00e9dacteur Dissertation) : R\u00e9digera la dissertation compl\u00e8te \u00e0 partir du sujet.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Cr\u00e9er un sujet de dissertation philosophique tr\u00e8s difficile, original, riche en probl\u00e9matiques m\u00e9taphysiques ou \u00e9thiques, et qui exige une connaissance approfondie des grandes \u0153uvres et des courants philosophiques.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : La demande brute de l'utilisateur.\n\n[SORTIE ATTENDUE]\n- Un sujet de dissertation philosophique complexe, bien formul\u00e9, avec une probl\u00e9matique claire et une ouverture conceptuelle profonde.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie : Ne produis QUE le sujet de dissertation.\n2. Pas de Dialogue : Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 3,
+      "type": "workflow/llm_model",
+      "pos": [
+        700,
+        200
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 2
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            3,
+            6,
+            10
+          ]
+        }
+      ],
+      "title": "Agent 2: R\u00e9dacteur Dissertation Complexe",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Ecris moi un sujet de dissertation philosophique tr\u00e8s difficile, puis r\u00e9dige la en entier. Le sujet s'adresse \u00e0 des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de Philosophie.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** R\u00e9dacteur Dissertation Complexe. Tu dois r\u00e9diger une dissertation compl\u00e8te, structur\u00e9e, profonde et acad\u00e9mique, en r\u00e9ponse au sujet fourni.\n- **Membres de l'\u00e9quipe :**\n  - Agent 1 (Concepteur de Sujet \u00c9labor\u00e9) : A fourni le sujet.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- R\u00e9diger une dissertation compl\u00e8te, en trois parties (introduction, d\u00e9veloppement, conclusion), incluant des r\u00e9f\u00e9rences explicites \u00e0 des auteurs majeurs, des concepts cl\u00e9s et une argumentation soutenue.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Le sujet de dissertation philosophique complexe fourni par l'Agent 1.\n- **{{in_2}}** : La demande originale de l'utilisateur (pour conserver le contexte).\n\n[SORTIE ATTENDUE]\n- Une dissertation philosophique compl\u00e8te, structur\u00e9e et acad\u00e9miquement rigoureuse, d\u2019environ 3000 mots, avec une introduction, un d\u00e9veloppement argument\u00e9 en deux parties, et une conclusion synth\u00e9tique.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie : Ne produis QUE la dissertation compl\u00e8te.\n2. Pas de Dialogue : Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 4,
+      "type": "workflow/llm_model",
+      "pos": [
+        1000,
+        200
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 3
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            4,
+            11
+          ]
+        }
+      ],
+      "title": "Agent 3: Analyse Critique du Texte",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Ecris moi un sujet de dissertation philosophique tr\u00e8s difficile, puis r\u00e9dige la en entier. Le sujet s'adresse \u00e0 des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de Philosophie.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Analyse Critique du Texte. Tu dois \u00e9valuer la qualit\u00e9, la profondeur et la coh\u00e9rence de la dissertation r\u00e9dig\u00e9e.\n- **Membres de l'\u00e9quipe :**\n  - Agent 2 (R\u00e9dacteur Dissertation) : A fourni la dissertation.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Analyser la dissertation en termes de rigueur argumentative, originalit\u00e9 des id\u00e9es, pertinence des r\u00e9f\u00e9rences, clart\u00e9 du style et conformit\u00e9 au niveau de l'agr\u00e9gation.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : La dissertation compl\u00e8te fournie par l'Agent 2.\n- **{{in_2}}** : Le sujet original (pour v\u00e9rification de coh\u00e9rence).\n\n[SORTIE ATTENDUE]\n- Une analyse critique structur\u00e9e en trois parties : force, faiblesse et recommandations d'am\u00e9lioration, r\u00e9dig\u00e9e avec un ton acad\u00e9mique pr\u00e9cis.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie : Ne produis QUE l'analyse critique.\n2. Pas de Dialogue : Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 5,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        400
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 5
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            8,
+            12
+          ]
+        }
+      ],
+      "title": "Agent 4: Concepteur de Probl\u00e9matique Alternatives",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Ecris moi un sujet de dissertation philosophique tr\u00e8s difficile, puis r\u00e9dige la en entier. Le sujet s'adresse \u00e0 des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de Philosophie.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Concepteur de Probl\u00e9matique Alternatives. Tu dois proposer trois variantes alternatives du sujet initial, chacune avec une formulation diff\u00e9rente mais \u00e9quivalente en profondeur.\n- **Membres de l'\u00e9quipe :**\n  - Agent 1 (Concepteur de Sujet \u00c9labor\u00e9) : A fourni le sujet initial.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Proposer trois formulations alternatives du sujet initial, en gardant la m\u00eame difficult\u00e9 et profondeur, mais avec des angles d'approche diff\u00e9rents.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : La demande originale de l'utilisateur.\n- **{{in_2}}** : Le sujet initial con\u00e7u par l'Agent 1.\n\n[SORTIE ATTENDUE]\n- Une liste de trois formulations alternatives du sujet, chacune avec une probl\u00e9matique claire et un angle d\u2019approche distinct.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie : Ne produis QUE les trois variantes.\n2. Pas de Dialogue : Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 6,
+      "type": "workflow/llm_model",
+      "pos": [
+        700,
+        400
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 6
+        },
+        {
+          "name": "in_2",
+          "type": "string",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "title": "Agent 5: R\u00e9\u00e9criture \u00c9labor\u00e9e",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Ecris moi un sujet de dissertation philosophique tr\u00e8s difficile, puis r\u00e9dige la en entier. Le sujet s'adresse \u00e0 des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de Philosophie.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** R\u00e9\u00e9criture \u00c9labor\u00e9e. Tu dois r\u00e9\u00e9crire la dissertation compl\u00e8te avec un style plus soutenu, une structure renforc\u00e9e et des transitions am\u00e9lior\u00e9es.\n- **Membres de l'\u00e9quipe :**\n  - Agent 2 (R\u00e9dacteur Dissertation) : A fourni la version initiale.\n  - Agent 3 (Analyse Critique du Texte) : A fourni une \u00e9valuation.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- R\u00e9\u00e9crire la dissertation en am\u00e9liorant le style, la fluidit\u00e9, la clart\u00e9 des transitions et l\u2019originalit\u00e9 argumentative, sans modifier le fond.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : La dissertation initiale fournie par l'Agent 2.\n- **{{in_2}}** : L\u2019analyse critique fournie par l'Agent 3.\n\n[SORTIE ATTENDUE]\n- Une version r\u00e9\u00e9crite de la dissertation, plus \u00e9labor\u00e9e, fluide et acad\u00e9mique, tout en conservant le contenu fondamental.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie : Ne produis QUE la version r\u00e9\u00e9crite.\n2. Pas de Dialogue : Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 7,
+      "type": "workflow/llm_model",
+      "pos": [
+        1000,
+        400
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 7
+        },
+        {
+          "name": "in_2",
+          "type": "string",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            13
+          ]
+        }
+      ],
+      "title": "Agent 6: Synth\u00e8se Finale",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Ecris moi un sujet de dissertation philosophique tr\u00e8s difficile, puis r\u00e9dige la en entier. Le sujet s'adresse \u00e0 des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de Philosophie.\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Synth\u00e8se Finale. Tu dois combiner tous les \u00e9l\u00e9ments pour produire un package complet.\n- **Membres de l'\u00e9quipe :**\n  - Agent 5 (R\u00e9\u00e9criture \u00c9labor\u00e9e) : A fourni la version finale de la dissertation.\n  - Agent 4 (Concepteur de Probl\u00e9matique Alternatives) : A fourni les variantes.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Assembler un document final comprenant :\n  - Le sujet original\n  - La dissertation r\u00e9\u00e9crite\n  - Les trois variantes du sujet\n  - L'analyse critique\n\n[SORTIE ATTENDUE]\n- Un document structur\u00e9 et complet, pr\u00eat \u00e0 \u00eatre utilis\u00e9 par des candidats \u00e0 l\u2019agr\u00e9gation.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie : Ne produis QUE le document final structur\u00e9.\n2. Pas de Dialogue : Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 8,
+      "type": "workflow/text_output",
+      "pos": [
+        1400,
+        300
+      ],
+      "size": [
+        200,
+        50
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 9
+        }
+      ],
+      "title": "Document Final",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 9,
+      "type": "workflow/text_output",
+      "pos": [
+        1400,
+        100
+      ],
+      "size": [
+        200,
+        50
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string"
+        }
+      ],
+      "title": "Sujet Original",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 10,
+      "type": "workflow/text_output",
+      "pos": [
+        1400,
+        200
+      ],
+      "size": [
+        200,
+        50
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string"
+        }
+      ],
+      "title": "Dissertation Initiale",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 11,
+      "type": "workflow/text_output",
+      "pos": [
+        1400,
+        400
+      ],
+      "size": [
+        200,
+        50
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string"
+        }
+      ],
+      "title": "Analyse Critique",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 12,
+      "type": "workflow/text_output",
+      "pos": [
+        1400,
+        500
+      ],
+      "size": [
+        200,
+        50
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string"
+        }
+      ],
+      "title": "Variantes du Sujet",
+      "properties": {},
+      "color": "#53a"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "string"
+    ],
+    [
+      2,
+      2,
+      0,
+      3,
+      0,
+      "string"
+    ],
+    [
+      3,
+      3,
+      0,
+      4,
+      0,
+      "string"
+    ],
+    [
+      4,
+      4,
+      0,
+      6,
+      1,
+      "string"
+    ],
+    [
+      5,
+      1,
+      0,
+      5,
+      0,
+      "string"
+    ],
+    [
+      6,
+      3,
+      0,
+      6,
+      0,
+      "string"
+    ],
+    [
+      7,
+      6,
+      0,
+      7,
+      0,
+      "string"
+    ],
+    [
+      8,
+      5,
+      0,
+      7,
+      1,
+      "string"
+    ],
+    [
+      9,
+      2,
+      0,
+      8,
+      0,
+      "string"
+    ],
+    [
+      10,
+      3,
+      0,
+      8,
+      1,
+      "string"
+    ],
+    [
+      11,
+      4,
+      0,
+      8,
+      2,
+      "string"
+    ],
+    [
+      12,
+      5,
+      0,
+      8,
+      3,
+      "string"
+    ],
+    [
+      13,
+      7,
+      0,
+      8,
+      4,
+      "string"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

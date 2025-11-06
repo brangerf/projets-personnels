@@ -1,0 +1,206 @@
+{
+  "last_node_id": 12,
+  "last_link_id": 18,
+  "nodes": [
+    {
+      "id": 7,
+      "type": "workflow/text_output",
+      "pos": [
+        828,
+        366
+      ],
+      "size": [
+        140,
+        26
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 18
+        }
+      ],
+      "title": "Sortie Texte",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 1,
+      "type": "workflow/text_input",
+      "pos": [
+        151,
+        217
+      ],
+      "size": [
+        140,
+        26
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "links": [
+            15,
+            17
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Entr\u00e9e Texte",
+      "properties": {
+        "value": "Texte d'entr\u00e9e"
+      },
+      "color": "#3a5"
+    },
+    {
+      "id": 12,
+      "type": "workflow/llm_model",
+      "pos": [
+        602,
+        307
+      ],
+      "size": [
+        140,
+        86
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 16
+        },
+        {
+          "name": "in_2",
+          "type": "string",
+          "link": 17
+        },
+        {
+          "name": "in_3",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_4",
+          "type": "string",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            18
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Mod\u00e8le LLM",
+      "properties": {
+        "model": "hf.co/unsloth/Qwen3-30B-A3B-Instruct-2507-GGUF:Q3_K_M",
+        "prompt": "Dans un premier temps, recopiez pr\u00e9cis\u00e9ment le contenu que vous recevez en contexte : {{in_1}}\nDans un second temps, recopiez aussi avec pr\u00e9cision le prompt de l'utilisateur (qui a initi\u00e9 ce que vous recevez en contexte) : {{in_2}}\n\nContexte 1: {{in_1}}\n\nContexte 2: {{in_2}}"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 11,
+      "type": "workflow/llm_model",
+      "pos": [
+        384,
+        371
+      ],
+      "size": [
+        140,
+        86
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 15
+        },
+        {
+          "name": "in_2",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_3",
+          "type": "string",
+          "link": null
+        },
+        {
+          "name": "in_4",
+          "type": "string",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            16
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Mod\u00e8le LLM",
+      "properties": {
+        "model": "hf.co/unsloth/Qwen3-30B-A3B-Instruct-2507-GGUF:Q3_K_M",
+        "prompt": "Recopiez la demande de l'utilisateur, voici sa demande : {{in_1}}.Entourez votre r\u00e9ponse de ceci \" ## \" au d\u00e9but  et \u00e0 la fin."
+      },
+      "color": "#a35"
+    }
+  ],
+  "links": [
+    [
+      15,
+      1,
+      0,
+      11,
+      0,
+      "string"
+    ],
+    [
+      16,
+      11,
+      0,
+      12,
+      0,
+      "string"
+    ],
+    [
+      17,
+      1,
+      0,
+      12,
+      1,
+      "string"
+    ],
+    [
+      18,
+      12,
+      0,
+      7,
+      0,
+      "string"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

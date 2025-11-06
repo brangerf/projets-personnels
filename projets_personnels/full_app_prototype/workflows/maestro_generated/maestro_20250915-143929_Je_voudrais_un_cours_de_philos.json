@@ -1,0 +1,658 @@
+{
+  "last_node_id": 14,
+  "last_link_id": 13,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "workflow/text_input",
+      "pos": [
+        100,
+        300
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "title": "Demande Utilisateur",
+      "properties": {
+        "value": "Je voudrais un cours de philosophie de niveau Master 2, pour des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de philosophie. Le th\u00e8me de cette ann\u00e9e est \"Les atomistes antiques\"."
+      },
+      "color": "#3a5"
+    },
+    {
+      "id": 2,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        200
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "title": "Agent 1: Historien de la Philosophie",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais un cours de philosophie de niveau Master 2, pour des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de philosophie. Le th\u00e8me de cette ann\u00e9e est \\\"Les atomistes antiques\\\".\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Historien de la Philosophie. Tu identifies les figures cl\u00e9s et les \u00e9volutions historiques.\n- **Membres de l'\u00e9quipe :**\n  - Agent 2 (Philosophe Analytique) : Utilisera tes \u00e9l\u00e9ments pour produire un contenu structur\u00e9.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Identifier les principales figures atomistes antiques et leurs contributions majeures.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : La demande brute de l'utilisateur.\n\n[SORTIE ATTENDUE]\n- Une liste structur\u00e9e des philosophes atomistes et leurs id\u00e9es centrales.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement la liste des philosophes et leurs contributions.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 3,
+      "type": "workflow/llm_model",
+      "pos": [
+        700,
+        200
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 2
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            3
+          ]
+        }
+      ],
+      "title": "Agent 2: Philosophe Analytique",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais un cours de philosophie de niveau Master 2, pour des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de philosophie. Le th\u00e8me de cette ann\u00e9e est \\\"Les atomistes antiques\\\".\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Philosophe Analytique. Tu structures les id\u00e9es philosophiques.\n- **Membres de l'\u00e9quipe :**\n  - Agent 1 (Historien de la Philosophie) : A fourni les figures cl\u00e9s.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Cr\u00e9er une structure analytique des concepts atomistes.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Liste des philosophes atomistes et leurs contributions.\n\n[SORTIE ATTENDUE]\n- Une structure analytique des concepts philosophiques atomistes.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement la structure analytique.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 4,
+      "type": "workflow/llm_model",
+      "pos": [
+        1000,
+        200
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 3
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "title": "Agent 3: Historien de la Pens\u00e9e",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais un cours de philosophie de niveau Master 2, pour des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de philosophie. Le th\u00e8me de cette ann\u00e9e est \\\"Les atomistes antiques\\\".\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Historien de la Pens\u00e9e. Tu contextualises les id\u00e9es dans leur histoire.\n- **Membres de l'\u00e9quipe :**\n  - Agent 2 (Philosophe Analytique) : A fourni la structure analytique.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- R\u00e9diger un historique des id\u00e9es atomistes dans leur contexte philosophique.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : La structure analytique des concepts atomistes.\n\n[SORTIE ATTENDUE]\n- Un historique des id\u00e9es atomistes dans leur contexte philosophique.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement l'historique.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 5,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        400
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 4
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "title": "Agent 4: Critique Philosophique",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais un cours de philosophie de niveau Master 2, pour des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de philosophie. Le th\u00e8me de cette ann\u00e9e est \\\"Les atomistes antiques\\\".\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Critique Philosophique. Tu \u00e9valuer les arguments et leurs limites.\n- **Membres de l'\u00e9quipe :**\n  - Agent 3 (Historien de la Pens\u00e9e) : A fourni l'historique.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Analyser les arguments atomistes et leurs critiques.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : L'historique des id\u00e9es atomistes.\n\n[SORTIE ATTENDUE]\n- Une analyse critique des arguments atomistes et leurs limites.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement l'analyse critique.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 6,
+      "type": "workflow/llm_model",
+      "pos": [
+        700,
+        400
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 5
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            6
+          ]
+        }
+      ],
+      "title": "Agent 5: Synth\u00e9tiseur Conceptuel",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais un cours de philosophie de niveau Master 2, pour des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de philosophie. Le th\u00e8me de cette ann\u00e9e est \\\"Les atomistes antiques\\\".\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Synth\u00e9tiseur Conceptuel. Tu combines les analyses.\n- **Membres de l'\u00e9quipe :**\n  - Agent 4 (Critique Philosophique) : A fourni l'analyse critique.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Cr\u00e9er une synth\u00e8se conceptuelle des id\u00e9es atomistes.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : L'analyse critique des arguments atomistes.\n\n[SORTIE ATTENDUE]\n- Une synth\u00e8se conceptuelle des id\u00e9es atomistes.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement la synth\u00e8se.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 7,
+      "type": "workflow/llm_model",
+      "pos": [
+        1000,
+        400
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 6
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "title": "Agent 6: Expert en P\u00e9dagogie",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais un cours de philosophie de niveau Master 2, pour des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de philosophie. Le th\u00e8me de cette ann\u00e9e est \\\"Les atomistes antiques\\\".\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Expert en P\u00e9dagogie. Tu transformes l'information en contenu p\u00e9dagogique.\n- **Membres de l'\u00e9quipe :**\n  - Agent 5 (Synth\u00e9tiseur Conceptuel) : A fourni la synth\u00e8se.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- R\u00e9diger un contenu p\u00e9dagogique pour le concours d'agr\u00e9gation.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : La synth\u00e8se conceptuelle des id\u00e9es atomistes.\n\n[SORTIE ATTENDUE]\n- Un contenu p\u00e9dagogique structur\u00e9 pour le concours d'agr\u00e9gation.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement le contenu p\u00e9dagogique.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 8,
+      "type": "workflow/llm_model",
+      "pos": [
+        1300,
+        400
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 7
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            8
+          ]
+        }
+      ],
+      "title": "Agent 7: R\u00e9f\u00e9rencier Strat\u00e9gique",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais un cours de philosophie de niveau Master 2, pour des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de philosophie. Le th\u00e8me de cette ann\u00e9e est \\\"Les atomistes antiques\\\".\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** R\u00e9f\u00e9rencier Strat\u00e9gique. Tu identifie les sources pertinentes.\n- **Membres de l'\u00e9quipe :**\n  - Agent 6 (Expert en P\u00e9dagogie) : A fourni le contenu p\u00e9dagogique.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Identifier les r\u00e9f\u00e9rences bibliographiques et philosophiques pertinentes.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Le contenu p\u00e9dagogique.\n\n[SORTIE ATTENDUE]\n- Une liste de r\u00e9f\u00e9rences bibliographiques et philosophiques.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement la liste des r\u00e9f\u00e9rences.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 9,
+      "type": "workflow/llm_model",
+      "pos": [
+        1600,
+        400
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 8
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "title": "Agent 8: Expert en Concours",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais un cours de philosophie de niveau Master 2, pour des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de philosophie. Le th\u00e8me de cette ann\u00e9e est \\\"Les atomistes antiques\\\".\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Expert en Concours. Tu adapte le contenu aux exigences du concours.\n- **Membres de l'\u00e9quipe :**\n  - Agent 7 (R\u00e9f\u00e9rencier Strat\u00e9gique) : A fourni les r\u00e9f\u00e9rences.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Adapter le contenu pour le format du concours d'agr\u00e9gation.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Les r\u00e9f\u00e9rences bibliographiques.\n\n[SORTIE ATTENDUE]\n- Un contenu adapt\u00e9 au concours d'agr\u00e9gation.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement le contenu adapt\u00e9.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 10,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        600
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 9
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            10
+          ]
+        }
+      ],
+      "title": "Agent 9: R\u00e9f\u00e9rencier Critique",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais un cours de philosophie de niveau Master 2, pour des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de philosophie. Le th\u00e8me de cette ann\u00e9e est \\\"Les atomistes antiques\\\".\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** R\u00e9f\u00e9rencier Critique. Tu critiques les r\u00e9f\u00e9rences.\n- **Membres de l'\u00e9quipe :**\n  - Agent 8 (Expert en Concours) : A fourni le contenu adapt\u00e9.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Analyser la pertinence des r\u00e9f\u00e9rences pour le concours.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Le contenu adapt\u00e9 au concours.\n\n[SORTIE ATTENDUE]\n- Une analyse critique des r\u00e9f\u00e9rences.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement l'analyse critique.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 11,
+      "type": "workflow/llm_model",
+      "pos": [
+        700,
+        600
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 10
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "title": "Agent 10: Expert en \u00c9valuation",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais un cours de philosophie de niveau Master 2, pour des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de philosophie. Le th\u00e8me de cette ann\u00e9e est \\\"Les atomistes antiques\\\".\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Expert en \u00c9valuation. Tu \u00e9valuer la qualit\u00e9 du contenu.\n- **Membres de l'\u00e9quipe :**\n  - Agent 9 (R\u00e9f\u00e9rencier Critique) : A fourni l'analyse critique.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- \u00c9valuer la qualit\u00e9 et l'efficacit\u00e9 du contenu pour le concours.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : L'analyse critique des r\u00e9f\u00e9rences.\n\n[SORTIE ATTENDUE]\n- Une \u00e9valuation de la qualit\u00e9 du contenu.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement l'\u00e9valuation.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 12,
+      "type": "workflow/llm_model",
+      "pos": [
+        1000,
+        600
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 11
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            12
+          ]
+        }
+      ],
+      "title": "Agent 11: Expert en Cr\u00e9ation",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais un cours de philosophie de niveau Master 2, pour des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de philosophie. Le th\u00e8me de cette ann\u00e9e est \\\"Les atomistes antiques\\\".\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Expert en Cr\u00e9ation. Tu g\u00e9n\u00e8re des id\u00e9es cr\u00e9atives.\n- **Membres de l'\u00e9quipe :**\n  - Agent 10 (Expert en \u00c9valuation) : A fourni l'\u00e9valuation.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Proposer des id\u00e9es cr\u00e9atives pour enrichir le cours.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : L'\u00e9valuation de la qualit\u00e9 du contenu.\n\n[SORTIE ATTENDUE]\n- Des id\u00e9es cr\u00e9atives pour enrichir le cours.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement les id\u00e9es cr\u00e9atives.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 13,
+      "type": "workflow/llm_model",
+      "pos": [
+        1300,
+        600
+      ],
+      "size": [
+        250,
+        110
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "in_1",
+          "type": "string",
+          "link": 12
+        },
+        {
+          "name": "in_2",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            13
+          ]
+        }
+      ],
+      "title": "Agent 12: Expert en Innovation",
+      "properties": {
+        "model": "{{SELECTED_MODEL}}",
+        "prompt": "[CONTEXTE GLOBAL]\n- **Mission de l'\u00e9quipe :** R\u00e9pondre \u00e0 la demande utilisateur suivante : \"Je voudrais un cours de philosophie de niveau Master 2, pour des \u00e9l\u00e8ves pr\u00e9parant le concours de l'agr\u00e9gation de philosophie. Le th\u00e8me de cette ann\u00e9e est \\\"Les atomistes antiques\\\".\"\n\n[\u00c9QUIPE ET MISSION]\n- **Ton r\u00f4le :** Expert en Innovation. Tu transformes les id\u00e9es en strat\u00e9gies.\n- **Membres de l'\u00e9quipe :**\n  - Agent 11 (Expert en Cr\u00e9ation) : A fourni les id\u00e9es cr\u00e9atives.\n\n[TA T\u00c2CHE SP\u00c9CIFIQUE]\n- Transformer les id\u00e9es cr\u00e9atives en strat\u00e9gies p\u00e9dagogiques.\n\n[ENTR\u00c9ES DE DONN\u00c9ES (re\u00e7ues via les placeholders)]\n- **{{in_1}}** : Les id\u00e9es cr\u00e9atives pour enrichir le cours.\n\n[SORTIE ATTENDUE]\n- Des strat\u00e9gies p\u00e9dagogiques innovantes.\n\n[R\u00c8GLES IMP\u00c9RATIVES]\n1. Autonomie: Produis uniquement les strat\u00e9gies p\u00e9dagogiques.\n2. Pas de Dialogue: Ne t'adresse pas \u00e0 l'utilisateur."
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 14,
+      "type": "workflow/text_output",
+      "pos": [
+        1600,
+        600
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 13
+        }
+      ],
+      "title": "Contenu Final",
+      "properties": {},
+      "color": "#53a"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "string"
+    ],
+    [
+      2,
+      2,
+      0,
+      3,
+      0,
+      "string"
+    ],
+    [
+      3,
+      3,
+      0,
+      4,
+      0,
+      "string"
+    ],
+    [
+      4,
+      4,
+      0,
+      5,
+      0,
+      "string"
+    ],
+    [
+      5,
+      5,
+      0,
+      6,
+      0,
+      "string"
+    ],
+    [
+      6,
+      6,
+      0,
+      7,
+      0,
+      "string"
+    ],
+    [
+      7,
+      7,
+      0,
+      8,
+      0,
+      "string"
+    ],
+    [
+      8,
+      8,
+      0,
+      9,
+      0,
+      "string"
+    ],
+    [
+      9,
+      9,
+      0,
+      10,
+      0,
+      "string"
+    ],
+    [
+      10,
+      10,
+      0,
+      11,
+      0,
+      "string"
+    ],
+    [
+      11,
+      11,
+      0,
+      12,
+      0,
+      "string"
+    ],
+    [
+      12,
+      12,
+      0,
+      13,
+      0,
+      "string"
+    ],
+    [
+      13,
+      13,
+      0,
+      14,
+      0,
+      "string"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

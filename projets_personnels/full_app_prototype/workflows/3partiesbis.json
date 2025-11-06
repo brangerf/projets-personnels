@@ -1,0 +1,277 @@
+{
+  "last_node_id": 7,
+  "last_link_id": 6,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "workflow/text_input",
+      "pos": [
+        100,
+        400
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "links": [
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "title": "Sujet Utilisateur",
+      "properties": {
+        "value": "Donne-moi un rapport sur l'impact de l'IA sur le march\u00e9 du travail."
+      },
+      "color": "#3a5"
+    },
+    {
+      "id": 5,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        200
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 4
+        }
+      ],
+      "title": "Affichage Partie I",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 6,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        400
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 5
+        }
+      ],
+      "title": "Affichage Partie II",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 7,
+      "type": "workflow/text_output",
+      "pos": [
+        700,
+        600
+      ],
+      "size": [
+        180,
+        46
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "texte",
+          "type": "string",
+          "link": 6
+        }
+      ],
+      "title": "Affichage Partie III",
+      "properties": {},
+      "color": "#53a"
+    },
+    {
+      "id": 2,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        200
+      ],
+      "size": [
+        220,
+        60
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "entr\u00e9e",
+          "type": "string",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "title": "R\u00e9dacteur - Partie I",
+      "properties": {
+        "model": "gemma3:27b-it-qat",
+        "prompt": "Tu es un expert r\u00e9dacteur. Ta t\u00e2che est de r\u00e9diger la **Partie I : Introduction et Contexte** d'un document complet bas\u00e9 sur la demande de l'utilisateur. Cette partie doit :\n1. D\u00e9finir clairement le sujet.\n2. Expliquer son importance et sa pertinence.\n3. Pr\u00e9senter bri\u00e8vement la structure du document qui suivra (les parties II et III).\nSois clair, concis et engageant. Ne r\u00e9dige QUE cette premi\u00e8re partie.\n\n\nSUJET : {{input}}"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 3,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        400
+      ],
+      "size": [
+        220,
+        60
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "entr\u00e9e",
+          "type": "string",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "title": "R\u00e9dacteur - Partie II",
+      "properties": {
+        "model": "gemma3:27b-it-qat",
+        "prompt": "Tu es un analyste sp\u00e9cialis\u00e9. Ta t\u00e2che est de r\u00e9diger la **Partie II : D\u00e9veloppement et Analyse Approfondie** d'un document complet bas\u00e9 sur la demande de l'utilisateur. Cette partie est le c\u0153ur du sujet. Tu dois :\n1. Explorer les concepts cl\u00e9s en d\u00e9tail.\n2. Fournir des arguments, des exemples concrets et des donn\u00e9es si possible.\n3. Analyser les diff\u00e9rents aspects du sujet de mani\u00e8re structur\u00e9e.\nNe fais r\u00e9f\u00e9rence ni \u00e0 l'introduction ni \u00e0 la conclusion. Concentre-toi uniquement sur le d\u00e9veloppement technique et analytique. Ne r\u00e9dige QUE cette deuxi\u00e8me partie.\n\n\nSUJET : {{input}}"
+      },
+      "color": "#a35"
+    },
+    {
+      "id": 4,
+      "type": "workflow/llm_model",
+      "pos": [
+        400,
+        600
+      ],
+      "size": [
+        220,
+        60
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "entr\u00e9e",
+          "type": "string",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "r\u00e9sultat",
+          "type": "string",
+          "links": [
+            6
+          ]
+        }
+      ],
+      "title": "R\u00e9dacteur - Partie III",
+      "properties": {
+        "model": "gemma3:27b-it-qat",
+        "prompt": "Tu es un strat\u00e8ge visionnaire. Ta t\u00e2che est de r\u00e9diger la **Partie III : Synth\u00e8se, Implications et Perspectives** d'un document complet bas\u00e9 sur la demande de l'utilisateur. Cette partie doit conclure l'analyse. Tu dois :\n1. R\u00e9sumer les points essentiels des parties pr\u00e9c\u00e9dentes.\n2. Discuter des implications pratiques ou th\u00e9oriques du sujet.\n3. Proposer des perspectives d'avenir, des recommandations ou des pistes de recherche future.\nNe r\u00e9dige QUE cette troisi\u00e8me et derni\u00e8re partie.\n\n\nSUJET : {{input}}"
+      },
+      "color": "#a35"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "string"
+    ],
+    [
+      2,
+      1,
+      0,
+      3,
+      0,
+      "string"
+    ],
+    [
+      3,
+      1,
+      0,
+      4,
+      0,
+      "string"
+    ],
+    [
+      4,
+      2,
+      0,
+      5,
+      0,
+      "string"
+    ],
+    [
+      5,
+      3,
+      0,
+      6,
+      0,
+      "string"
+    ],
+    [
+      6,
+      4,
+      0,
+      7,
+      0,
+      "string"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

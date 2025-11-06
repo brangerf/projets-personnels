@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Scribe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- SUPPRESSION de marked.js -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <div class="sidebar-header">Scribe</div>
+        <div id="main-nav">
+            <button class="nav-button active" data-view="transcription-view">
+                <i class="fa-solid fa-microphone-lines"></i> Transcription
+            </button>
+            <button class="nav-button" data-view="processing-view">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Traitement
+            </button>
+        </div>
+        <div class="sidebar-footer">
+            <p>Powered by Whisper & Ollama</p>
+        </div>
+    </div>
+
+    <!-- Contenu Principal -->
+    <div id="main-content">
+        <!-- Vue Transcription -->
+        <div id="transcription-view" class="view-container active">
+            <div class="view-header">
+                <h1>Transcripteur Audio & Vidéo</h1>
+                <p>Importez un fichier média pour obtenir sa transcription textuelle complète.</p>
+            </div>
+            
+            <div class="control-group">
+                <label for="model-select">Qualité du modèle Whisper :</label>
+                <select id="model-select">
+                    <option value="tiny">Tiny (Très rapide, moins précis)</option>
+                    <option value="base" selected>Base (Rapide, bon équilibre)</option>
+                    <option value="small">Small (Plus lent, meilleure qualité)</option>
+                    <option value="medium">Medium (Lent, très bonne qualité)</option>
+                    <option value="large">Large (Très lent, qualité maximale)</option>
+                </select>
+            </div>
+            
+            <div id="drop-zone">
+                <i class="fa-solid fa-upload"></i>
+                <p>Glissez-déposez un fichier ici</p>
+                <p class="separator">ou</p>
+                <button id="import-button">
+                    <i class="fa-solid fa-file-import"></i> Importer un fichier
+                </button>
+            </div>
+            
+            <div id="status-area">
+                <p id="status-text">Sélectionnez un modèle et un fichier pour commencer.</p>
+                <div class="loader-container" style="display: none;">
+                    <div class="loader"></div>
+                    <span id="loader-text">Traitement en cours...</span>
+                    <div class="progress-bar-container">
+                        <div id="progress-bar" class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="result-container" style="display: none;">
+                <div id="transcription-info" class="info-box"></div>
+                
+                <h2><i class="fa-solid fa-file-lines"></i> Transcription</h2>
+                <div class="transcription-box">
+                    <pre id="transcription-output"></pre>
+                </div>
+                <div class="button-group">
+                    <button id="copy-button" title="Copier le texte">
+                        <i class="fa-solid fa-copy"></i> Copier
+                    </button>
+                    <button id="send-to-processing-button" title="Envoyer vers le module de traitement">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i> Envoyer vers le Traitement
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vue Traitement -->
+        <div id="processing-view" class="view-container">
+            <div class="view-header">
+                <h1>Traitement de Texte avec LaTeX</h1>
+                <p>Collez une transcription ou un texte à améliorer et à formater en LaTeX.</p>
+            </div>
+            
+            <div class="control-group">
+                <label for="text-input">Texte à traiter :</label>
+                <textarea id="text-input" placeholder="Collez votre texte ici..."></textarea>
+            </div>
+
+            <div class="control-group">
+                <label for="ollama-profile-select">Profil de traitement Ollama :</label>
+                <select id="ollama-profile-select">
+                    <option value="embellir" selected>Correction et mise en page</option>
+                    <option value="resumer">Résumé</option>
+                    <option value="developper">Développement et explications</option>
+                    <option value="themes">Réalisation d'un tableau récapitulatif</option>
+                </select>
+            </div>
+            
+            <button id="process-button">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Traiter le texte
+            </button>
+            
+            <div id="processing-status-area">
+                <p id="processing-status-text">Prêt à traiter.</p>
+                <div class="loader-container" style="display: none;">
+                    <div class="loader"></div>
+                    <span id="processing-loader-text">Traitement en cours...</span>
+                </div>
+            </div>
+            
+            <!-- MODIFICATION: Simplification de la zone de résultat -->
+            <div id="processing-result-container" style="display: none;">
+                <div class="result-header">
+                    <h2><i class="fa-solid fa-file-code"></i> Code LaTeX Généré</h2>
+                </div>
+                
+                <!-- On ne garde qu'une seule vue pour le code brut -->
+                <div class="transcription-box">
+                    <pre id="processing-output"></pre>
+                </div>
+                
+                <div class="button-group">
+                    <button id="copy-processed-button" title="Copier le code LaTeX">
+                        <i class="fa-solid fa-copy"></i> Copier
+                    </button>
+                    <div class="export-group">
+                        <button id="export-txt-button" title="Exporter en .tex">
+                            <i class="fa-solid fa-file-alt"></i> Exporter en .tex
+                        </button>
+                        <button id="export-pdf-button" title="Exporter en .pdf">
+                            <i class="fa-solid fa-file-pdf"></i> Exporter en .pdf
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

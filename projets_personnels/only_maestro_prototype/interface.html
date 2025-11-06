@@ -1,0 +1,56 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Maestro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    
+    <script>
+        window.addEventListener('load', () => {
+            if (typeof katex === 'undefined') {
+                console.error('❌ KaTeX n\'a pas été chargé correctement !');
+            } else {
+                console.log('✅ KaTeX chargé avec succès, version:', katex.version || 'inconnue');
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="main-content">
+        <div id="maestro-view">
+            <div id="maestro-container">
+                <div class="maestro-header">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <h1>Maestro</h1>
+                    <p>Décrivez votre objectif et laissez Maestro composer la solution.</p>
+                </div>
+                <div id="maestro-model-selector-container">
+                    <label for="maestro-model-selector">Modèle Maestro :</label>
+                    <select id="maestro-model-selector"></select>
+                </div>
+                <div id="maestro-complexity-container">
+                    <label for="maestro-complexity-slider">Complexité :</label>
+                    <input type="range" id="maestro-complexity-slider" min="0" max="1" value="0" step="1">
+                    <span id="maestro-complexity-label">Simple</span>
+                </div>
+                <textarea id="maestro-input" placeholder="Ex: Rédige un poème sur la lune en style haïku..."></textarea>
+                <button id="maestro-run-button"><i class="fa-solid fa-play"></i> Lancer la Composition</button>
+                <div id="maestro-status-area"></div>
+                <div id="maestro-results-area"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/ui.js"></script>
+    <script src="assets/js/maestro.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
