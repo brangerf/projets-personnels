@@ -1,4 +1,4 @@
-# Projets d'Exploration sur les Agents IA Locaux
+# Projets d'exploration personnels
 
 Ce dépôt regroupe un ensemble de projets dédiés à l'interaction avec des modèles de langage fonctionnant localement via Ollama. Le projet principal, **`full_app_prototype`**, a servi de matrice à partir de laquelle plusieurs modules spécialisés ont vu le jour. Chacun de ces modules a été développé de manière indépendante afin d'isoler, de tester et d'affiner une technologie particulière avant son intégration potentielle dans l'application centrale. Le fichier texte rédigé en grammaire GBNF est un extrait de mes recherches personnelles sur les system_prompts, avant l'apparition des premiers modèles de raisonnements.
 
