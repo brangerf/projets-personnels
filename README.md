@@ -10,13 +10,26 @@ This repository gathers a collection of projects dedicated to interacting with l
 **Institution:** University of Caen Normandy — UFR Humanities and Social Sciences  
 **Degree:** Master II in Philosophy, Philosophy of Science track  
 **Supervisor:** Pascal Bertin  
-**Academic Year:** 2025–2026
+**Academic Year:** 2025–2026  
+**Grade:** 18/20, with jury congratulations  
+**External Audit:** Reviewed by an engineer and philosopher specializing in AI and computer simulations  
+**Length:** 109 pages
 
 Large language models are at once highly capable and opaque, and their opacity is not a mere lack of access, since it persists even when the code, the parameters, and the full computational trace are available. This thesis takes as its object **mechanistic interpretability**, the research program that seeks to explain these models by reconstructing the internal causal mechanisms from which their outputs emerge. The guiding question is whether the strategies of mechanistic explanation inherited from the life sciences, in the sense of Machamer, Darden, and Craver, are adequate to such systems.
 
 We defend a two-part thesis. On the one hand, these strategies yield explanations that are genuinely mechanistic in form, for they decompose the system, localize its functions, and establish its causal relations through intervention. On the other hand, their very success requires enriching the concepts of explanation, function, and component, because the organization of a trained model arises neither from evolution nor from design, but from a **third mode of genesis: training**. We finally show that this result reverses the initial question, since it challenges the tacit equivalence between mechanistically explaining a system and rendering it intelligible. In this respect, the approach constitutes a piece of **conceptual engineering**, understood as an adaptation of our concepts to a new object rather than as the correction of a defect.
 
 *Keywords:* mechanistic interpretability · explainability · large language models · mechanistic explanation · epistemic opacity · function · understanding · conceptual engineering · intervention · causal abstraction
+
+---
+
+### M1 Research Thesis
+
+**Title:** *Ontological Re-evaluation of LLM Agents and Artificial Intelligence*  
+**Institution:** University of Caen Normandy  
+**Length:** 94 pages
+
+This research thesis explored how the emergence of new artificial intelligences leads us to reconsider our conception of life. It examined the ontological implications of LLM agents and their capacity to exhibit behaviors that challenge traditional boundaries between living and non-living systems.
 
 ---
 
