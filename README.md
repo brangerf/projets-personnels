@@ -12,7 +12,7 @@ This repository gathers a collection of projects dedicated to interacting with l
 **Supervisor:** Pascal Bertin  
 **Academic Year:** 2025–2026  
 **Grade:** 18/20, with jury congratulations  
-**External Audit:** Reviewed by an engineer and philosopher specializing in AI and computer simulations  
+**External Audit:** Reviewed by Franck Varenne, engineer and Philosophy PhD specializing in AI and computer simulations  
 **Length:** 109 pages
 
 Large language models are at once highly capable and opaque, and their opacity is not a mere lack of access, since it persists even when the code, the parameters, and the full computational trace are available. This thesis takes as its object **mechanistic interpretability**, the research program that seeks to explain these models by reconstructing the internal causal mechanisms from which their outputs emerge. The guiding question is whether the strategies of mechanistic explanation inherited from the life sciences, in the sense of Machamer, Darden, and Craver, are adequate to such systems.
